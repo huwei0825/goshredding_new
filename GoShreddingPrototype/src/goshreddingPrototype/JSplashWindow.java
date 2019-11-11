@@ -38,7 +38,7 @@ public class JSplashWindow extends JWindow implements Runnable{
     public void run() {
         try {
             setVisible(true);
-            Thread.sleep(50000);
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +64,11 @@ public class JSplashWindow extends JWindow implements Runnable{
     public static void main(String[] args) {
         //showFrame("Demo splash window");
         JSplashWindow splash = new JSplashWindow();
+        try{
+            Thread.sleep(3000);
+        }catch(InterruptedException ex){
+            
+        }
         Login window = new Login();
         window.setVisible(true);
 //splash.start();
