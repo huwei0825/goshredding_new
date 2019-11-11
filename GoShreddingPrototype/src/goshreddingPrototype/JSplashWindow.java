@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package goshreddingPrototype;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.*;
+
 /**
  *
  * @author SXR
  */
-public class JSplashWindow extends JWindow implements Runnable{
+public class JSplashWindow extends JWindow implements Runnable {
 
     Thread splashThread = null;
 
@@ -38,7 +40,7 @@ public class JSplashWindow extends JWindow implements Runnable{
     public void run() {
         try {
             setVisible(true);
-            Thread.sleep(50000);
+            Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +66,10 @@ public class JSplashWindow extends JWindow implements Runnable{
     public static void main(String[] args) {
         //showFrame("Demo splash window");
         JSplashWindow splash = new JSplashWindow();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+        }
         Login window = new Login();
         window.setVisible(true);
 //splash.start();
