@@ -11,7 +11,7 @@ import java.net.*;
  *
  * @author SXR
  */
-public class JSplashWindow extends JWindow implements Runnable{
+public class JSplashWindow extends JWindow implements Runnable {
 
     Thread splashThread = null;
 
@@ -33,12 +33,13 @@ public class JSplashWindow extends JWindow implements Runnable{
         toFront();//window类的toFront()方法可以让启动界面显示的时候暂时在最前面，用window类的setAlwayOnTop(boolean)方法可以让窗口总保持在最前面。
         splashThread = new Thread(this);
         splashThread.start();
+        /////////sdskdjsdks
     }
 
     public void run() {
         try {
             setVisible(true);
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
         }
