@@ -35,7 +35,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(850, 480));
         getContentPane().setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/goshreddingPrototype/goshredding icon2019-11-09 at 14.03.52.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/goshreddingPrototype/goshredding.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 850, 480);
 
@@ -72,10 +72,10 @@ public class SplashScreen extends javax.swing.JFrame {
         SplashScreen ss = new SplashScreen();
         /* Create and display the form */
         ss.setVisible(true);
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (Exception e) {
+//        }
         Login login = new Login();
         login.setVisible(true);
         ss.dispose();

@@ -29,14 +29,14 @@ public class SignUp extends javax.swing.JFrame {
 
         jPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        userIdTxt = new javax.swing.JTextField();
-        userIdTxt1 = new javax.swing.JTextField();
-        userIdTxt2 = new javax.swing.JTextField();
-        userIdTxt3 = new javax.swing.JTextField();
-        userIdTxt4 = new javax.swing.JTextField();
-        userIdTxt5 = new javax.swing.JTextField();
-        userIdTxt6 = new javax.swing.JTextField();
-        userIdTxt7 = new javax.swing.JTextField();
+        forenameTxt = new javax.swing.JTextField();
+        surnameTxt = new javax.swing.JTextField();
+        dobTxt = new javax.swing.JTextField();
+        add1Txt = new javax.swing.JTextField();
+        add2Txt = new javax.swing.JTextField();
+        postcodeTxt = new javax.swing.JTextField();
+        password1Txt = new javax.swing.JTextField();
+        password2Txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -45,14 +45,14 @@ public class SignUp extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        userIdTxt8 = new javax.swing.JTextField();
+        numTxt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        userIdTxt9 = new javax.swing.JTextField();
+        emailTxt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        userTypeComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
-        backBtn1 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 246, 254));
@@ -64,61 +64,21 @@ public class SignUp extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Sign up");
 
-        userIdTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxtActionPerformed(evt);
-            }
-        });
+        forenameTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt1ActionPerformed(evt);
-            }
-        });
+        surnameTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt2ActionPerformed(evt);
-            }
-        });
+        dobTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt3ActionPerformed(evt);
-            }
-        });
+        add1Txt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt4ActionPerformed(evt);
-            }
-        });
+        add2Txt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt5.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt5ActionPerformed(evt);
-            }
-        });
+        postcodeTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt6.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt6ActionPerformed(evt);
-            }
-        });
+        password1Txt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
-        userIdTxt7.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt7ActionPerformed(evt);
-            }
-        });
+        password2Txt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Surname:");
@@ -144,36 +104,21 @@ public class SignUp extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel11.setText("Password:");
 
-        userIdTxt8.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt8ActionPerformed(evt);
-            }
-        });
+        numTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel12.setText("Contact Num:");
 
-        userIdTxt9.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt9ActionPerformed(evt);
-            }
-        });
+        emailTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel13.setText("email:");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Organizer", "participant" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(96, 40));
-        jComboBox1.setSize(new java.awt.Dimension(96, 40));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        userTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        userTypeComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        userTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Organizer", "participant" }));
+        userTypeComboBox.setPreferredSize(new java.awt.Dimension(96, 40));
+        userTypeComboBox.setSize(new java.awt.Dimension(96, 40));
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel14.setText("Confirm password:");
@@ -186,11 +131,11 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        backBtn1.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn1.setText("Save");
-        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setBackground(new java.awt.Color(72, 124, 175));
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtn1ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
@@ -210,13 +155,13 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userIdTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                    .addComponent(userIdTxt1)
-                    .addComponent(userIdTxt2)
-                    .addComponent(userIdTxt3)
-                    .addComponent(userIdTxt4)
-                    .addComponent(userIdTxt5)
-                    .addComponent(userIdTxt8))
+                    .addComponent(forenameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                    .addComponent(surnameTxt)
+                    .addComponent(dobTxt)
+                    .addComponent(add1Txt)
+                    .addComponent(add2Txt)
+                    .addComponent(postcodeTxt)
+                    .addComponent(numTxt))
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -230,16 +175,16 @@ public class SignUp extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userIdTxt6, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, 0, 253, Short.MAX_VALUE)
-                                .addComponent(userIdTxt9))
+                                .addComponent(userTypeComboBox, 0, 253, Short.MAX_VALUE)
+                                .addComponent(emailTxt))
                             .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanelLayout.createSequentialGroup()
                                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(30, 30, 30)
-                                    .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(userIdTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -253,44 +198,44 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forenameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(userIdTxt9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(userIdTxt6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userIdTxt4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userIdTxt7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(userIdTxt5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userIdTxt8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
-                        .addComponent(backBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
+                        .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
 
@@ -309,59 +254,28 @@ public class SignUp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxtActionPerformed
-
-    private void userIdTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt1ActionPerformed
-
-    private void userIdTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt2ActionPerformed
-
-    private void userIdTxt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt3ActionPerformed
-
-    private void userIdTxt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt4ActionPerformed
-
-    private void userIdTxt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt5ActionPerformed
-
-    private void userIdTxt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt6ActionPerformed
-
-    private void userIdTxt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt7ActionPerformed
-
-    private void userIdTxt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt8ActionPerformed
-
-    private void userIdTxt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt9ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         Login liFrm = new Login();
         liFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtn1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        
+        String forename = forenameTxt.getText();
+        String surname = surnameTxt.getText();
+        String dob = dobTxt.getText();
+        String add1 = add1Txt.getText();
+        String add2 = add2Txt.getText();
+        String postcode = postcodeTxt.getText();
+        String num = numTxt.getText();
+        String email = emailTxt.getText();
+        String userType = (String)userTypeComboBox.getSelectedItem();
+        String password1 = password1Txt.getText();
+        String password2 = password2Txt.getText();
+        
+        
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,7 +306,7 @@ public class SignUp extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -402,9 +316,12 @@ public class SignUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField add1Txt;
+    private javax.swing.JTextField add2Txt;
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton backBtn1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField dobTxt;
+    private javax.swing.JTextField emailTxt;
+    private javax.swing.JTextField forenameTxt;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -418,15 +335,12 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel;
-    private javax.swing.JTextField userIdTxt;
-    private javax.swing.JTextField userIdTxt1;
-    private javax.swing.JTextField userIdTxt2;
-    private javax.swing.JTextField userIdTxt3;
-    private javax.swing.JTextField userIdTxt4;
-    private javax.swing.JTextField userIdTxt5;
-    private javax.swing.JTextField userIdTxt6;
-    private javax.swing.JTextField userIdTxt7;
-    private javax.swing.JTextField userIdTxt8;
-    private javax.swing.JTextField userIdTxt9;
+    private javax.swing.JTextField numTxt;
+    private javax.swing.JTextField password1Txt;
+    private javax.swing.JTextField password2Txt;
+    private javax.swing.JTextField postcodeTxt;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField surnameTxt;
+    private javax.swing.JComboBox<String> userTypeComboBox;
     // End of variables declaration//GEN-END:variables
 }
