@@ -350,7 +350,7 @@ public class CalendarPanel extends JPanel {
     private void refresh() {
         titlePanel.updateDate();
         bodyPanel.updateDate();
-        footerPanel.updateDate();
+//        footerPanel.updateDate();
         SwingUtilities.updateComponentTreeUI(this);
     }
 
