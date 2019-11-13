@@ -1,22 +1,3 @@
-/**
- * 
- * Copyright: Ares.
- * All Rights Reserved. 
- * Company: Insigma HT/上海创图
- * @author Ares <a href="mailto:icerainsoft@hotmail.com>send email</a>
- * @date 2013-11-17 16:53
- *
- * Revision History
- *
- * Date            Programmer              Notes
- * ---------    ---------------------  --------------------------------------------
- * 2013-11-17       Ares                    initial
- * 2014-09-16       Ares                    fix bug @n3k123
- * 
- * 1. you can change date format by parameter.
- * 2. you can change week label content by showTEXT.
- * 3. you can change dayOfWeek order by defaultStartDAY.
- */
 package goshreddingPrototype;
 
 import java.awt.BasicStroke;
@@ -54,7 +35,7 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 /**
- * @author Ares
+ * @author Songyun Hu
  * @Describe(Date Chooser class)
  */
 public class CalendarPanel extends JPanel{
@@ -116,61 +97,10 @@ public class CalendarPanel extends JPanel{
         calendarPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0xAA, 0xAA, 0xAA)));
         calendarPanel.add(titlePanel = new TitlePanel(), java.awt.BorderLayout.NORTH);
         calendarPanel.add(bodyPanel = new BodyPanel(), java.awt.BorderLayout.CENTER);
-//        calendarPanel.add(footerPanel = new FooterPanel(),java.awt.BorderLayout.SOUTH);
-//        this.addAncestorListener(new AncestorListener() {
-//            public void ancestorAdded(AncestorEvent event) { }
-//            public void ancestorRemoved(AncestorEvent event) {hidePanel();}
-//            //hide pop when move component.  
-//            public void ancestorMoved(AncestorEvent event) {
-//                hidePanel();
-//            }
-//        });
     }
     public void register(final JComponent showComponent) {
         this.showDate = showComponent;
-//        showComponent.setRequestFocusEnabled(true);
-//        showComponent.addMouseListener(new MouseAdapter() {
-//            public void mousePressed(MouseEvent me) {
-//                showComponent.requestFocusInWindow();
-//            }
-//        });
-//        this.add(showComponent, BorderLayout.CENTER);
-//        this.setPreferredSize(new Dimension(90, 25));
-//        this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-//        showComponent.addMouseListener(new MouseAdapter() {
-//            public void mouseEntered(MouseEvent me) {
-//                if (showComponent.isEnabled()) {
-//                    showComponent.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//                }
-//            }
-//            public void mouseExited(MouseEvent me) {
-//                if (showComponent.isEnabled()) {
-//                    showComponent.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-//                    showComponent.setForeground(Color.BLACK);
-//                }
-//            }
-//            public void mousePressed(MouseEvent me) {
-//                if (showComponent.isEnabled()) {
-//                    showComponent.setForeground(hoverColor);
-//                    if (isShow) {
-//                        hidePanel();
-//                    } else {
-//                        showPanel(showComponent);
-//                    }
-//                }
-//            }
-//            public void mouseReleased(MouseEvent me) {
-//                if (showComponent.isEnabled()) {
-//                    showComponent.setForeground(Color.BLACK);
-//                }
-//            }
-//        });
-//        showComponent.addFocusListener(new FocusListener() {
-//            public void focusLost(FocusEvent e) {
-//                hidePanel();
-//            }
-//            public void focusGained(FocusEvent e) { }
-//        });
+
     }
     //hide the main panel.
     private void hidePanel() {
@@ -214,7 +144,7 @@ public class CalendarPanel extends JPanel{
         
         public TitlePanel(){
             super(new java.awt.BorderLayout());
-            this.setBackground(new java.awt.Color(190, 200, 200));
+            this.setBackground(new java.awt.Color(72,124,175));
             initTitlePanel();
         }
         private void initTitlePanel(){
@@ -307,7 +237,7 @@ public class CalendarPanel extends JPanel{
             cal.set(Calendar.DAY_OF_MONTH, 1);
             
             int index = cal.get(Calendar.DAY_OF_WEEK);
-            // 从当月1号前移，一直移动到面板显示的第一天的前一天；当-index + defaultStartDAY为正数时，为避免面板从当月1号之后开始显示，需要前移一周，确保当月显示完全
+            
             if(index > defaultStartDAY) cal.add(Calendar.DAY_OF_MONTH, -index + defaultStartDAY);
             else cal.add(Calendar.DAY_OF_MONTH, -index + defaultStartDAY - 7);
             
@@ -426,6 +356,7 @@ public class CalendarPanel extends JPanel{
                 g.setColor(new java.awt.Color(0xBB, 0xBF, 0xDA));
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
+            
             //set current day's border
             if(year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH) && day == now.get(Calendar.DAY_OF_MONTH)){
                 Graphics2D gd = (Graphics2D) g;
@@ -516,10 +447,9 @@ public class CalendarPanel extends JPanel{
             list.clear();
         }
         public void setSelect(Point p, boolean b) {
-            //如果是拖动,则要优化一下,以提高效率  
+            
             if (b) {
-                //表示是否能返回,不用比较完所有的标签,能返回的标志就是把上一个标签和  
-                //将要显示的标签找到了就可以了  
+                 
                 boolean findPrevious = false, findNext = false;
                 for (DayLabel lab : list) {
                     if (lab.contains(p)) {

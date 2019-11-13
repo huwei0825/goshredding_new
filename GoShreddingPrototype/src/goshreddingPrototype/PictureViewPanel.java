@@ -18,7 +18,7 @@ public class PictureViewPanel extends javax.swing.JPanel{
     @Override
     protected void paintComponent(Graphics arg0) {
 
-        //重写paint方法，绘制图片
+        
         super.paintComponent(arg0);
         if (image != null) {
             arg0.drawImage(image, 0, 0, getWidth(), getHeight(), this);

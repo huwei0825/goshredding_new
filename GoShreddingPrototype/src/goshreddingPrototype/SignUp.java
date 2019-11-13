@@ -5,6 +5,9 @@
  */
 package goshreddingPrototype;
 
+import goshredding.Validation;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author huwei
@@ -274,7 +277,32 @@ public class SignUp extends javax.swing.JFrame {
         String password1 = password1Txt.getText();
         String password2 = password2Txt.getText();
         
+        boolean validate = true;
         
+        if (Validation.isPresent(forenameTxt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Forename",
+                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
+        if (Validation.isPresent(surnameTxt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Surname",
+                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
+        if (Validation.isDate(dobTxt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Please write a valid date in the format 'dd/mm/yyyy'", "DOB",
+                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
+        if (Validation.isPresent(add1Txt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "address",
+                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
+        if (Validation.isLength(numTxt.getText(), 11) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "length of phone number should be 11", "phone number", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     /**

@@ -72,10 +72,10 @@ public class SplashScreen extends javax.swing.JFrame {
         SplashScreen ss = new SplashScreen();
         /* Create and display the form */
         ss.setVisible(true);
-//        try {
-//            Thread.sleep(2000);
-//        } catch (Exception e) {
-//        }
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
         Login login = new Login();
         login.setVisible(true);
         ss.dispose();
