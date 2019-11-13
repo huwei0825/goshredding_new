@@ -73,7 +73,7 @@ public class JSplashWindow extends JWindow implements Runnable {
         }catch(InterruptedException ex){
             
         }
-        Login window = new Login();
+        LoginUI window = new LoginUI();
         window.setVisible(true);
 //splash.start();
     }

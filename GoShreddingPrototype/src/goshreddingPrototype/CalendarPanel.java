@@ -239,6 +239,7 @@ public class CalendarPanel extends JPanel {
 
             public void mouseEntered(java.awt.event.MouseEvent me) {
                 label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                label.setForeground(java.awt.Color.BLACK);
             }
 
             public void mouseExited(java.awt.event.MouseEvent me) {

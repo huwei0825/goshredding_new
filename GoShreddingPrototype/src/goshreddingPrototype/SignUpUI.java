@@ -5,19 +5,24 @@
  */
 package goshreddingPrototype;
 
+import goshredding.Definition;
 import goshredding.Validation;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author huwei
  */
-public class SignUp extends javax.swing.JFrame {
+public class SignUpUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public SignUp() {
+    public SignUpUI() {
         initComponents();
     }
 
@@ -222,11 +227,10 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14)))
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,13 +262,14 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        Login liFrm = new Login();
+        LoginUI liFrm = new LoginUI();
         liFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        
+        String record;
+        int userId;
         String forename = forenameTxt.getText();
         String surname = surnameTxt.getText();
         String dob = dobTxt.getText();
@@ -273,35 +278,120 @@ public class SignUp extends javax.swing.JFrame {
         String postcode = postcodeTxt.getText();
         String num = numTxt.getText();
         String email = emailTxt.getText();
-        String userType = (String)userTypeComboBox.getSelectedItem();
+        String userType = (String) userTypeComboBox.getSelectedItem();
         String password1 = password1Txt.getText();
         String password2 = password2Txt.getText();
-        
+        int income = 0;
+        String lineRead;
+        int lineNum = 0;//stores the number of lines in a file
+
         boolean validate = true;
-        
+
         if (Validation.isPresent(forenameTxt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "Forename",
-                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         if (Validation.isPresent(surnameTxt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "Surname",
-                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (Validation.isPresent(numTxt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Contact number",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (Validation.isLength(numTxt.getText(), 11) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Must be 11 numbers long", "Contact number",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         if (Validation.isDate(dobTxt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Please write a valid date in the format 'dd/mm/yyyy'", "DOB",
-                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (Validation.isPresent(emailTxt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Email",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         if (Validation.isPresent(add1Txt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "address",
                     JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
-        if (Validation.isLength(numTxt.getText(), 11) == false) {
+        if (Validation.isPresent(postcodeTxt.getText()) == false) {
             validate = false;
-            JOptionPane.showMessageDialog(null, "length of phone number should be 11", "phone number", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Postcode",
+                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+        }
+        if (Validation.isLength(postcodeTxt.getText(), 7) || Validation.isLength(postcodeTxt.getText(), 8) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Must be 7 or 8 characters long", "Postcode",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (Validation.isLength(password1Txt.getText(), 8) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Must be 8 characters long", "Password",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (Validation.isDoubleVerification(password1Txt.getText(), password2Txt.getText()) == false) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Please confirm the password again", "Passwords don't match",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        try {
+            if (validate == true) {
+                //store participant information
+                if (userType.equalsIgnoreCase("participant")) {
+                    //create a file reader object
+                    FileReader fr = new FileReader(Definition.PARTICIPANTFILE);
+                    BufferedReader br = new BufferedReader(fr);
+                    //loop through file until EOF or we find it
+                    while ((lineRead = br.readLine()) != null) {
+                        lineNum++;
+                    }
+                    userId = lineNum + 100;
+                    record = userId + "," + forename + "," + surname + "," + dob + "," + add1 + "," + add2 + "," + postcode + "," + num
+                            + "," + email + "," + password1;
+                    //create file writer object
+                    FileWriter w = new FileWriter(Definition.PARTICIPANTFILE, true);
+                    //write the string record to the file plus end of line
+                    w.write(record + System.getProperty("line.separator"));
+                    w.close();//close file
+                    JOptionPane.showMessageDialog(null, "successful added");
+                    MainFormUI mainFrm = new MainFormUI();
+                    mainFrm.setVisible(true);
+                    this.dispose();
+                }
+                //store organizer information
+                if (userType.equalsIgnoreCase("organizer")) {
+                    //create a file reader object
+                    FileReader fr = new FileReader(Definition.ORGANIZERFILE);
+                    BufferedReader br = new BufferedReader(fr);
+                    //loop through file until EOF or we find it
+                    while ((lineRead = br.readLine()) != null) {
+                        lineNum++;
+                    }
+                    userId = lineNum + 100;
+                    record = userId + "," + forename + "," + surname + "," + dob + "," + add1 + "," + add2 + "," + postcode + "," + num
+                            + "," + email + "," + password1 + "," + income;
+                    //create file writer object
+                    FileWriter w = new FileWriter(Definition.ORGANIZERFILE, true);
+                    //write the string record to the file plus end of line
+                    w.write(record + System.getProperty("line.separator"));
+                    w.close();//close file
+                    JOptionPane.showMessageDialog(null, "successful added");
+                    MainFormUI mainFrm = new MainFormUI();
+                    mainFrm.setVisible(true);
+                    this.dispose();
+                }
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "error with: " + ex);
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -322,23 +412,27 @@ public class SignUp extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUp().setVisible(true);
+                new SignUpUI().setVisible(true);
             }
         });
     }

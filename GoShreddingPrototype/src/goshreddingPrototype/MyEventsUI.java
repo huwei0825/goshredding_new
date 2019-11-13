@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  *
  * @author huwei
  */
-public class MyEvents extends javax.swing.JFrame {
+public class MyEventsUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public MyEvents() {
+    public MyEventsUI() {
         initComponents();
         CalendarPanel ser = CalendarPanel.getInstance();
         JPanel calendarPanel=ser.getCalendarPanel();
@@ -187,7 +187,7 @@ public class MyEvents extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        Login liFrm = new Login();
+        LoginUI liFrm = new LoginUI();
         liFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
@@ -221,14 +221,18 @@ public class MyEvents extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyEvents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyEventsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyEvents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyEventsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyEvents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyEventsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyEvents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyEventsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -237,7 +241,7 @@ public class MyEvents extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MyEvents().setVisible(true);
+                new MyEventsUI().setVisible(true);
             }
         });
     }
