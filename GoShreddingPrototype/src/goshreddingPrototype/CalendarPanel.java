@@ -233,22 +233,22 @@ public class CalendarPanel extends JPanel {
 
             public void mouseEntered(java.awt.event.MouseEvent me) {
                 label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-                label.setForeground(hoverColor);
+//                label.setForeground(hoverColor);
             }
 
             public void mouseExited(java.awt.event.MouseEvent me) {
                 label.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                label.setForeground(java.awt.Color.BLACK);
+//                label.setForeground(java.awt.Color.BLACK);
             }
 
             public void mousePressed(java.awt.event.MouseEvent me) {
                 calendar.add(type, value);
-                label.setForeground(java.awt.Color.WHITE);
+//                label.setForeground(java.awt.Color.WHITE);
                 refresh();
             }
 
             public void mouseReleased(java.awt.event.MouseEvent me) {
-                label.setForeground(java.awt.Color.BLACK);
+//                label.setForeground(java.awt.Color.BLACK);
             }
         }
     }
