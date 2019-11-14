@@ -55,6 +55,11 @@ public class LoginUI extends javax.swing.JFrame {
 
         loginBtn.setBackground(new java.awt.Color(72, 124, 175));
         loginBtn.setText("Log in");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Or");
@@ -154,6 +159,12 @@ public class LoginUI extends javax.swing.JFrame {
         suFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_signUpBtnActionPerformed
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        MainFormUI mainFrm = new MainFormUI();
+        mainFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments

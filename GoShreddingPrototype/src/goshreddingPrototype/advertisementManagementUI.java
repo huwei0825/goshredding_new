@@ -170,8 +170,8 @@ public class advertisementManagementUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        MyEventsUI myFrm = new MyEventsUI();
-        myFrm.setVisible(true);
+        EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

@@ -33,7 +33,7 @@ public class writeReviewUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         backBtn = new javax.swing.JButton();
-        backBtn1 = new javax.swing.JButton();
+        submitBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 246, 254));
@@ -61,11 +61,11 @@ public class writeReviewUI extends javax.swing.JFrame {
             }
         });
 
-        backBtn1.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn1.setText("Submit");
-        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+        submitBtn.setBackground(new java.awt.Color(72, 124, 175));
+        submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtn1ActionPerformed(evt);
+                submitBtnActionPerformed(evt);
             }
         });
 
@@ -88,7 +88,7 @@ public class writeReviewUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(119, 119, 119))
         );
         jPanelLayout.setVerticalGroup(
@@ -103,7 +103,7 @@ public class writeReviewUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -123,14 +123,16 @@ public class writeReviewUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        LoginUI liFrm = new LoginUI();
-        liFrm.setVisible(true);
+        OpenEventsUI oeFrm = new OpenEventsUI();
+        oeFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtn1ActionPerformed
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        OpenEventsUI oeFrm = new OpenEventsUI();
+        oeFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,11 +178,11 @@ public class writeReviewUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton backBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

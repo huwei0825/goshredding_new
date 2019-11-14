@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package goshreddingPrototype;
+package Demos;
 
 import goshredding.data.EventTableModel;
 import goshredding.data.EventCellRender;
@@ -27,7 +27,7 @@ public class TableDemo extends javax.swing.JFrame {
 
     public TableDemo() {
         initComponents();
-        eventTable.setRowHeight(65);
+        eventTable.setRowHeight(75);
         
         eventTable.getTableHeader().setVisible(false);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
