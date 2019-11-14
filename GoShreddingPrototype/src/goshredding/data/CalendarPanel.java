@@ -6,7 +6,7 @@
  * 3. you can change dayOfWeek order by defaultStartDAY.
  */
 
-package goshreddingPrototype;
+package goshredding.data;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;

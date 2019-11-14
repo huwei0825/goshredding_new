@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package goshredding;
+package goshredding.data;
 
 /**
  *
@@ -51,15 +51,19 @@ public class Validation {
                     valid = false;
                 }
             }
-            if (intDateArray[1] == 4 || intDateArray[1] == 6 || intDateArray[1] == 9
+            else if (intDateArray[1] == 4 || intDateArray[1] == 6 || intDateArray[1] == 9
                     || intDateArray[1] == 11) {
                 if (intDateArray[0] > 30 || intDateArray[0] < 1) {
                     valid = false;
                 }
-            } else {
+            }
+            else if (intDateArray[1] == 1 || intDateArray[1] == 3 || intDateArray[1] == 5
+                    || intDateArray[1] == 7 || intDateArray[1] == 8 || intDateArray[1] == 10 || intDateArray[1] == 12) {
                 if (intDateArray[0] > 31 || intDateArray[0] < 1) {
                     valid = false;
                 }
+            } else {
+                valid = false;
             }
 
         } else {

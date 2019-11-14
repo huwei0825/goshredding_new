@@ -56,11 +56,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="backBtn" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="openBtn" min="-2" pref="113" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="backBtn1" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="editBtn" min="-2" pref="113" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="backBtn2" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="deleteBtn" min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="calendarContainerPanel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="backBtn3" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="backBtn" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
@@ -111,10 +111,10 @@
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="openBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="editBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="deleteBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="backBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="backBtn1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="backBtn2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="backBtn3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>
@@ -174,18 +174,18 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="backBtn">
+        <Component class="javax.swing.JButton" name="openBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="text" type="java.lang.String" value="Open"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="backBtn1">
+        <Component class="javax.swing.JButton" name="editBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -193,10 +193,10 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="backBtn2">
+        <Component class="javax.swing.JButton" name="deleteBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -204,7 +204,7 @@
             <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtn2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="calendarContainerPanel">
@@ -227,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="Calender&#xff1a;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="backBtn3">
+        <Component class="javax.swing.JButton" name="backBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -235,7 +235,7 @@
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtn3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

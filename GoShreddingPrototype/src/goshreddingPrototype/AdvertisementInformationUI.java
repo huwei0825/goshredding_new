@@ -5,6 +5,14 @@
  */
 package goshreddingPrototype;
 
+import goshredding.data.PictureViewPanel;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.border.BevelBorder;
+
 /**
  *
  * @author huwei
@@ -14,8 +22,14 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    private PictureViewPanel pictureViewPanel = null;
+    
     public AdvertisementInformationUI() {
         initComponents();
+        pictureViewPanel = new PictureViewPanel();
+        pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        pictureViewPanel.setPreferredSize(new Dimension(270, 75));
+        imageViewContainerPanel.add(pictureViewPanel);
     }
 
     /**
@@ -37,10 +51,12 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        userIdTxt9 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
-        backBtn1 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
+        uploadBtn = new javax.swing.JButton();
+        imageViewContainerPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 246, 254));
@@ -48,6 +64,7 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(850, 480));
 
         jPanel.setBackground(new java.awt.Color(239, 246, 254));
+        jPanel.setPreferredSize(new java.awt.Dimension(850, 480));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Advertisement Information");
@@ -92,15 +109,8 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setText("Address1:");
 
-        userIdTxt9.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt9ActionPerformed(evt);
-            }
-        });
-
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel13.setText("email:");
+        jLabel13.setText("Upload picture:");
 
         backBtn.setBackground(new java.awt.Color(72, 124, 175));
         backBtn.setText("Back");
@@ -110,13 +120,26 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
             }
         });
 
-        backBtn1.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn1.setText("Save");
-        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setBackground(new java.awt.Color(72, 124, 175));
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtn1ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
+
+        uploadBtn.setBackground(new java.awt.Color(72, 124, 175));
+        uploadBtn.setText("Upload");
+        uploadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadBtnActionPerformed(evt);
+            }
+        });
+
+        imageViewContainerPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("The preferable image size is 270 x 75");
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -137,20 +160,26 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
                             .addComponent(userIdTxt1)
                             .addComponent(userIdTxt2)
                             .addComponent(userIdTxt3))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
                                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
                                 .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(userIdTxt9, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(56, 56, 56)
+                                .addComponent(uploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addComponent(jLabel2)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,25 +190,32 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(userIdTxt9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel13)
+                    .addComponent(uploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel7))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
                 .addGap(21, 21, 21)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -214,19 +250,36 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userIdTxt3ActionPerformed
 
-    private void userIdTxt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt9ActionPerformed
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        LoginUI liFrm = new LoginUI();
-        liFrm.setVisible(true);
+        advertisementManagementUI amFrm = new advertisementManagementUI();
+        amFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backBtn1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        advertisementManagementUI amFrm = new advertisementManagementUI();
+        amFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(uploadBtn);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            File file = chooser.getSelectedFile();
+            System.out.println(file.getAbsolutePath());
+            System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());  //输出相对路径 
+            try {
+                Image image =  new ImageIcon(file.getAbsolutePath()).getImage();
+                pictureViewPanel.setImage(image);
+                pictureViewPanel.repaint();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_uploadBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,7 +333,8 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton backBtn1;
+    private javax.swing.JPanel imageViewContainerPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -288,10 +342,11 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JButton uploadBtn;
     private javax.swing.JTextField userIdTxt;
     private javax.swing.JTextField userIdTxt1;
     private javax.swing.JTextField userIdTxt2;
     private javax.swing.JTextField userIdTxt3;
-    private javax.swing.JTextField userIdTxt9;
     // End of variables declaration//GEN-END:variables
 }

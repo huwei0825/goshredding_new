@@ -37,9 +37,9 @@ public class MainFormUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        notificationBtn = new javax.swing.JButton();
+        myEventBtn = new javax.swing.JButton();
+        myProfileBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -86,7 +86,7 @@ public class MainFormUI extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        newGroupBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -141,25 +141,35 @@ public class MainFormUI extends javax.swing.JFrame {
         jPanel.add(jLabel3);
         jLabel3.setBounds(579, 20, 260, 16);
 
-        jButton1.setBackground(new java.awt.Color(72, 124, 175));
-        jButton1.setText("Notification");
-        jPanel.add(jButton1);
-        jButton1.setBounds(586, 39, 120, 35);
-
-        jButton3.setBackground(new java.awt.Color(72, 124, 175));
-        jButton3.setText("My events");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        notificationBtn.setBackground(new java.awt.Color(72, 124, 175));
+        notificationBtn.setText("Notification");
+        notificationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                notificationBtnActionPerformed(evt);
             }
         });
-        jPanel.add(jButton3);
-        jButton3.setBounds(454, 39, 120, 35);
+        jPanel.add(notificationBtn);
+        notificationBtn.setBounds(586, 39, 120, 35);
 
-        jButton2.setBackground(new java.awt.Color(72, 124, 175));
-        jButton2.setText("My profile");
-        jPanel.add(jButton2);
-        jButton2.setBounds(718, 39, 120, 35);
+        myEventBtn.setBackground(new java.awt.Color(72, 124, 175));
+        myEventBtn.setText("My events");
+        myEventBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myEventBtnActionPerformed(evt);
+            }
+        });
+        jPanel.add(myEventBtn);
+        myEventBtn.setBounds(454, 39, 120, 35);
+
+        myProfileBtn.setBackground(new java.awt.Color(72, 124, 175));
+        myProfileBtn.setText("My profile");
+        myProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myProfileBtnActionPerformed(evt);
+            }
+        });
+        jPanel.add(myProfileBtn);
+        myProfileBtn.setBounds(718, 39, 120, 35);
 
         jScrollPane1.setBackground(new java.awt.Color(239, 246, 254));
         jScrollPane1.setBorder(null);
@@ -526,11 +536,16 @@ public class MainFormUI extends javax.swing.JFrame {
         jPanel.add(jScrollPane2);
         jScrollPane2.setBounds(460, 190, 380, 230);
 
-        jButton10.setBackground(new java.awt.Color(72, 124, 175));
-        jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jButton10.setText("Start a new group");
-        jPanel.add(jButton10);
-        jButton10.setBounds(460, 430, 380, 40);
+        newGroupBtn.setBackground(new java.awt.Color(72, 124, 175));
+        newGroupBtn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        newGroupBtn.setText("Start a new group");
+        newGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGroupBtnActionPerformed(evt);
+            }
+        });
+        jPanel.add(newGroupBtn);
+        newGroupBtn.setBounds(460, 430, 380, 40);
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All events", "mountain biking", "skateboarding", "snowboarding", "sort by popularity", "sort by time" }));
@@ -552,9 +567,29 @@ public class MainFormUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void myEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myEventBtnActionPerformed
+        MyEventsUI myFrm = new MyEventsUI();
+        myFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_myEventBtnActionPerformed
+
+    private void newGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGroupBtnActionPerformed
+        EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_newGroupBtnActionPerformed
+
+    private void notificationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationBtnActionPerformed
+        NotificationCentreUI ncFrm = new NotificationCentreUI();
+        ncFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_notificationBtnActionPerformed
+
+    private void myProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBtnActionPerformed
+        myProfileUI mpFrm = new myProfileUI();
+        mpFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_myProfileBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -601,10 +636,6 @@ public class MainFormUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateTxt;
     private javax.swing.JLabel greetingTxt;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -658,5 +689,9 @@ public class MainFormUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton myEventBtn;
+    private javax.swing.JButton myProfileBtn;
+    private javax.swing.JButton newGroupBtn;
+    private javax.swing.JButton notificationBtn;
     // End of variables declaration//GEN-END:variables
 }

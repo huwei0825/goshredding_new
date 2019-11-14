@@ -72,11 +72,12 @@ public class SplashScreenUI extends javax.swing.JFrame {
         SplashScreenUI ss = new SplashScreenUI();
         /* Create and display the form */
         ss.setVisible(true);
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-        }
         LoginUI login = new LoginUI();
+        
+//        try {
+//            Thread.sleep(2000);
+//        } catch (Exception e) {
+//        }
         login.setVisible(true);
         ss.dispose();
     }

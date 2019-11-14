@@ -5,6 +5,7 @@
  */
 package goshreddingPrototype;
 
+import goshredding.data.PictureViewPanel;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;

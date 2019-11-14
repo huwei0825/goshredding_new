@@ -56,10 +56,10 @@ public class EventInformationUI extends javax.swing.JFrame {
         userIdTxt12 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        manageAdBtn = new javax.swing.JButton();
+        changeAdBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        backBtn2 = new javax.swing.JButton();
-        backBtn1 = new javax.swing.JButton();
-        backBtn3 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 246, 254));
@@ -195,31 +195,41 @@ public class EventInformationUI extends javax.swing.JFrame {
         jPanel1.add(jLabel16);
         jLabel16.setBounds(52, 180, 50, 20);
 
-        backBtn.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        backBtn.setText("manage ad");
-        jPanel1.add(backBtn);
-        backBtn.setBounds(100, 250, 110, 34);
-
-        backBtn2.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        backBtn2.setText("change ad");
-        jPanel1.add(backBtn2);
-        backBtn2.setBounds(230, 250, 110, 34);
-
-        backBtn1.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn1.setText("Back");
-        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+        manageAdBtn.setBackground(new java.awt.Color(72, 124, 175));
+        manageAdBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        manageAdBtn.setText("manage ad");
+        manageAdBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtn1ActionPerformed(evt);
+                manageAdBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(manageAdBtn);
+        manageAdBtn.setBounds(100, 250, 110, 34);
+
+        changeAdBtn.setBackground(new java.awt.Color(72, 124, 175));
+        changeAdBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        changeAdBtn.setText("change ad");
+        changeAdBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeAdBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(changeAdBtn);
+        changeAdBtn.setBounds(230, 250, 110, 34);
+
+        backBtn.setBackground(new java.awt.Color(72, 124, 175));
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
             }
         });
 
-        backBtn3.setBackground(new java.awt.Color(72, 124, 175));
-        backBtn3.setText("Save");
-        backBtn3.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setBackground(new java.awt.Color(72, 124, 175));
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtn3ActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
@@ -264,9 +274,9 @@ public class EventInformationUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelLayout.createSequentialGroup()
-                                .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(backBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(23, 23, 23))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
@@ -315,8 +325,8 @@ public class EventInformationUI extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userIdTxt8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(backBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(backBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -359,15 +369,27 @@ public class EventInformationUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userIdTxt8ActionPerformed
 
-    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         LoginUI liFrm = new LoginUI();
         liFrm.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_backBtn1ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
-    private void backBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn3ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_backBtn3ActionPerformed
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void manageAdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAdBtnActionPerformed
+        AdvertisementInformationUI aiFrm = new AdvertisementInformationUI();
+        aiFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_manageAdBtnActionPerformed
+
+    private void changeAdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeAdBtnActionPerformed
+        AdvertisementInformationUI aiFrm = new AdvertisementInformationUI();
+        aiFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_changeAdBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,9 +443,7 @@ public class EventInformationUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton backBtn1;
-    private javax.swing.JButton backBtn2;
-    private javax.swing.JButton backBtn3;
+    private javax.swing.JButton changeAdBtn;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel10;
@@ -442,6 +462,8 @@ public class EventInformationUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton manageAdBtn;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JTextField userIdTxt;
     private javax.swing.JTextField userIdTxt1;
     private javax.swing.JTextField userIdTxt10;

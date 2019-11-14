@@ -5,8 +5,8 @@
  */
 package goshreddingPrototype;
 
-import goshredding.Definition;
-import goshredding.Validation;
+import goshredding.data.Definition;
+import goshredding.data.Validation;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -124,7 +124,7 @@ public class SignUpUI extends javax.swing.JFrame {
 
         userTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
         userTypeComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Organizer", "participant" }));
+        userTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "participant", "Organizer" }));
         userTypeComboBox.setPreferredSize(new java.awt.Dimension(96, 40));
         userTypeComboBox.setSize(new java.awt.Dimension(96, 40));
 
@@ -309,7 +309,7 @@ public class SignUpUI extends javax.swing.JFrame {
         }
         if (Validation.isDate(dobTxt.getText()) == false) {
             validate = false;
-            JOptionPane.showMessageDialog(null, "Please write a valid date in the format 'dd/mm/yyyy'", "DOB",
+            JOptionPane.showMessageDialog(null, "Please write a valid date and in the format 'dd/mm/yyyy'", "DOB",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         if (Validation.isPresent(emailTxt.getText()) == false) {
@@ -327,7 +327,7 @@ public class SignUpUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "Postcode",
                     JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
         }
-        if (Validation.isLength(postcodeTxt.getText(), 7) || Validation.isLength(postcodeTxt.getText(), 8) == false) {
+        if ((Validation.isLength(postcodeTxt.getText(), 7) || Validation.isLength(postcodeTxt.getText(), 8)) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Must be 7 or 8 characters long", "Postcode",
                     JOptionPane.INFORMATION_MESSAGE);

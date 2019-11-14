@@ -98,9 +98,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="backBtn1" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Component id="backBtn" min="-2" pref="133" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="backBtn3" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Component id="saveBtn" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel1" max="32767" attributes="0"/>
                           </Group>
@@ -166,8 +166,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="userIdTxt8" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="backBtn1" alignment="3" pref="40" max="32767" attributes="0"/>
-                      <Component id="backBtn3" alignment="3" pref="40" max="32767" attributes="0"/>
+                      <Component id="backBtn" alignment="3" pref="40" max="32767" attributes="0"/>
+                      <Component id="saveBtn" alignment="3" pref="40" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
@@ -489,7 +489,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="backBtn">
+            <Component class="javax.swing.JButton" name="manageAdBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -499,13 +499,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="manage ad"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageAdBtnActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="100" y="250" width="110" height="34"/>
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="backBtn2">
+            <Component class="javax.swing.JButton" name="changeAdBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -515,6 +518,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="change ad"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeAdBtnActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="230" y="250" width="110" height="34"/>
@@ -523,7 +529,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="backBtn1">
+        <Component class="javax.swing.JButton" name="backBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -531,10 +537,10 @@
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="backBtn3">
+        <Component class="javax.swing.JButton" name="saveBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="af" green="7c" red="48" type="rgb"/>
@@ -542,7 +548,7 @@
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtn3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
