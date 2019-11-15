@@ -8,6 +8,7 @@ package goshreddingPrototype;
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
 import goshredding.data.EventVO;
+import goshredding.data.RecommandedEventVO;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.UIManager;
@@ -25,8 +26,10 @@ public class MainFormUI extends javax.swing.JFrame {
      * Creates new form Login
      */
     private ArrayList eventList = new ArrayList();
+    private ArrayList recommandEventList = new ArrayList();
     public MainFormUI() {
         initComponents();
+        //eventTable
         eventTable.setRowHeight(75);
         
         eventTable.getTableHeader().setVisible(false);
@@ -71,6 +74,57 @@ public class MainFormUI extends javax.swing.JFrame {
         TableColumn tc = tcm.getColumn(0);
         tc.setPreferredWidth(200);
         tc.setCellRenderer(new EventCellRender());
+        //recommandedEventTable
+        recommandEventTable.setRowHeight(50);
+        
+        recommandEventTable.getTableHeader().setVisible(false);
+        DefaultTableCellRenderer renderer2 = new DefaultTableCellRenderer();
+        renderer2.setPreferredSize(new Dimension(0, 0));
+        recommandEventTable.getTableHeader().setDefaultRenderer(renderer2);
+
+        RecommandedEventVO recommandEvent1 = new RecommandedEventVO();
+        recommandEvent1.recommandEventName = "coastal cycling";
+        recommandEvent1.recommandEventDate = "03/02/2019";
+        recommandEvent1.recommandEventTime = "3:00 PM";
+        recommandEvent1.recommandEventType = "snowboarding";
+
+        RecommandedEventVO recommandEvent2 = new RecommandedEventVO();
+        recommandEvent2.recommandEventName = "Pete skating fest";
+        recommandEvent2.recommandEventDate = "03/02/2019";
+        recommandEvent2.recommandEventTime = "11:00 AM";
+        recommandEvent2.recommandEventType = "stakeboarding";
+
+        RecommandedEventVO recommandEvent3 = new RecommandedEventVO();
+        recommandEvent3.recommandEventName = "Biking Pedernales state park";
+        recommandEvent3.recommandEventDate = "04/02/2019";
+        recommandEvent3.recommandEventTime = "11:20 AM";
+        recommandEvent3.recommandEventType = "mountain biking";
+
+        RecommandedEventVO recommandEvent4 = new RecommandedEventVO();
+        recommandEvent4.recommandEventName = "Full park friday";
+        recommandEvent4.recommandEventDate = "04/02/2019";
+        recommandEvent4.recommandEventTime = "7:00 pM";
+        recommandEvent4.recommandEventType = "snowboarding";
+
+        RecommandedEventVO recommandEvent5 = new RecommandedEventVO();
+        recommandEvent5.recommandEventName = "All levels welcome-Clyne cycling";
+        recommandEvent5.recommandEventDate = "04/02/2019";
+        recommandEvent5.recommandEventTime = "3:00 pM";
+        recommandEvent5.recommandEventType = "mountain biking";
+
+        recommandEventList.add(recommandEvent1);
+        recommandEventList.add(recommandEvent2);
+        recommandEventList.add(recommandEvent3);
+        recommandEventList.add(recommandEvent4);
+        recommandEventList.add(recommandEvent5);
+
+        EventTableModel eventTableModel2 = new EventTableModel(recommandEventList);
+        recommandEventTable.setModel(eventTableModel2);
+        TableColumnModel tcm2 = recommandEventTable.getColumnModel();
+        TableColumn tc2 = tcm2.getColumn(0);
+        tc2.setPreferredWidth(200);
+        tc2.setCellRenderer(new EventCellRender());
+        
     }
 
     /**
@@ -97,29 +151,11 @@ public class MainFormUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         newGroupBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
+        recommandEventTable = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
         eventTable = new javax.swing.JTable();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -224,110 +260,6 @@ public class MainFormUI extends javax.swing.JFrame {
         jPanel.add(jLabel19);
         jLabel19.setBounds(460, 160, 259, 19);
 
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        jPanel1.setBackground(new java.awt.Color(239, 246, 254));
-        jPanel1.setPreferredSize(new java.awt.Dimension(376, 500));
-        jPanel1.setLayout(null);
-
-        jLabel21.setText("24/10/2019");
-        jPanel1.add(jLabel21);
-        jLabel21.setBounds(0, 120, 78, 16);
-
-        jPanel2.setBackground(new java.awt.Color(239, 246, 254));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setLayout(null);
-
-        jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jLabel22.setText("Clyne MTB");
-        jPanel2.add(jLabel22);
-        jLabel22.setBounds(6, 6, 81, 20);
-
-        jLabel23.setText("Mountain biking");
-        jPanel2.add(jLabel23);
-        jLabel23.setBounds(7, 30, 103, 16);
-
-        jLabel24.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
-        jLabel24.setText("4:00 PM");
-        jPanel2.add(jLabel24);
-        jLabel24.setBounds(270, 10, 80, 21);
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 20, 370, 50);
-
-        jPanel9.setBackground(new java.awt.Color(239, 246, 254));
-        jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel9.setLayout(null);
-
-        jLabel25.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jLabel25.setText("Clyne MTB");
-        jPanel9.add(jLabel25);
-        jLabel25.setBounds(6, 6, 81, 20);
-
-        jLabel26.setText("Mountain biking");
-        jPanel9.add(jLabel26);
-        jLabel26.setBounds(7, 30, 103, 16);
-
-        jLabel27.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
-        jLabel27.setText("4:00 PM");
-        jPanel9.add(jLabel27);
-        jLabel27.setBounds(270, 10, 80, 21);
-
-        jPanel1.add(jPanel9);
-        jPanel9.setBounds(0, 68, 370, 50);
-
-        jLabel28.setText("24/10/2019");
-        jPanel1.add(jLabel28);
-        jLabel28.setBounds(0, 0, 78, 16);
-
-        jPanel10.setBackground(new java.awt.Color(239, 246, 254));
-        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel10.setLayout(null);
-
-        jLabel29.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jLabel29.setText("Clyne MTB");
-        jPanel10.add(jLabel29);
-        jLabel29.setBounds(6, 6, 81, 20);
-
-        jLabel30.setText("Mountain biking");
-        jPanel10.add(jLabel30);
-        jLabel30.setBounds(7, 30, 103, 16);
-
-        jLabel31.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
-        jLabel31.setText("4:00 PM");
-        jPanel10.add(jLabel31);
-        jLabel31.setBounds(270, 10, 80, 21);
-
-        jPanel1.add(jPanel10);
-        jPanel10.setBounds(0, 140, 370, 50);
-
-        jPanel11.setBackground(new java.awt.Color(239, 246, 254));
-        jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel11.setLayout(null);
-
-        jLabel32.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jLabel32.setText("Clyne MTB");
-        jPanel11.add(jLabel32);
-        jLabel32.setBounds(6, 6, 81, 20);
-
-        jLabel33.setText("Mountain biking");
-        jPanel11.add(jLabel33);
-        jLabel33.setBounds(7, 30, 103, 16);
-
-        jLabel34.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
-        jLabel34.setText("4:00 PM");
-        jPanel11.add(jLabel34);
-        jLabel34.setBounds(270, 10, 80, 21);
-
-        jPanel1.add(jPanel11);
-        jPanel11.setBounds(0, 188, 370, 50);
-
-        jScrollPane2.setViewportView(jPanel1);
-
-        jPanel.add(jScrollPane2);
-        jScrollPane2.setBounds(460, 190, 380, 230);
-
         newGroupBtn.setBackground(new java.awt.Color(72, 124, 175));
         newGroupBtn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         newGroupBtn.setText("Start a new group");
@@ -344,6 +276,34 @@ public class MainFormUI extends javax.swing.JFrame {
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
         jComboBox1.setBounds(710, 160, 130, 27);
+
+        recommandEventTable.setBackground(new java.awt.Color(239, 246, 254));
+        recommandEventTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        recommandEventTable.setGridColor(new java.awt.Color(0, 0, 0));
+        recommandEventTable.setIntercellSpacing(new java.awt.Dimension(0, 2));
+        recommandEventTable.setShowGrid(false);
+        jScrollPane3.setViewportView(recommandEventTable);
+
+        jPanel.add(jScrollPane3);
+        jScrollPane3.setBounds(460, 190, 380, 230);
 
         eventTable.setBackground(new java.awt.Color(239, 246, 254));
         eventTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -368,10 +328,10 @@ public class MainFormUI extends javax.swing.JFrame {
         eventTable.setGridColor(new java.awt.Color(0, 0, 0));
         eventTable.setIntercellSpacing(new java.awt.Dimension(0, 2));
         eventTable.setShowGrid(false);
-        jScrollPane3.setViewportView(eventTable);
+        jScrollPane4.setViewportView(eventTable);
 
-        jPanel.add(jScrollPane3);
-        jScrollPane3.setBounds(20, 110, 411, 356);
+        jPanel.add(jScrollPane4);
+        jScrollPane4.setBounds(20, 110, 411, 356);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -465,35 +425,17 @@ public class MainFormUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton myEventBtn;
     private javax.swing.JButton myProfileBtn;
     private javax.swing.JButton newGroupBtn;
     private javax.swing.JButton notificationBtn;
+    private javax.swing.JTable recommandEventTable;
     // End of variables declaration//GEN-END:variables
 }
