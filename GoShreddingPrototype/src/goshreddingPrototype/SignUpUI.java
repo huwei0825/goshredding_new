@@ -18,10 +18,11 @@ import javax.swing.JOptionPane;
  * @author huwei
  */
 public class SignUpUI extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
+    
     public SignUpUI() {
         initComponents();
     }

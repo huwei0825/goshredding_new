@@ -340,7 +340,8 @@ public class MainFormUI extends javax.swing.JFrame {
         newGroupBtn.setBounds(460, 430, 380, 40);
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All events", "mountain biking", "skateboarding", "snowboarding", "sort by popularity", "sort by time" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sort by time", "sort by popularity", "mountain biking", "skateboarding", "snowboarding", " ", " " }));
+        jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
         jComboBox1.setBounds(710, 160, 130, 27);
 
@@ -395,6 +396,7 @@ public class MainFormUI extends javax.swing.JFrame {
 
     private void newGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGroupBtnActionPerformed
         EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.sourceForm = 1;
         eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_newGroupBtnActionPerformed

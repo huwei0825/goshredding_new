@@ -90,9 +90,9 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jTextField1" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Component id="manageMembersBtn" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace min="137" pref="137" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="manageMembersBtn" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                               <Component id="editBtn" min="-2" pref="115" max="-2" attributes="0"/>
                               <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                               <Component id="backBtn" min="-2" pref="115" max="-2" attributes="0"/>
@@ -511,6 +511,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editBtn">
               <Properties>

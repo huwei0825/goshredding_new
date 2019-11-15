@@ -62,7 +62,7 @@ public class MyEventsUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel2.setText("Event type:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All events", "Past evnts", "Future events" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +136,7 @@ public class MyEventsUI extends javax.swing.JFrame {
                     .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addGap(0, 27, Short.MAX_VALUE)
+                .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -144,7 +144,7 @@ public class MyEventsUI extends javax.swing.JFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(144, 144, 144)
                         .addComponent(jLabel3)
-                        .addGap(307, 307, 307))
+                        .addGap(282, 282, 282))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(358, 358, 358))))
@@ -195,6 +195,7 @@ public class MyEventsUI extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.sourceForm = 2;
         eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBtnActionPerformed

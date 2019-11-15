@@ -176,6 +176,11 @@ public class OpenEventsUI extends javax.swing.JFrame {
 
         backBtn.setBackground(new java.awt.Color(72, 124, 175));
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(72, 124, 175));
         editBtn.setText("Edit event");
@@ -210,8 +215,8 @@ public class OpenEventsUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(manageMembersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(manageMembersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(137, 137, 137)
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -388,6 +393,7 @@ public class OpenEventsUI extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.sourceForm = 3;
         eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBtnActionPerformed
@@ -397,6 +403,12 @@ public class OpenEventsUI extends javax.swing.JFrame {
         wrFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_reviewBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        MyEventsUI myFrm = new MyEventsUI();
+        myFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments

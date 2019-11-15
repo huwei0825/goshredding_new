@@ -136,7 +136,8 @@ public class AdvertisementInformationUI extends javax.swing.JFrame {
             }
         });
 
-        imageViewContainerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        imageViewContainerPanel.setBackground(new java.awt.Color(239, 246, 254));
+        imageViewContainerPanel.setToolTipText("");
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("The preferable image size is 270 x 75");

@@ -176,8 +176,8 @@ public class advertisementManagementUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void chooseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseBtnActionPerformed
-        MyEventsUI myFrm = new MyEventsUI();
-        myFrm.setVisible(true);
+        EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_chooseBtnActionPerformed
 
