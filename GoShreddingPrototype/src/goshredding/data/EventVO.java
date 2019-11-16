@@ -14,5 +14,7 @@ package goshredding.data;
 public class EventVO {
     public String eventName;
     public String eventDate;
+    public String eventTime;
     public String eventTimeRemaining;
+    public String eventType;
 }
