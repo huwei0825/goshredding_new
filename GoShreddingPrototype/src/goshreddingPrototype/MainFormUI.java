@@ -8,7 +8,6 @@ package goshreddingPrototype;
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
 import goshredding.data.EventVO;
-import goshredding.data.RecommandedEventVO;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.UIManager;
@@ -74,6 +73,7 @@ public class MainFormUI extends javax.swing.JFrame {
         TableColumn tc = tcm.getColumn(0);
         tc.setPreferredWidth(200);
         tc.setCellRenderer(new EventCellRender());
+        
         //recommandedEventTable
         recommandEventTable.setRowHeight(50);
         
@@ -82,35 +82,35 @@ public class MainFormUI extends javax.swing.JFrame {
         renderer2.setPreferredSize(new Dimension(0, 0));
         recommandEventTable.getTableHeader().setDefaultRenderer(renderer2);
 
-        RecommandedEventVO recommandEvent1 = new RecommandedEventVO();
-        recommandEvent1.recommandEventName = "coastal cycling";
-        recommandEvent1.recommandEventDate = "03/02/2019";
-        recommandEvent1.recommandEventTime = "3:00 PM";
-        recommandEvent1.recommandEventType = "snowboarding";
+        EventVO recommandEvent1 = new EventVO();
+        recommandEvent1.eventName = "coastal cycling";
+        recommandEvent1.eventDate = "03/02/2019";
+        recommandEvent1.eventTime = "3:00 PM";
+        recommandEvent1.eventType = "snowboarding";
 
-        RecommandedEventVO recommandEvent2 = new RecommandedEventVO();
-        recommandEvent2.recommandEventName = "Pete skating fest";
-        recommandEvent2.recommandEventDate = "03/02/2019";
-        recommandEvent2.recommandEventTime = "11:00 AM";
-        recommandEvent2.recommandEventType = "stakeboarding";
+        EventVO recommandEvent2 = new EventVO();
+        recommandEvent2.eventName = "Pete skating fest";
+        recommandEvent2.eventDate = "03/02/2019";
+        recommandEvent2.eventTime = "11:00 AM";
+        recommandEvent2.eventType = "stakeboarding";
 
-        RecommandedEventVO recommandEvent3 = new RecommandedEventVO();
-        recommandEvent3.recommandEventName = "Biking Pedernales state park";
-        recommandEvent3.recommandEventDate = "04/02/2019";
-        recommandEvent3.recommandEventTime = "11:20 AM";
-        recommandEvent3.recommandEventType = "mountain biking";
+        EventVO recommandEvent3 = new EventVO();
+        recommandEvent3.eventName = "Biking Pedernales state park";
+        recommandEvent3.eventDate = "04/02/2019";
+        recommandEvent3.eventTime = "11:20 AM";
+        recommandEvent3.eventType = "mountain biking";
 
-        RecommandedEventVO recommandEvent4 = new RecommandedEventVO();
-        recommandEvent4.recommandEventName = "Full park friday";
-        recommandEvent4.recommandEventDate = "04/02/2019";
-        recommandEvent4.recommandEventTime = "7:00 pM";
-        recommandEvent4.recommandEventType = "snowboarding";
+        EventVO recommandEvent4 = new EventVO();
+        recommandEvent4.eventName = "Full park friday";
+        recommandEvent4.eventDate = "04/02/2019";
+        recommandEvent4.eventTime = "7:00 pM";
+        recommandEvent4.eventType = "snowboarding";
 
-        RecommandedEventVO recommandEvent5 = new RecommandedEventVO();
-        recommandEvent5.recommandEventName = "All levels welcome-Clyne cycling";
-        recommandEvent5.recommandEventDate = "04/02/2019";
-        recommandEvent5.recommandEventTime = "3:00 pM";
-        recommandEvent5.recommandEventType = "mountain biking";
+        EventVO recommandEvent5 = new EventVO();
+        recommandEvent5.eventName = "All levels welcome-Clyne cycling";
+        recommandEvent5.eventDate = "04/02/2019";
+        recommandEvent5.eventTime = "3:00 pM";
+        recommandEvent5.eventType = "mountain biking";
 
         recommandEventList.add(recommandEvent1);
         recommandEventList.add(recommandEvent2);
