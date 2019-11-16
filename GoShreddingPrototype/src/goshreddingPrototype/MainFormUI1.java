@@ -104,8 +104,8 @@ public class MainFormUI1 extends javax.swing.JFrame {
         myProfileBtn1 = new javax.swing.JButton();
         myProfileBtn2 = new javax.swing.JButton();
         myProfileBtn3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        newGroupBtn1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -159,7 +159,7 @@ public class MainFormUI1 extends javax.swing.JFrame {
             }
         });
         jPanel.add(notificationBtn);
-        notificationBtn.setBounds(650, 340, 190, 35);
+        notificationBtn.setBounds(650, 300, 190, 35);
 
         myEventBtn.setBackground(new java.awt.Color(72, 124, 175));
         myEventBtn.setText("My events");
@@ -169,7 +169,7 @@ public class MainFormUI1 extends javax.swing.JFrame {
             }
         });
         jPanel.add(myEventBtn);
-        myEventBtn.setBounds(650, 300, 190, 30);
+        myEventBtn.setBounds(650, 260, 190, 30);
 
         jLabel20.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel20.setText("Upcoming events");
@@ -187,19 +187,20 @@ public class MainFormUI1 extends javax.swing.JFrame {
 
         newGroupBtn.setBackground(new java.awt.Color(72, 124, 175));
         newGroupBtn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        newGroupBtn.setText("Start a new group");
+        newGroupBtn.setText("Edit Event");
         newGroupBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGroupBtnActionPerformed(evt);
             }
         });
         jPanel.add(newGroupBtn);
-        newGroupBtn.setBounds(650, 420, 190, 40);
+        newGroupBtn.setBounds(650, 390, 190, 30);
+        newGroupBtn.getAccessibleContext().setAccessibleName("New Event");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mountain biking", "skateboarding", "snowboarding", "", "" }));
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
-        jComboBox1.setBounds(650, 250, 190, 30);
+        jComboBox1.setBounds(650, 220, 190, 30);
 
         eventTable.setBackground(new java.awt.Color(239, 246, 254));
         eventTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -256,16 +257,23 @@ public class MainFormUI1 extends javax.swing.JFrame {
             }
         });
         jPanel.add(myProfileBtn3);
-        myProfileBtn3.setBounds(650, 380, 190, 35);
-
-        jLabel4.setText("Filter by type:");
-        jPanel.add(jLabel4);
-        jLabel4.setBounds(650, 220, 140, 18);
+        myProfileBtn3.setBounds(650, 430, 190, 35);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/files/head.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel.add(jLabel1);
         jLabel1.setBounds(780, 10, 40, 30);
+
+        newGroupBtn1.setBackground(new java.awt.Color(72, 124, 175));
+        newGroupBtn1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        newGroupBtn1.setText("New Event");
+        newGroupBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGroupBtn1ActionPerformed(evt);
+            }
+        });
+        jPanel.add(newGroupBtn1);
+        newGroupBtn1.setBounds(650, 350, 190, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,6 +320,10 @@ public class MainFormUI1 extends javax.swing.JFrame {
     private void myProfileBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myProfileBtn3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_myProfileBtn3ActionPerformed
+
+    private void newGroupBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGroupBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newGroupBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,7 +376,6 @@ public class MainFormUI1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel;
@@ -375,6 +386,7 @@ public class MainFormUI1 extends javax.swing.JFrame {
     private javax.swing.JButton myProfileBtn2;
     private javax.swing.JButton myProfileBtn3;
     private javax.swing.JButton newGroupBtn;
+    private javax.swing.JButton newGroupBtn1;
     private javax.swing.JButton notificationBtn;
     // End of variables declaration//GEN-END:variables
 }
