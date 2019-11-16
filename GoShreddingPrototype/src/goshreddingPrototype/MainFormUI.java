@@ -8,6 +8,7 @@ package goshreddingPrototype;
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
 import goshredding.data.EventVO;
+import goshredding.data.RecommandedEventCellRender;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.UIManager;
@@ -123,7 +124,7 @@ public class MainFormUI extends javax.swing.JFrame {
         TableColumnModel tcm2 = recommandEventTable.getColumnModel();
         TableColumn tc2 = tcm2.getColumn(0);
         tc2.setPreferredWidth(200);
-        tc2.setCellRenderer(new EventCellRender());
+        tc2.setCellRenderer(new RecommandedEventCellRender());
         
     }
 
