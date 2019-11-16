@@ -36,26 +36,29 @@ public class RecommandedEventCellRender extends javax.swing.JPanel implements Ta
         recommandEventTime = new javax.swing.JLabel();
         recommandEventDate = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(400, 50));
+        setPreferredSize(new java.awt.Dimension(400, 50));
+
         jPanel1.setBackground(new java.awt.Color(239, 246, 254));
         jPanel1.setLayout(null);
 
         recommandEventName.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         recommandEventName.setText("Clyne MTB");
         jPanel1.add(recommandEventName);
-        recommandEventName.setBounds(6, 6, 81, 20);
+        recommandEventName.setBounds(6, 6, 76, 23);
 
         recommandEventType.setText("Mountain biking");
         jPanel1.add(recommandEventType);
-        recommandEventType.setBounds(7, 28, 103, 16);
+        recommandEventType.setBounds(7, 28, 120, 18);
 
         recommandEventTime.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         recommandEventTime.setText("4:00 PM");
         jPanel1.add(recommandEventTime);
-        recommandEventTime.setBounds(290, 6, 80, 21);
+        recommandEventTime.setBounds(290, 6, 80, 25);
 
         recommandEventDate.setText("2019/10/30");
         jPanel1.add(recommandEventDate);
-        recommandEventDate.setBounds(280, 28, 78, 16);
+        recommandEventDate.setBounds(280, 28, 80, 18);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
