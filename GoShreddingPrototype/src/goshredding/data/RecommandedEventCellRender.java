@@ -5,11 +5,15 @@
  */
 package goshredding.data;
 
+import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author huwei
  */
-public class RecommandedEventCellRender extends javax.swing.JPanel {
+public class RecommandedEventCellRender extends javax.swing.JPanel implements TableCellRenderer{
 
     /**
      * Creates new form RecommandedEventCellRender
@@ -17,7 +21,6 @@ public class RecommandedEventCellRender extends javax.swing.JPanel {
     public RecommandedEventCellRender() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +69,6 @@ public class RecommandedEventCellRender extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel recommandEventDate;
@@ -74,4 +76,14 @@ public class RecommandedEventCellRender extends javax.swing.JPanel {
     private javax.swing.JLabel recommandEventTime;
     private javax.swing.JLabel recommandEventType;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        EventVO eventObj=(EventVO)value;
+        recommandEventName.setText(eventObj.eventName);
+        recommandEventDate.setText(eventObj.eventDate);
+        recommandEventTime.setText(eventObj.eventTime);
+        recommandEventType.setText(eventObj.eventType);
+        return this; 
+    }
 }
