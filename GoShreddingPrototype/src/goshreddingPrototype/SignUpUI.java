@@ -90,10 +90,10 @@ public class SignUpUI extends javax.swing.JFrame {
         password2Txt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel4.setText("Surname:");
+        jLabel4.setText("* Surname:");
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel5.setText("Forename:");
+        jLabel5.setText("* Forename:");
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setText("Postcode:");
@@ -102,7 +102,7 @@ public class SignUpUI extends javax.swing.JFrame {
         jLabel7.setText("DOB(dd/mm/yyyy):");
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel8.setText("I'm a:");
+        jLabel8.setText("* I'm a:");
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setText("Address2:");
@@ -111,26 +111,24 @@ public class SignUpUI extends javax.swing.JFrame {
         jLabel10.setText("Address1:");
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel11.setText("Password:");
+        jLabel11.setText("* Password:");
 
         numTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel12.setText("Contact Num:");
+        jLabel12.setText("* Contact Num:");
 
         emailTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel13.setText("email:");
+        jLabel13.setText("* email:");
 
-        userTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
         userTypeComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "participant", "Organizer" }));
         userTypeComboBox.setPreferredSize(new java.awt.Dimension(96, 40));
-        userTypeComboBox.setSize(new java.awt.Dimension(96, 40));
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel14.setText("Confirm password:");
+        jLabel14.setText("* Confirm password:");
 
         backBtn.setBackground(new java.awt.Color(72, 124, 175));
         backBtn.setText("Back");
@@ -194,7 +192,7 @@ public class SignUpUI extends javax.swing.JFrame {
                                     .addGap(30, 30, 30)
                                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -239,11 +237,11 @@ public class SignUpUI extends javax.swing.JFrame {
                     .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
+                        .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
 
