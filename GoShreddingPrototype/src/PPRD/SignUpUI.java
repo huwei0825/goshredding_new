@@ -26,6 +26,8 @@ public class SignUpUI extends javax.swing.JFrame {
     
     public SignUpUI() {
         initComponents();
+       
+
     }
 
     /**
