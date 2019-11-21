@@ -166,14 +166,17 @@ public class EventInformationUI extends javax.swing.JFrame {
         jPanel1.add(jLabel11);
         jLabel11.setBounds(35, 220, 70, 20);
 
+        userIdTxt7.setEditable(false);
         userIdTxt7.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt7);
         userIdTxt7.setBounds(100, 6, 240, 40);
 
+        userIdTxt10.setEditable(false);
         userIdTxt10.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt10);
         userIdTxt10.setBounds(100, 210, 240, 40);
 
+        userIdTxt11.setEditable(false);
         userIdTxt11.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt11);
         userIdTxt11.setBounds(100, 42, 240, 40);
@@ -183,6 +186,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         jPanel1.add(jLabel14);
         jLabel14.setBounds(24, 50, 69, 20);
 
+        userIdTxt12.setEditable(false);
         userIdTxt12.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt12);
         userIdTxt12.setBounds(100, 174, 240, 40);
@@ -222,6 +226,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setHorizontalScrollBar(null);
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jTextArea2.setRows(5);

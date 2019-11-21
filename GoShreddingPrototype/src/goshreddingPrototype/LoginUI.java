@@ -47,6 +47,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("Login");
 
+        userIdTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userIdTxtActionPerformed(evt);
@@ -64,6 +65,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Or");
 
+        userIdTxt2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userIdTxt2ActionPerformed(evt);

@@ -5,6 +5,9 @@
  */
 package goshreddingPrototype;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author huwei
@@ -12,7 +15,7 @@ package goshreddingPrototype;
 public class SplashScreenUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form SplashScreen
+     * Creates new form testerformUI
      */
     public SplashScreenUI() {
         initComponents();
@@ -30,18 +33,43 @@ public class SplashScreenUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
-        setSize(new java.awt.Dimension(850, 480));
-        getContentPane().setLayout(null);
+        setPreferredSize(new java.awt.Dimension(850, 480));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/goshreddingPrototype/goshredding.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 850, 480);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/files/goshredding.png"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            Thread.sleep(2000);
+            LoginUI login = new LoginUI();
+
+            login.setVisible(true);
+            this.dispose();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SplashScreenUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -69,17 +97,14 @@ public class SplashScreenUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SplashScreenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        SplashScreenUI ss = new SplashScreenUI();
+        //</editor-fold>
+
         /* Create and display the form */
-        ss.setVisible(true);
-        LoginUI login = new LoginUI();
-        
-//        try {
-//            Thread.sleep(2000);
-//        } catch (Exception e) {
-//        }
-        login.setVisible(true);
-        ss.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SplashScreenUI().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -36,7 +36,7 @@ public class RecommandedEventCellRender extends javax.swing.JPanel implements Ta
         recommandEventTime = new javax.swing.JLabel();
         recommandEventDate = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(400, 50));
+        setMinimumSize(new java.awt.Dimension(380, 50));
         setPreferredSize(new java.awt.Dimension(400, 50));
 
         jPanel1.setBackground(new java.awt.Color(239, 246, 254));
@@ -45,30 +45,30 @@ public class RecommandedEventCellRender extends javax.swing.JPanel implements Ta
         recommandEventName.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         recommandEventName.setText("Clyne MTB");
         jPanel1.add(recommandEventName);
-        recommandEventName.setBounds(6, 6, 76, 23);
+        recommandEventName.setBounds(6, 6, 260, 20);
 
         recommandEventType.setText("Mountain biking");
         jPanel1.add(recommandEventType);
-        recommandEventType.setBounds(7, 28, 120, 18);
+        recommandEventType.setBounds(7, 28, 103, 16);
 
         recommandEventTime.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         recommandEventTime.setText("4:00 PM");
         jPanel1.add(recommandEventTime);
-        recommandEventTime.setBounds(290, 6, 80, 25);
+        recommandEventTime.setBounds(275, 6, 100, 21);
 
         recommandEventDate.setText("2019/10/30");
         jPanel1.add(recommandEventDate);
-        recommandEventDate.setBounds(280, 28, 80, 18);
+        recommandEventDate.setBounds(275, 28, 78, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

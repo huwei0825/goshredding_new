@@ -106,6 +106,9 @@ public class MainFormUI1 extends javax.swing.JFrame {
         myProfileBtn3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         newGroupBtn1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -139,17 +142,20 @@ public class MainFormUI1 extends javax.swing.JFrame {
         jPanel.setPreferredSize(new java.awt.Dimension(850, 480));
         jPanel.setLayout(null);
 
+        greetingTxt.setForeground(new java.awt.Color(68, 114, 196));
         greetingTxt.setText("Good morning, Tony");
         jPanel.add(greetingTxt);
-        greetingTxt.setBounds(460, 10, 140, 18);
+        greetingTxt.setBounds(460, 10, 140, 16);
 
+        dateTxt.setForeground(new java.awt.Color(68, 114, 196));
         dateTxt.setText("dd/mm/yyyy 9:00 AM");
         jPanel.add(dateTxt);
-        dateTxt.setBounds(610, 10, 144, 18);
+        dateTxt.setBounds(610, 10, 138, 16);
 
+        jLabel3.setForeground(new java.awt.Color(68, 114, 196));
         jLabel3.setText("\"Do want you can't\" --- Casey Neistat");
         jPanel.add(jLabel3);
-        jLabel3.setBounds(20, 10, 320, 18);
+        jLabel3.setBounds(20, 10, 320, 16);
 
         notificationBtn.setBackground(new java.awt.Color(72, 124, 175));
         notificationBtn.setText("My Notification");
@@ -174,16 +180,16 @@ public class MainFormUI1 extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel20.setText("Upcoming events");
         jPanel.add(jLabel20);
-        jLabel20.setBounds(20, 40, 220, 34);
+        jLabel20.setBounds(20, 40, 220, 30);
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel.add(jTextField1);
-        jTextField1.setBounds(650, 70, 100, 35);
+        jTextField1.setBounds(20, 80, 160, 35);
 
         jButton5.setBackground(new java.awt.Color(72, 124, 175));
         jButton5.setText("search");
         jPanel.add(jButton5);
-        jButton5.setBounds(760, 70, 81, 35);
+        jButton5.setBounds(190, 80, 85, 35);
 
         newGroupBtn.setBackground(new java.awt.Color(72, 124, 175));
         newGroupBtn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -200,7 +206,7 @@ public class MainFormUI1 extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mountain biking", "skateboarding", "snowboarding", "", "" }));
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
-        jComboBox1.setBounds(650, 220, 190, 30);
+        jComboBox1.setBounds(500, 80, 160, 30);
 
         eventTable.setBackground(new java.awt.Color(239, 246, 254));
         eventTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -227,7 +233,7 @@ public class MainFormUI1 extends javax.swing.JFrame {
         jScrollPane4.setViewportView(eventTable);
 
         jPanel.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 76, 600, 390);
+        jScrollPane4.setBounds(20, 126, 600, 340);
 
         myProfileBtn1.setBackground(new java.awt.Color(72, 124, 175));
         myProfileBtn1.setText("Sort by time");
@@ -259,10 +265,9 @@ public class MainFormUI1 extends javax.swing.JFrame {
         jPanel.add(myProfileBtn3);
         myProfileBtn3.setBounds(650, 430, 190, 35);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/files/head.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/files/profile-3.png"))); // NOI18N
         jPanel.add(jLabel1);
-        jLabel1.setBounds(780, 10, 40, 30);
+        jLabel1.setBounds(780, 10, 60, 60);
 
         newGroupBtn1.setBackground(new java.awt.Color(72, 124, 175));
         newGroupBtn1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -274,6 +279,21 @@ public class MainFormUI1 extends javax.swing.JFrame {
         });
         jPanel.add(newGroupBtn1);
         newGroupBtn1.setBounds(650, 350, 190, 30);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel2.setText("Filter:");
+        jPanel.add(jLabel2);
+        jLabel2.setBounds(456, 86, 50, 20);
+
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Time", "Popularity" }));
+        jPanel.add(jComboBox2);
+        jComboBox2.setBounds(340, 80, 110, 35);
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel4.setText("Sort by:");
+        jPanel.add(jLabel4);
+        jLabel4.setBounds(280, 86, 60, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,9 +393,12 @@ public class MainFormUI1 extends javax.swing.JFrame {
     private javax.swing.JLabel greetingTxt;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel;
