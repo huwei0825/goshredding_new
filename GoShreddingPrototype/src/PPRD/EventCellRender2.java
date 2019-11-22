@@ -38,13 +38,14 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
         eventDateLbl = new javax.swing.JLabel();
         timeLbl = new javax.swing.JLabel();
         imageViewContainerPanel = new javax.swing.JPanel();
+        eventIconPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(239, 246, 254));
         setPreferredSize(new java.awt.Dimension(810, 75));
 
         jPanel1.setBackground(new java.awt.Color(239, 246, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setPreferredSize(new java.awt.Dimension(810, 75));
+        jPanel1.setPreferredSize(new java.awt.Dimension(790, 75));
 
         eventNameLbl.setFont(new java.awt.Font("Lucida Grande", 0, 19)); // NOI18N
         eventNameLbl.setText("Event name");
@@ -57,6 +58,8 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
 
         imageViewContainerPanel.setBackground(new java.awt.Color(239, 246, 254));
 
+        eventIconPanel.setBackground(new java.awt.Color(239, 246, 254));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -66,11 +69,13 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventDateLbl)
                     .addComponent(eventNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(timeLbl)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(eventIconPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,11 +87,13 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eventDateLbl))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(timeLbl)))
+                        .addComponent(timeLbl))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eventIconPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -94,7 +101,7 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,6 +112,7 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eventDateLbl;
+    private javax.swing.JPanel eventIconPanel;
     private javax.swing.JLabel eventNameLbl;
     private javax.swing.JPanel imageViewContainerPanel;
     private javax.swing.JPanel jPanel1;
