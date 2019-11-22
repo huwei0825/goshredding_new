@@ -77,7 +77,7 @@ public class MainFormUI2 extends javax.swing.JFrame {
         TableColumnModel tcm = eventTable.getColumnModel();
         TableColumn tc = tcm.getColumn(0);
         tc.setPreferredWidth(200);
-        tc.setCellRenderer(new EventCellRender2());
+        tc.setCellRenderer(new EventCellRender3());
         
         
     }
