@@ -39,33 +39,40 @@ public class MainFormUI2 extends javax.swing.JFrame {
         eventTable.getTableHeader().setDefaultRenderer(renderer);
 
         EventVO event1 = new EventVO();
-        event1.eventName = "Snow Skating";
+        event1.eventName = "Berrics skating park";
         event1.eventDate = "01/02/2019";
-        event1.eventTimeRemaining = "03:12;01;57";
-        event1.eventPicName="/files/MTB.png";
+        event1.eventTime = "8:00AM";
+        event1.eventPicName="/files/sbEvent1.PNG";
+        event1.eventTypePicName="/files/skateboard.png";
 
         EventVO event2 = new EventVO();
-        event2.eventName = "Super bike";
+        event2.eventName = "Mountainbikers Heaven-Saalbach";
         event2.eventDate = "02/02/2019";
-        event2.eventTimeRemaining = "04:02:15:02";
-        event2.eventPicName="/files/giantBike.png";
+        event2.eventTime = "3:45PM";
+        event2.eventPicName="/files/mtbEvent1.png";
+        event2.eventTypePicName="/files/bike-2.png";
 
         EventVO event3 = new EventVO();
-        event3.eventName = "bikeOlympic";
+        event3.eventName = "Street ride";
         event3.eventDate = "02/07/2019";
-        event3.eventTimeRemaining = "04:03:01:02";
-        event3.eventPicName="/files/MTB.png";
+        event3.eventTime = "8:00PM";
+        event3.eventPicName="/files/mtbEvent2.png";
+        event3.eventTypePicName="/files/bike-2.png";
         
         EventVO event4 = new EventVO();
-        event4.eventName = "Skiing 2020";
+        event4.eventName = "Hakubavalley winter camp 2020";
         event4.eventDate = "04/02/2019";
-        event4.eventTimeRemaining = "06:03:01:02";
-        event4.eventPicName="/files/giantBike.png";
+        event4.eventTime = "9:20AM";
+        event4.eventPicName="/files/snowboardEvent2.PNG";
+        event4.eventTypePicName="/files/snowboard.png";
+        
         EventVO event5 = new EventVO();
-        event5.eventName = "Snow Skating";
+        event5.eventName = "Oakley snowboard meeting";
         event5.eventDate = "08/02/2019";
-        event5.eventTimeRemaining = "10:03:01:02";
-        event5.eventPicName="/files/giantBike.png";
+        event5.eventTime = "9:30AM";
+        event5.eventPicName="/files/snowboardEvent1.PNG";
+        event5.eventTypePicName="/files/snowboard.png";
+        
         eventList.add(event1);
         eventList.add(event2);
         eventList.add(event3);
@@ -169,8 +176,7 @@ public class MainFormUI2 extends javax.swing.JFrame {
         jPanel.add(jButton5);
         jButton5.setBounds(200, 83, 85, 35);
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mountain biking", "skateboarding", "snowboarding", "", "" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All types", "mountain biking", "skateboarding", "snowboarding", " ", " " }));
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
         jComboBox1.setBounds(510, 83, 160, 35);
@@ -211,7 +217,6 @@ public class MainFormUI2 extends javax.swing.JFrame {
         jPanel.add(jLabel2);
         jLabel2.setBounds(470, 90, 50, 20);
 
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Time", "Popularity" }));
         jPanel.add(jComboBox2);
         jComboBox2.setBounds(350, 83, 110, 35);
@@ -229,7 +234,7 @@ public class MainFormUI2 extends javax.swing.JFrame {
             }
         });
         jPanel.add(myEventBtn1);
-        myEventBtn1.setBounds(330, 40, 140, 35);
+        myEventBtn1.setBounds(370, 40, 120, 35);
 
         notificationBtn1.setBackground(new java.awt.Color(72, 124, 175));
         notificationBtn1.setText("Notification");
@@ -239,7 +244,7 @@ public class MainFormUI2 extends javax.swing.JFrame {
             }
         });
         jPanel.add(notificationBtn1);
-        notificationBtn1.setBounds(630, 40, 140, 35);
+        notificationBtn1.setBounds(650, 40, 120, 35);
 
         myEventBtn2.setBackground(new java.awt.Color(72, 124, 175));
         myEventBtn2.setText("My events");
@@ -249,7 +254,7 @@ public class MainFormUI2 extends javax.swing.JFrame {
             }
         });
         jPanel.add(myEventBtn2);
-        myEventBtn2.setBounds(480, 40, 140, 35);
+        myEventBtn2.setBounds(510, 40, 120, 35);
 
         jPanel1.setBackground(new java.awt.Color(204, 218, 243));
         jPanel1.setLayout(null);

@@ -32,14 +32,25 @@ public class EventCellPanel extends javax.swing.JPanel {
         this.eventObj = eventVO;
         eventNameLbl.setText(eventObj.eventName);
         eventDateLbl.setText(eventObj.eventDate);
-        timeLbl.setText(eventObj.eventTimeRemaining);
+        timeLbl.setText(eventObj.eventTime);
         if (eventObj.eventPicName != null && eventObj.eventPicName.length() > 0) {
 
             try {
 
                 Image image = new ImageIcon(getClass().getResource(eventObj.eventPicName)).getImage();
-                image = image.getScaledInstance(60, 50, Image.SCALE_SMOOTH);
+                image = image.getScaledInstance(104, 60, Image.SCALE_SMOOTH);
                 imageLbl.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (eventObj.eventTypePicName != null && eventObj.eventTypePicName.length() > 0) {
+
+            try {
+
+                Image image2 = new ImageIcon(getClass().getResource(eventObj.eventTypePicName)).getImage();
+                image2 = image2.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                eventTypeLbl.setIcon(new ImageIcon(image2));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -60,6 +71,7 @@ public class EventCellPanel extends javax.swing.JPanel {
         eventDateLbl = new javax.swing.JLabel();
         timeLbl = new javax.swing.JLabel();
         imageLbl = new javax.swing.JLabel();
+        eventTypeLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 246, 254));
         setPreferredSize(new java.awt.Dimension(810, 75));
@@ -67,58 +79,36 @@ public class EventCellPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(239, 246, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setPreferredSize(new java.awt.Dimension(810, 75));
+        jPanel1.setLayout(null);
 
         eventNameLbl.setFont(new java.awt.Font("Lucida Grande", 0, 19)); // NOI18N
         eventNameLbl.setText("Event name");
+        jPanel1.add(eventNameLbl);
+        eventNameLbl.setBounds(8, 14, 370, 23);
 
         eventDateLbl.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         eventDateLbl.setText("2019/10/30");
+        jPanel1.add(eventDateLbl);
+        eventDateLbl.setBounds(8, 43, 86, 17);
 
         timeLbl.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         timeLbl.setText("12:00 PM");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventDateLbl)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(eventNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeLbl)))
-                .addGap(64, 64, 64)
-                .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(eventNameLbl)
-                            .addComponent(timeLbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eventDateLbl))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(timeLbl);
+        timeLbl.setBounds(405, 26, 78, 21);
+        jPanel1.add(imageLbl);
+        imageLbl.setBounds(528, 8, 104, 60);
+        jPanel1.add(eventTypeLbl);
+        eventTypeLbl.setBounds(690, 13, 50, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,6 +116,7 @@ public class EventCellPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eventDateLbl;
     private javax.swing.JLabel eventNameLbl;
+    private javax.swing.JLabel eventTypeLbl;
     private javax.swing.JLabel imageLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel timeLbl;

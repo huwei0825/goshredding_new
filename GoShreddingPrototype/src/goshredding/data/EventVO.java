@@ -18,4 +18,5 @@ public class EventVO {
     public String eventTimeRemaining;
     public String eventType;
     public String eventPicName;
+    public String eventTypePicName;
 }
