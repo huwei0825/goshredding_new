@@ -98,15 +98,6 @@ public class CalendarControl extends JPanel{
         calendarPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0xAA, 0xAA, 0xAA)));
         calendarPanel.add(titlePanel = new TitlePanel(), java.awt.BorderLayout.NORTH);
         calendarPanel.add(bodyPanel = new BodyPanel(), java.awt.BorderLayout.CENTER);
-//        calendarPanel.add(footerPanel = new FooterPanel(),java.awt.BorderLayout.SOUTH);
-//        this.addAncestorListener(new AncestorListener() {
-//            public void ancestorAdded(AncestorEvent event) { }
-//            public void ancestorRemoved(AncestorEvent event) {hidePanel();}
-//            //hide pop when move component.  
-//            public void ancestorMoved(AncestorEvent event) {
-//                hidePanel();
-//            }
-//        });
     }
     public void register(final JComponent showComponent) {
         this.showDate = showComponent;
@@ -116,9 +107,6 @@ public class CalendarControl extends JPanel{
                 showComponent.requestFocusInWindow();
             }
         });
-        this.add(showComponent, BorderLayout.CENTER);
-        this.setPreferredSize(new Dimension(90, 25));
-        this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         showComponent.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent me) {
                 if (showComponent.isEnabled()) {
@@ -267,7 +255,6 @@ public class CalendarControl extends JPanel{
             }
         }
     }
-    // body panel, include week labels and day labels.
     private class BodyPanel extends JPanel {
         
         private static final long serialVersionUID = 5677718768457235447L;
@@ -289,7 +276,6 @@ public class CalendarControl extends JPanel{
             cal.set(Calendar.DAY_OF_MONTH, 1);
             
             int index = cal.get(Calendar.DAY_OF_WEEK);
-            // 从当月1号前移，一直移动到面板显示的第一天的前一天；当-index + defaultStartDAY为正数时，为避免面板从当月1号之后开始显示，需要前移一周，确保当月显示完全
             if(index > defaultStartDAY) cal.add(Calendar.DAY_OF_MONTH, -index + defaultStartDAY);
             else cal.add(Calendar.DAY_OF_MONTH, -index + defaultStartDAY - 7);
             
@@ -347,7 +333,7 @@ public class CalendarControl extends JPanel{
     private void refresh() {
         titlePanel.updateDate();
         bodyPanel.updateDate();
-        footerPanel.updateDate();
+        //footerPanel.updateDate();
         SwingUtilities.updateComponentTreeUI(this);
     }
     
@@ -497,11 +483,8 @@ public class CalendarControl extends JPanel{
         public void clear() {
             list.clear();
         }
-        public void setSelect(Point p, boolean b) {
-            //如果是拖动,则要优化一下,以提高效率  
-            if (b) {
-                //表示是否能返回,不用比较完所有的标签,能返回的标志就是把上一个标签和  
-                //将要显示的标签找到了就可以了  
+        public void setSelect(Point p, boolean b) { 
+            if (b) { 
                 boolean findPrevious = false, findNext = false;
                 for (DayLabel lab : list) {
                     if (lab.contains(p)) {
@@ -539,14 +522,9 @@ public class CalendarControl extends JPanel{
         jf.setBounds(400, 200, 600, 400);
         
         CalendarControl ser = CalendarControl.getInstance();
-
-//        JPanel calendarPanel=ser.getCalendarPanel();
-//        calendarPanel.setPreferredSize(new Dimension(300,300));
         javax.swing.JTextField text = new JTextField();
         text.setPreferredSize(new Dimension(200,30));
         ser.register(text);     
-        
-        //jf.add(ser);
         jf.add(text);
 
         jf.setVisible(true);
