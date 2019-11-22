@@ -8,7 +8,11 @@ package PPRD;
 import goshredding.data.*;
 import goshredding.data.EventVO;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -113,10 +117,27 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        EventVO eventObj=(EventVO)value;
+        EventVO eventObj = (EventVO) value;
         eventNameLbl.setText(eventObj.eventName);
         eventDateLbl.setText(eventObj.eventDate);
-        timeLbl.setText(eventObj.eventTime);
-        return this; 
+        timeLbl.setText(eventObj.eventTimeRemaining);
+        if (eventObj.eventPicName != null && eventObj.eventPicName.length() > 0) {
+            PictureViewPanel pictureViewPanel = new PictureViewPanel();
+            //pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+            pictureViewPanel.setPreferredSize(new Dimension(60, 50));
+            pictureViewPanel.setBounds(0, 0, 60, 50);
+            imageViewContainerPanel.setLayout(new java.awt.FlowLayout());
+            imageViewContainerPanel.add(pictureViewPanel);
+            
+
+            try {
+
+                Image image = new ImageIcon(getClass().getResource("/files/profile-3.png")).getImage();
+                pictureViewPanel.setImage(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return this;
     }
 }
