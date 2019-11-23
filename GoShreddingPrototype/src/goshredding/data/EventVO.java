@@ -12,6 +12,7 @@ package goshredding.data;
  * @author syp386
  */
 public class EventVO {
+    public String eventId;
     public String eventName;
     public String eventDate;
     public String eventTime;
