@@ -35,6 +35,10 @@ public class FileChoserDemo extends javax.swing.JFrame {
         pictureViewPanel.setPreferredSize(new Dimension(400, 300));
         imageViewContainerPanel.setLayout(new java.awt.FlowLayout());
         imageViewContainerPanel.add(pictureViewPanel);
+        //Image image = new ImageIcon(getClass().getResource("/files/profile-3.png")).getImage();
+        Image image = new ImageIcon("C:\\Users\\SXR\\Documents\\美图图库\\示例图片_03.jpg").getImage();
+        pictureViewPanel.setImage(image);
+        pictureViewPanel.repaint();
     }
 
     /**
@@ -124,7 +128,7 @@ public class FileChoserDemo extends javax.swing.JFrame {
             System.out.println(file.getAbsolutePath());
             System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());  //输出相对路径 
             try {
-                Image image =  new ImageIcon(file.getAbsolutePath()).getImage();
+                Image image = new ImageIcon(file.getAbsolutePath()).getImage();
                 pictureViewPanel.setImage(image);
                 pictureViewPanel.repaint();
             } catch (Exception e1) {

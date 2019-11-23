@@ -116,9 +116,9 @@ public class CalendarControl extends JPanel{
                 showComponent.requestFocusInWindow();
             }
         });
-        this.add(showComponent, BorderLayout.CENTER);
-        this.setPreferredSize(new Dimension(90, 25));
-        this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//        this.add(showComponent, BorderLayout.CENTER);
+//        this.setPreferredSize(new Dimension(90, 25));
+//        this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         showComponent.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent me) {
                 if (showComponent.isEnabled()) {

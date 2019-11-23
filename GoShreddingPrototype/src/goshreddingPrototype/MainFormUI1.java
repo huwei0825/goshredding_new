@@ -36,30 +36,30 @@ public class MainFormUI1 extends javax.swing.JFrame {
         renderer.setPreferredSize(new Dimension(0, 0));
         eventTable.getTableHeader().setDefaultRenderer(renderer);
 
-        EventVO event1 = new EventVO();
-        event1.eventName = "Snow Skating";
-        event1.eventDate = "01/02/2019";
-        event1.eventTimeRemaining = "03:12;01;57";
+  EventVO event1 = new EventVO();
+        event1.eventName="Snow Skating";
+        event1.eventDate="01/02/2019";
+        event1.eventTimeRemaining="03:12;01;57";
 
         EventVO event2 = new EventVO();
-        event2.eventName = "Super bike";
-        event2.eventDate = "02/02/2019";
-        event2.eventTimeRemaining = "04:02:15:02";
+        event2.eventName="Super bike";
+        event2.eventDate="02/02/2019";
+        event2.eventTimeRemaining="04:02:15:02";
 
         EventVO event3 = new EventVO();
-        event3.eventName = "bikeOlympic";
-        event3.eventDate = "02/07/2019";
-        event3.eventTimeRemaining = "04:03:01:02";
+        event3.eventName="";
+        event3.eventDate="02/07/2019";
+        event3.eventTimeRemaining="04:03:01:02";
 
         EventVO event4 = new EventVO();
-        event4.eventName = "Skiing 2020";
-        event4.eventDate = "04/02/2019";
-        event4.eventTimeRemaining = "06:03:01:02";
+        event4.eventName="Skiing 2020";
+        event4.eventDate="04/02/2019";
+        event4.eventTimeRemaining="06:03:01:02";
 
         EventVO event5 = new EventVO();
-        event5.eventName = "Snow Skating";
-        event5.eventDate = "08/02/2019";
-        event5.eventTimeRemaining = "10:03:01:02";
+        event5.eventName="Snow Skating";
+        event5.eventDate="08/02/2019";
+        event5.eventTimeRemaining="10:03:01:02";
 
         eventList.add(event1);
         eventList.add(event2);
