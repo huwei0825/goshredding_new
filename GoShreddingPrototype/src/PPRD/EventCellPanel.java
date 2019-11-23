@@ -7,6 +7,7 @@ package PPRD;
 
 import goshredding.data.*;
 import goshredding.data.EventVO;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -19,13 +20,30 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author syp386
  */
-public class EventCellRender2 extends javax.swing.JPanel implements TableCellRenderer {
+public class EventCellPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form EventItemPanel
      */
-    public EventCellRender2() {
+    private EventVO eventObj;
+
+    public EventCellPanel(EventVO eventVO) {
         initComponents();
+        this.eventObj = eventVO;
+        eventNameLbl.setText(eventObj.eventName);
+        eventDateLbl.setText(eventObj.eventDate);
+        timeLbl.setText(eventObj.eventTimeRemaining);
+        if (eventObj.eventPicName != null && eventObj.eventPicName.length() > 0) {
+
+            try {
+
+                Image image = new ImageIcon(getClass().getResource(eventObj.eventPicName)).getImage();
+                image = image.getScaledInstance(60, 50, Image.SCALE_SMOOTH);
+                imageLbl.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -41,7 +59,7 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
         eventNameLbl = new javax.swing.JLabel();
         eventDateLbl = new javax.swing.JLabel();
         timeLbl = new javax.swing.JLabel();
-        imageViewContainerPanel = new javax.swing.JPanel();
+        imageLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(239, 246, 254));
         setPreferredSize(new java.awt.Dimension(810, 75));
@@ -59,8 +77,6 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
         timeLbl.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         timeLbl.setText("12:00 PM");
 
-        imageViewContainerPanel.setBackground(new java.awt.Color(239, 246, 254));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -69,12 +85,13 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventDateLbl)
-                    .addComponent(eventNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(timeLbl)
-                .addGap(18, 18, 18)
-                .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(eventNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeLbl)))
+                .addGap(64, 64, 64)
+                .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,15 +99,14 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(eventNameLbl)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(eventNameLbl)
+                            .addComponent(timeLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eventDateLbl))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(timeLbl)))
+                        .addGap(6, 6, 6)
+                        .addComponent(imageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -102,7 +118,7 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,34 +126,9 @@ public class EventCellRender2 extends javax.swing.JPanel implements TableCellRen
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eventDateLbl;
     private javax.swing.JLabel eventNameLbl;
-    private javax.swing.JPanel imageViewContainerPanel;
+    private javax.swing.JLabel imageLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel timeLbl;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        EventVO eventObj = (EventVO) value;
-        eventNameLbl.setText(eventObj.eventName);
-        eventDateLbl.setText(eventObj.eventDate);
-        timeLbl.setText(eventObj.eventTimeRemaining);
-        if (eventObj.eventPicName != null && eventObj.eventPicName.length() > 0) {
-            PictureViewPanel pictureViewPanel = new PictureViewPanel();
-            //pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-            pictureViewPanel.setPreferredSize(new Dimension(60, 50));
-            pictureViewPanel.setBounds(0, 0, 60, 50);
-            imageViewContainerPanel.setLayout(new java.awt.FlowLayout());
-            imageViewContainerPanel.add(pictureViewPanel);
-            
-
-            try {
-
-                Image image = new ImageIcon(getClass().getResource("/files/profile-3.png")).getImage();
-                pictureViewPanel.setImage(image);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return this;
-    }
 }

@@ -42,30 +42,35 @@ public class MainFormUI2 extends javax.swing.JFrame {
         event1.eventName = "Snow Skating";
         event1.eventDate = "01/02/2019";
         event1.eventTimeRemaining = "03:12;01;57";
-        event1.eventPicName="MTB.png";
+        event1.eventPicName="/files/MTB.png";
 
         EventVO event2 = new EventVO();
         event2.eventName = "Super bike";
         event2.eventDate = "02/02/2019";
         event2.eventTimeRemaining = "04:02:15:02";
-        event2.eventPicName="giantBike.png";
+        event2.eventPicName="/files/giantBike.png";
 
         EventVO event3 = new EventVO();
         event3.eventName = "bikeOlympic";
         event3.eventDate = "02/07/2019";
         event3.eventTimeRemaining = "04:03:01:02";
-        event3.eventPicName="MTB.png";
+
+        event3.eventPicName="/files/MTB.png";
+
         
         EventVO event4 = new EventVO();
         event4.eventName = "Skiing 2020";
         event4.eventDate = "04/02/2019";
         event4.eventTimeRemaining = "06:03:01:02";
-        event4.eventPicName="MTB.png";
+
+        event4.eventPicName="/files/giantBike.png";
+
         EventVO event5 = new EventVO();
         event5.eventName = "Snow Skating";
         event5.eventDate = "08/02/2019";
         event5.eventTimeRemaining = "10:03:01:02";
-        event5.eventPicName="MTB.png";
+
+        event5.eventPicName="/files/giantBike.png";
 
         eventList.add(event1);
         eventList.add(event2);
