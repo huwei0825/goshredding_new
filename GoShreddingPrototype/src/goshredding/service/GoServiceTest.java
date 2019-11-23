@@ -7,6 +7,7 @@ package goshredding.service;
 
 import goshredding.data.EventVO;
 import goshredding.service.GoService;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +19,12 @@ public class GoServiceTest {
     public static void main(String args[]) {
         try {
             ///------------demo1 query----------------
-//            List<EventVO> eventList = GoService.getInstance().getEventAll();
-//            for (EventVO eventObj : eventList) {
-//                System.out.println(eventObj.eventId);
-//                System.out.println(eventObj.eventName);
-//
-//            }
+            ArrayList<EventVO> eventList = GoService.getInstance().getEventAll();
+            for (EventVO eventObj : eventList) {
+                System.out.println(eventObj.eventId);
+                System.out.println(eventObj.eventName);
+
+            }
 
             ///-----------demo2 insert------------
 //            EventVO eventVO = new EventVO();

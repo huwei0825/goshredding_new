@@ -36,8 +36,8 @@ public class GoService extends SqliteHelper {
         return new GoService(DB_NAME);
     }
 
-    public List<EventVO> getEventAll() throws Exception {
-        List<EventVO> rsList = new ArrayList<EventVO>();
+    public ArrayList<EventVO> getEventAll() throws Exception {
+        ArrayList<EventVO> rsList = new ArrayList<EventVO>();
         try {
             resultSet = this.getStatement().executeQuery("select * from event_table");
             while (resultSet.next()) {
@@ -52,8 +52,8 @@ public class GoService extends SqliteHelper {
         return rsList;
     }
 
-    public List<EventVO> getEventByUserId(String userId) throws Exception {
-        List<EventVO> rsList = new ArrayList<EventVO>();
+    public ArrayList<EventVO> getEventByUserId(String userId) throws Exception {
+        ArrayList<EventVO> rsList = new ArrayList<EventVO>();
         return rsList;
     }
 
@@ -90,8 +90,8 @@ public class GoService extends SqliteHelper {
         return userVO;
     }
 
-    public List<UserVO> getUserAll() throws Exception {
-        List<UserVO> rsList = new ArrayList<UserVO>();
+    public ArrayList<UserVO> getUserAll() throws Exception {
+        ArrayList<UserVO> rsList = new ArrayList<UserVO>();
         return rsList;
     }
 
