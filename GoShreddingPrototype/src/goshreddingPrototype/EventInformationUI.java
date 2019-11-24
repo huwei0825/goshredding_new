@@ -214,7 +214,7 @@ public class EventInformationUI extends javax.swing.JFrame {
 
         changeAdBtn.setBackground(new java.awt.Color(72, 124, 175));
         changeAdBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        changeAdBtn.setText("change ad");
+        changeAdBtn.setText("choose ad");
         changeAdBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changeAdBtnActionPerformed(evt);

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package goshreddingPrototype;
+package PPRD;
 
+import goshreddingPrototype.*;
 import goshredding.data.PictureViewPanel;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -17,7 +18,7 @@ import javax.swing.border.BevelBorder;
  *
  * @author huwei
  */
-public class EventInformationUI1 extends javax.swing.JFrame {
+public class EventInformationUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -25,12 +26,21 @@ public class EventInformationUI1 extends javax.swing.JFrame {
     public int sourceForm;
     private PictureViewPanel pictureViewPanel = null;
 
-    public EventInformationUI1() {
+    public EventInformationUI() {
         initComponents();
         pictureViewPanel = new PictureViewPanel();
         pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
         pictureViewPanel.setPreferredSize(new Dimension(155, 90));
         imageViewContainerPanel.add(pictureViewPanel);
+        
+        try {
+
+                Image image = new ImageIcon("/files/giantBike.png").getImage();
+                image = image.getScaledInstance(203, 57, Image.SCALE_SMOOTH);
+                adImageLbl.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     /**
@@ -61,15 +71,15 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         userIdTxt7 = new javax.swing.JTextField();
-        userIdTxt10 = new javax.swing.JTextField();
         userIdTxt11 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         userIdTxt12 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        changeAdBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        changeAdBtn = new javax.swing.JButton();
+        adImageLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -86,9 +96,12 @@ public class EventInformationUI1 extends javax.swing.JFrame {
 
         jPanel.setBackground(new java.awt.Color(239, 246, 254));
         jPanel.setPreferredSize(new java.awt.Dimension(850, 480));
+        jPanel.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Event Information");
+        jPanel.add(jLabel2);
+        jLabel2.setBounds(319, 20, 207, 30);
 
         userIdTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +109,8 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 userIdTxtActionPerformed(evt);
             }
         });
+        jPanel.add(userIdTxt);
+        userIdTxt.setBounds(169, 68, 289, 34);
 
         userIdTxt1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +118,8 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 userIdTxt1ActionPerformed(evt);
             }
         });
+        jPanel.add(userIdTxt1);
+        userIdTxt1.setBounds(169, 108, 289, 34);
 
         userIdTxt2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt2.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +127,8 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 userIdTxt2ActionPerformed(evt);
             }
         });
+        jPanel.add(userIdTxt2);
+        userIdTxt2.setBounds(169, 152, 128, 34);
 
         userIdTxt3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         userIdTxt3.addActionListener(new java.awt.event.ActionListener() {
@@ -117,33 +136,55 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 userIdTxt3ActionPerformed(evt);
             }
         });
+        jPanel.add(userIdTxt3);
+        userIdTxt3.setBounds(169, 192, 289, 34);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("Date:");
+        jPanel.add(jLabel4);
+        jLabel4.setBounds(117, 112, 46, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         jLabel5.setText("Event name:");
+        jPanel.add(jLabel5);
+        jLabel5.setBounds(64, 73, 99, 21);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         jLabel6.setText("Event introduction:");
+        jPanel.add(jLabel6);
+        jLabel6.setBounds(7, 269, 156, 21);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setText("Time:");
+        jPanel.add(jLabel7);
+        jLabel7.setBounds(114, 156, 49, 22);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setText("Event type:");
+        jPanel.add(jLabel9);
+        jLabel9.setBounds(67, 233, 96, 22);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setText("Location:");
+        jPanel.add(jLabel10);
+        jLabel10.setBounds(83, 196, 80, 22);
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 0, 17)); // NOI18N
         jLabel12.setText("Upload picture:");
+        jPanel.add(jLabel12);
+        jLabel12.setBounds(37, 375, 126, 21);
 
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+        jPanel.add(jComboBox2);
+        jComboBox2.setBounds(330, 152, 128, 34);
 
+        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "skateboarding", "mountain biking", "snowboarding" }));
+        jPanel.add(jComboBox3);
+        jComboBox3.setBounds(169, 229, 289, 34);
 
         jPanel1.setBackground(new java.awt.Color(218, 227, 243));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(72, 124, 175)));
@@ -157,16 +198,14 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel11.setText("Picture:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(35, 220, 70, 23);
+        jLabel11.setBounds(35, 220, 70, 20);
 
+        userIdTxt7.setEditable(false);
         userIdTxt7.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt7);
         userIdTxt7.setBounds(100, 6, 240, 40);
 
-        userIdTxt10.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jPanel1.add(userIdTxt10);
-        userIdTxt10.setBounds(100, 210, 240, 40);
-
+        userIdTxt11.setEditable(false);
         userIdTxt11.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt11);
         userIdTxt11.setBounds(100, 42, 240, 40);
@@ -174,8 +213,9 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel14.setText("supplier:");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(24, 50, 59, 23);
+        jLabel14.setBounds(24, 50, 69, 20);
 
+        userIdTxt12.setEditable(false);
         userIdTxt12.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt12);
         userIdTxt12.setBounds(100, 174, 240, 40);
@@ -188,11 +228,23 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel16.setText("Price:");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(52, 180, 50, 23);
+        jLabel16.setBounds(52, 180, 50, 20);
+
+        changeAdBtn.setBackground(new java.awt.Color(72, 124, 175));
+        changeAdBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        changeAdBtn.setText("choose ad");
+        changeAdBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeAdBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(changeAdBtn);
+        changeAdBtn.setBounds(230, 290, 110, 34);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setHorizontalScrollBar(null);
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jTextArea2.setRows(5);
@@ -201,17 +253,12 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(100, 78, 240, 100);
 
-        changeAdBtn.setBackground(new java.awt.Color(72, 124, 175));
-        changeAdBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        changeAdBtn.setText("choose ad");
-        changeAdBtn.setActionCommand("");
-        changeAdBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeAdBtnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(changeAdBtn);
-        changeAdBtn.setBounds(170, 260, 169, 34);
+        adImageLbl.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(adImageLbl);
+        adImageLbl.setBounds(120, 228, 203, 57);
+
+        jPanel.add(jPanel1);
+        jPanel1.setBounds(476, 68, 351, 330);
 
         backBtn.setBackground(new java.awt.Color(72, 124, 175));
         backBtn.setText("Back");
@@ -220,6 +267,8 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel.add(backBtn);
+        backBtn.setBounds(604, 412, 107, 40);
 
         saveBtn.setBackground(new java.awt.Color(72, 124, 175));
         saveBtn.setText("Save");
@@ -228,6 +277,8 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 saveBtnActionPerformed(evt);
             }
         });
+        jPanel.add(saveBtn);
+        saveBtn.setBounds(717, 412, 107, 40);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -237,131 +288,38 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jPanel.add(jScrollPane1);
+        jScrollPane1.setBounds(169, 269, 289, 94);
+
         uploadBtn.setBackground(new java.awt.Color(72, 124, 175));
-        uploadBtn.setText("Upload");
+        uploadBtn.setText("Upload picture");
         uploadBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadBtnActionPerformed(evt);
             }
         });
+        jPanel.add(uploadBtn);
+        uploadBtn.setBounds(476, 412, 116, 40);
 
         imageViewContainerPanel.setBackground(new java.awt.Color(239, 246, 254));
-        imageViewContainerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel.add(imageViewContainerPanel);
+        imageViewContainerPanel.setBounds(234, 375, 155, 90);
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("The preferable image");
+        jPanel.add(jLabel1);
+        jLabel1.setBounds(21, 402, 132, 16);
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("size is 350x90");
-
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                        .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(uploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(319, 319, 319)
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel.add(jLabel3);
+        jLabel3.setBounds(21, 424, 92, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,13 +406,13 @@ public class EventInformationUI1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EventInformationUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventInformationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EventInformationUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventInformationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EventInformationUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventInformationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EventInformationUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventInformationUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -492,12 +450,13 @@ public class EventInformationUI1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EventInformationUI1().setVisible(true);
+                new EventInformationUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adImageLbl;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton changeAdBtn;
     private javax.swing.JPanel imageViewContainerPanel;
@@ -528,7 +487,6 @@ public class EventInformationUI1 extends javax.swing.JFrame {
     private javax.swing.JButton uploadBtn;
     private javax.swing.JTextField userIdTxt;
     private javax.swing.JTextField userIdTxt1;
-    private javax.swing.JTextField userIdTxt10;
     private javax.swing.JTextField userIdTxt11;
     private javax.swing.JTextField userIdTxt12;
     private javax.swing.JTextField userIdTxt2;

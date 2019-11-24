@@ -176,10 +176,10 @@ public class MainFormUI2 extends javax.swing.JFrame {
         jPanel.add(jButton5);
         jButton5.setBounds(200, 83, 85, 35);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All types", "mountain biking", "skateboarding", "snowboarding", " ", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All types", "biking", "skateboarding", "snowboarding", " ", " " }));
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
-        jComboBox1.setBounds(510, 83, 160, 35);
+        jComboBox1.setBounds(510, 83, 146, 35);
 
         eventTable.setBackground(new java.awt.Color(239, 246, 254));
         eventTable.setModel(new javax.swing.table.DefaultTableModel(

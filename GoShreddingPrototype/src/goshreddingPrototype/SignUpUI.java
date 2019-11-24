@@ -365,6 +365,9 @@ public class SignUpUI extends javax.swing.JFrame {
                     MainFormUI mainFrm = new MainFormUI();
                     mainFrm.setVisible(true);
                     this.dispose();
+                    String massage = "Successfully signed up! Your user ID is : " + userId + 
+                        ", please remember it for the next time you log in (your ID can be found in your profile screen)";
+                    JOptionPane.showMessageDialog(null, massage);
                 }
                 //store organizer information
                 if (userType.equalsIgnoreCase("organizer")) {
@@ -387,7 +390,11 @@ public class SignUpUI extends javax.swing.JFrame {
                     MainFormUI mainFrm = new MainFormUI();
                     mainFrm.setVisible(true);
                     this.dispose();
+                    String massage = "Successfully signed up! Your user ID is : " + userId + 
+                        ", please remember it for the next time you log in (your ID can be found in your profile screen)";
+                    JOptionPane.showMessageDialog(null, massage);
                 }
+                
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "error with: " + ex);
