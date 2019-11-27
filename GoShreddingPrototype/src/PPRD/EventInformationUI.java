@@ -35,7 +35,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         
         try {
 
-                Image image = new ImageIcon("/files/giantBike.png").getImage();
+                Image image = new ImageIcon(getClass().getResource("/files/giantBike.png")).getImage();
                 image = image.getScaledInstance(203, 57, Image.SCALE_SMOOTH);
                 adImageLbl.setIcon(new ImageIcon(image));
             } catch (Exception e) {

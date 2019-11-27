@@ -19,9 +19,6 @@ import java.util.Map;
 //import org.slf4j.LoggerFactory;
  
 /**
- * sqlite帮助类，直接创建该类示例，并调用相应的借口即可对sqlite数据库进行操作
- *
- * 本类基于 sqlite jdbc v56
  *
  * @author haoqipeng
  */
