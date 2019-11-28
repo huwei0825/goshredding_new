@@ -6,7 +6,7 @@
 package PPRD;
 
 import goshredding.data.*;
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;

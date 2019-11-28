@@ -7,7 +7,7 @@ package goshreddingPrototype;
 
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshredding.data.RecommandedEventCellRender;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ public class MainFormUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    public int mfSourceForm;
     private ArrayList eventList = new ArrayList();
     private ArrayList recommandEventList = new ArrayList();
     public MainFormUI() {

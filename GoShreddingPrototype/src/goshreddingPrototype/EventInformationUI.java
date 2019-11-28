@@ -5,13 +5,17 @@
  */
 package goshreddingPrototype;
 
+import goshredding.data.GoHelper;
 import goshredding.data.PictureViewPanel;
+import goshredding.service.GoService;
+import goshredding.vo.EventVO;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.border.BevelBorder;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -24,6 +28,7 @@ public class EventInformationUI extends javax.swing.JFrame {
      */
     public int sourceForm;
     private PictureViewPanel pictureViewPanel = null;
+    private String strImageName = "";
 
     public EventInformationUI() {
         initComponents();
@@ -31,6 +36,13 @@ public class EventInformationUI extends javax.swing.JFrame {
         pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
         pictureViewPanel.setPreferredSize(new Dimension(155, 90));
         imageViewContainerPanel.add(pictureViewPanel);
+        try {
+            File directory = new File("");
+            String courseFile = directory.getCanonicalPath();
+            System.out.println(courseFile);
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -44,10 +56,10 @@ public class EventInformationUI extends javax.swing.JFrame {
 
         jPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        userIdTxt = new javax.swing.JTextField();
-        userIdTxt1 = new javax.swing.JTextField();
-        userIdTxt2 = new javax.swing.JTextField();
-        userIdTxt3 = new javax.swing.JTextField();
+        nameTxt = new javax.swing.JTextField();
+        dateTxt = new javax.swing.JTextField();
+        timeTxt = new javax.swing.JTextField();
+        locationTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -56,26 +68,26 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        timeSlotTxt = new javax.swing.JComboBox<>();
+        typeTxt = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        userIdTxt7 = new javax.swing.JTextField();
+        adnameTxt = new javax.swing.JTextField();
         userIdTxt10 = new javax.swing.JTextField();
-        userIdTxt11 = new javax.swing.JTextField();
+        supplierTxt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        userIdTxt12 = new javax.swing.JTextField();
+        priceTxt = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         manageAdBtn = new javax.swing.JButton();
         changeAdBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        contentsTxt = new javax.swing.JTextArea();
         backBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        introductionTtx = new javax.swing.JTextArea();
         uploadBtn = new javax.swing.JButton();
         imageViewContainerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,31 +104,31 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Event Information");
 
-        userIdTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt.addActionListener(new java.awt.event.ActionListener() {
+        nameTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        nameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxtActionPerformed(evt);
+                nameTxtActionPerformed(evt);
             }
         });
 
-        userIdTxt1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt1.addActionListener(new java.awt.event.ActionListener() {
+        dateTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        dateTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt1ActionPerformed(evt);
+                dateTxtActionPerformed(evt);
             }
         });
 
-        userIdTxt2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt2.addActionListener(new java.awt.event.ActionListener() {
+        timeTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        timeTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt2ActionPerformed(evt);
+                timeTxtActionPerformed(evt);
             }
         });
 
-        userIdTxt3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt3.addActionListener(new java.awt.event.ActionListener() {
+        locationTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        locationTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt3ActionPerformed(evt);
+                locationTxtActionPerformed(evt);
             }
         });
 
@@ -144,13 +156,13 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel13.setText("Advertisement for this event ");
 
-        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+        timeSlotTxt.setBackground(new java.awt.Color(255, 255, 255));
+        timeSlotTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        timeSlotTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
 
-        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "skateboarding", "mountain biking", "snowboarding" }));
+        typeTxt.setBackground(new java.awt.Color(255, 255, 255));
+        typeTxt.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        typeTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "skateboarding", "mountain biking", "snowboarding" }));
 
         jPanel1.setBackground(new java.awt.Color(218, 227, 243));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(72, 124, 175)));
@@ -166,30 +178,30 @@ public class EventInformationUI extends javax.swing.JFrame {
         jPanel1.add(jLabel11);
         jLabel11.setBounds(35, 220, 70, 20);
 
-        userIdTxt7.setEditable(false);
-        userIdTxt7.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jPanel1.add(userIdTxt7);
-        userIdTxt7.setBounds(100, 6, 240, 40);
+        adnameTxt.setEditable(false);
+        adnameTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jPanel1.add(adnameTxt);
+        adnameTxt.setBounds(100, 6, 240, 40);
 
         userIdTxt10.setEditable(false);
         userIdTxt10.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jPanel1.add(userIdTxt10);
         userIdTxt10.setBounds(100, 210, 240, 40);
 
-        userIdTxt11.setEditable(false);
-        userIdTxt11.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jPanel1.add(userIdTxt11);
-        userIdTxt11.setBounds(100, 42, 240, 40);
+        supplierTxt.setEditable(false);
+        supplierTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jPanel1.add(supplierTxt);
+        supplierTxt.setBounds(100, 42, 240, 40);
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel14.setText("supplier:");
         jPanel1.add(jLabel14);
         jLabel14.setBounds(24, 50, 69, 20);
 
-        userIdTxt12.setEditable(false);
-        userIdTxt12.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jPanel1.add(userIdTxt12);
-        userIdTxt12.setBounds(100, 174, 240, 40);
+        priceTxt.setEditable(false);
+        priceTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jPanel1.add(priceTxt);
+        priceTxt.setBounds(100, 174, 240, 40);
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel15.setText("Contents:");
@@ -226,11 +238,11 @@ public class EventInformationUI extends javax.swing.JFrame {
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setHorizontalScrollBar(null);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        contentsTxt.setEditable(false);
+        contentsTxt.setColumns(20);
+        contentsTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        contentsTxt.setRows(5);
+        jScrollPane2.setViewportView(contentsTxt);
 
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(100, 78, 240, 100);
@@ -254,10 +266,10 @@ public class EventInformationUI extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        introductionTtx.setColumns(20);
+        introductionTtx.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        introductionTtx.setRows(5);
+        jScrollPane1.setViewportView(introductionTtx);
 
         uploadBtn.setBackground(new java.awt.Color(72, 124, 175));
         uploadBtn.setText("Upload");
@@ -300,14 +312,14 @@ public class EventInformationUI extends javax.swing.JFrame {
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(locationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                        .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(timeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(timeSlotTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelLayout.createSequentialGroup()
                                 .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -338,7 +350,7 @@ public class EventInformationUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -346,19 +358,19 @@ public class EventInformationUI extends javax.swing.JFrame {
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(userIdTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeSlotTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userIdTxt3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(locationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(3, 3, 3)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,21 +410,21 @@ public class EventInformationUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxtActionPerformed
+    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxtActionPerformed
+    }//GEN-LAST:event_nameTxtActionPerformed
 
-    private void userIdTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt1ActionPerformed
+    private void dateTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt1ActionPerformed
+    }//GEN-LAST:event_dateTxtActionPerformed
 
-    private void userIdTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt2ActionPerformed
+    private void timeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt2ActionPerformed
+    }//GEN-LAST:event_timeTxtActionPerformed
 
-    private void userIdTxt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt3ActionPerformed
+    private void locationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt3ActionPerformed
+    }//GEN-LAST:event_locationTxtActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         if (this.sourceForm == 1) {
@@ -421,7 +433,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         } else if (this.sourceForm == 2) {
             MyEventsUI myFrm = new MyEventsUI();
             myFrm.setVisible(true);
-        }else if (this.sourceForm == 3) {
+        } else if (this.sourceForm == 3) {
             OpenEventsUI oe = new OpenEventsUI();
             oe.setVisible(true);
         }
@@ -429,7 +441,13 @@ public class EventInformationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            EventVO event = new EventVO();
+        
+            GoService.getInstance().insertEvent(event);
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void manageAdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAdBtnActionPerformed
@@ -447,13 +465,39 @@ public class EventInformationUI extends javax.swing.JFrame {
     private void uploadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadBtnActionPerformed
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(uploadBtn);
+        chooser.setFileFilter(new FileFilter() {
+            @Override
+            public String getDescription() {
+                return "images（png;jpg;PNG）";
+            }
+
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                String fn = f.getName();
+                return fn.endsWith(".png") || fn.endsWith(".jpg") || fn.endsWith(".PNG");
+            }
+        });
         if (returnVal == JFileChooser.APPROVE_OPTION) {
 
             File file = chooser.getSelectedFile();
             System.out.println(file.getAbsolutePath());
             System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
             try {
+                File directory = new File("");// 参数为空
+                String targetPath = directory.getCanonicalPath();
+                strImageName = chooser.getSelectedFile().getName();
+                String targetPathName = targetPath + "/images/" + strImageName;
+                System.out.println("targetPathName===" + targetPathName);
+                File targetFile = new File(targetPathName);
+
+                GoHelper.copyFile(file, targetFile);
+
                 Image image = new ImageIcon(file.getAbsolutePath()).getImage();
+                image = image.getScaledInstance(300, 250, Image.SCALE_SMOOTH);
+
                 pictureViewPanel.setImage(image);
                 pictureViewPanel.repaint();
             } catch (Exception e1) {
@@ -514,11 +558,13 @@ public class EventInformationUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField adnameTxt;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton changeAdBtn;
+    private javax.swing.JTextArea contentsTxt;
+    private javax.swing.JTextField dateTxt;
     private javax.swing.JPanel imageViewContainerPanel;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JTextArea introductionTtx;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -539,18 +585,16 @@ public class EventInformationUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField locationTxt;
     private javax.swing.JButton manageAdBtn;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JTextField priceTxt;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField supplierTxt;
+    private javax.swing.JComboBox<String> timeSlotTxt;
+    private javax.swing.JTextField timeTxt;
+    private javax.swing.JComboBox<String> typeTxt;
     private javax.swing.JButton uploadBtn;
-    private javax.swing.JTextField userIdTxt;
-    private javax.swing.JTextField userIdTxt1;
     private javax.swing.JTextField userIdTxt10;
-    private javax.swing.JTextField userIdTxt11;
-    private javax.swing.JTextField userIdTxt12;
-    private javax.swing.JTextField userIdTxt2;
-    private javax.swing.JTextField userIdTxt3;
-    private javax.swing.JTextField userIdTxt7;
     // End of variables declaration//GEN-END:variables
 }

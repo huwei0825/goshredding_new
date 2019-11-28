@@ -24,7 +24,7 @@ public class FileChoserDemo2 extends javax.swing.JFrame {
     public FileChoserDemo2() {
         initComponents();
         try {
-            File directory = new File("");// 参数为空
+            File directory = new File("");
             String courseFile = directory.getCanonicalPath();
             System.out.println(courseFile);
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class FileChoserDemo2 extends javax.swing.JFrame {
         chooser.setFileFilter(new FileFilter() {
             @Override
             public String getDescription() {
-                return "images（png;jpg）";
+                return "images（png;jpg;PNG）";
             }
 
             @Override
@@ -98,7 +98,7 @@ public class FileChoserDemo2 extends javax.swing.JFrame {
                     return true;
                 }
                 String fn = f.getName();
-                return fn.endsWith(".png") || fn.endsWith(".jpg");
+                return fn.endsWith(".png") || fn.endsWith(".jpg")|| fn.endsWith(".PNG");
             }
         });
 

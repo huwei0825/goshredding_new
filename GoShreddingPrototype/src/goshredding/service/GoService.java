@@ -5,14 +5,15 @@
  */
 package goshredding.service;
 
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshredding.vo.OrganizerVO;
+import goshredding.vo.ParticipantVO;
 import goshredding.vo.UserVO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,11 +22,6 @@ import java.util.UUID;
 public class GoService extends SqliteHelper {
 
     private static String DB_NAME = "GoshreddingDB.db";
-
-    public static String getUUID() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
-    }
 
     public GoService(String dbFilePath) throws ClassNotFoundException, SQLException {
         super(dbFilePath);
@@ -42,8 +38,17 @@ public class GoService extends SqliteHelper {
             resultSet = this.getStatement().executeQuery("select * from event_table");
             while (resultSet.next()) {
                 EventVO event = new EventVO();
-                event.eventId = resultSet.getString("event_id");
-                event.eventName = resultSet.getString("event_name");
+                event.eventId = resultSet.getString("EventID");
+                event.eventName = resultSet.getString("EventName");
+                event.eventPicName = resultSet.getString("ImageName");
+                event.eventTime = resultSet.getString("EventTime");
+                event.eventDate = resultSet.getString("EventDate");
+                event.eventType = resultSet.getString("EventType");
+                event.eventTypePicName = resultSet.getString("EventTypeImageName");
+                event.introduction = resultSet.getString("EventIntroduction");
+                event.location = resultSet.getString("EventLocatoin");
+                event.organizerId = resultSet.getString("OrganizerID");
+                event.advertisementId = resultSet.getString("advertisementID");
                 rsList.add(event);
             }
         } finally {
@@ -54,14 +59,30 @@ public class GoService extends SqliteHelper {
 
     public ArrayList<EventVO> getEventByUserId(String userId) throws Exception {
         ArrayList<EventVO> rsList = new ArrayList<EventVO>();
+        try {
+            resultSet = this.getStatement().executeQuery("select * from organizer_table");
+
+        } finally {
+            this.destroyed();
+        }
         return rsList;
     }
 
     public void insertEvent(EventVO eventVO) throws Exception {
-        String UUID = this.getUUID();
+        String strNewId = getNextMaxID("event_table", "EventID");
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("event_id", UUID);
-        map.put("event_name", eventVO.eventName);
+        map.put("EventID", strNewId);
+        map.put("OrganizerID", eventVO.organizerId);
+        map.put("Location", eventVO.location);
+        map.put("Date", eventVO.eventDate);
+        map.put("Time", eventVO.eventTime);
+        map.put("EventType", eventVO.eventType);
+        map.put("EventName", eventVO.eventName);
+        map.put("EventIntroduction", eventVO.introduction);
+        map.put("AdvertisementID", eventVO.advertisementId);
+        map.put("ImageName", eventVO.eventPicName);
+        map.put("EventTypeImageName", eventVO.eventTypePicName);
+
         this.executeInsert("event_table", map);
 
     }
@@ -94,7 +115,7 @@ public class GoService extends SqliteHelper {
         ArrayList<OrganizerVO> rsList = new ArrayList<OrganizerVO>();
         try {
             resultSet = this.getStatement().executeQuery("select * from organizer_table");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 OrganizerVO organizer = new OrganizerVO();
                 organizer.organizerId = resultSet.getInt("OrganizerID");
                 organizer.username = resultSet.getString("Username");
@@ -105,19 +126,69 @@ public class GoService extends SqliteHelper {
                 organizer.add1 = resultSet.getString("Address1");
                 organizer.add2 = resultSet.getString("Address2");
                 organizer.postcode = resultSet.getString("Postcode");
-                organizer.num = resultSet.getString("Contact number");
+                organizer.num = resultSet.getString("ContactNumber");
                 organizer.email = resultSet.getString("Email");
                 organizer.income = resultSet.getString("Income");
                 rsList.add(organizer);
             }
         } finally {
-                this.destroyed();
+            this.destroyed();
         }
         return rsList;
     }
-    public void insertOrganizer(OrganizerVO organizerVO) throws Exception{
-         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("OrganizerID", organizerVO.organizerId);
+
+    public ArrayList<OrganizerVO> getOrganizerByUsername(String username) throws Exception {
+        ArrayList<OrganizerVO> rsList = new ArrayList<OrganizerVO>();
+        try {
+            resultSet = this.getStatement().executeQuery("select * from organizer_table where Username = '" + username + "'");
+            while (resultSet.next()) {
+                OrganizerVO organizer = new OrganizerVO();
+                organizer.organizerId = resultSet.getInt("OrganizerID");
+                organizer.username = resultSet.getString("Username");
+                organizer.password = resultSet.getString("Password");
+                organizer.forename = resultSet.getString("Forename");
+                organizer.surname = resultSet.getString("Surname");
+                organizer.dob = resultSet.getString("DOB");
+                organizer.add1 = resultSet.getString("Address1");
+                organizer.add2 = resultSet.getString("Address2");
+                organizer.postcode = resultSet.getString("Postcode");
+                organizer.num = resultSet.getString("ContactNumber");
+                organizer.email = resultSet.getString("Email");
+                organizer.income = resultSet.getString("Income");
+                rsList.add(organizer);
+            }
+        } 
+        finally {
+            this.destroyed();
+        }
+        return rsList;
+    }
+
+    public String getNextMaxID(String tableName, String primaryFieldName) throws Exception {
+        String strMaxId = "0";
+
+        try {
+            resultSet = this.getStatement().executeQuery("select max(" + primaryFieldName + ") as maxid from " + tableName);
+            while (resultSet.next()) {
+                strMaxId = resultSet.getString("maxid");
+
+            }
+            if (strMaxId != null) {
+                strMaxId = String.valueOf(Integer.parseInt(strMaxId) + 1);
+            } else {
+                strMaxId = "101";
+            }
+        } finally {
+            this.destroyed();
+        }
+        return strMaxId;
+    }
+
+    public void insertOrganizer(OrganizerVO organizerVO) throws Exception {
+
+        String strNewId = getNextMaxID("organizer_table", "OrganizerID");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("OrganizerID", strNewId);
         map.put("Username", organizerVO.username);
         map.put("Password", organizerVO.password);
         map.put("Forename", organizerVO.forename);
@@ -126,12 +197,13 @@ public class GoService extends SqliteHelper {
         map.put("Address1", organizerVO.add1);
         map.put("Address2", organizerVO.add2);
         map.put("Postcode", organizerVO.postcode);
-        map.put("Contact number", organizerVO.num);
+        map.put("ContactNumber", organizerVO.num);
         map.put("Email", organizerVO.email);
         map.put("Income", organizerVO.income);
         this.executeInsert("organizer_table", map);
     }
-    public void updateOrganizer(OrganizerVO organizerVO) throws Exception{
+
+    public void updateOrganizer(OrganizerVO organizerVO) throws Exception {
         StringBuffer updSql = new StringBuffer();
         updSql.append("UPDATE ");
         updSql.append("organizer_table");
@@ -174,18 +246,20 @@ public class GoService extends SqliteHelper {
 
         this.executeUpdate(updSql.toString());
     }
-     public void deleteOrganizer(OrganizerVO organizerVO) throws Exception {
+
+    public void deleteOrganizer(OrganizerVO organizerVO) throws Exception {
         this.executeUpdate("delete from organizer_table where OrganizerID='" + organizerVO.organizerId + "'");
     }
-    public void insertUser(UserVO userVO) throws Exception {
+
+    public void insertParticipant(ParticipantVO participantVO) throws Exception {
 
     }
 
-    public void updateUser(UserVO userVO) throws Exception {
+    public void updateParticipant(ParticipantVO participantVO) throws Exception {
 
     }
 
-    public void deleteUser(UserVO userVO) throws Exception {
+    public void deleteParticipant(ParticipantVO participantVO) throws Exception {
 
     }
 }

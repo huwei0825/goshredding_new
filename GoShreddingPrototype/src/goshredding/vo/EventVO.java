@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package goshredding.data;
+package goshredding.vo;
 
 
 
@@ -20,4 +20,8 @@ public class EventVO {
     public String eventType;
     public String eventPicName;
     public String eventTypePicName;
+    public String location;
+    public String introduction;
+    public String organizerId;
+    public String advertisementId;
 }

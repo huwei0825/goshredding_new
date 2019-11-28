@@ -8,7 +8,7 @@ package PPRD;
 import goshreddingPrototype.*;
 import goshredding.data.CalendarPanel;
 import goshredding.data.EventTableModel;
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JPanel;

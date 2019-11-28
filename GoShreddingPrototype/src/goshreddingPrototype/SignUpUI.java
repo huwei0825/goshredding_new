@@ -5,7 +5,7 @@
  */
 package goshreddingPrototype;
 
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshredding.data.Validation;
 import goshredding.service.GoService;
 import goshredding.vo.OrganizerVO;
@@ -403,11 +403,9 @@ public class SignUpUI extends javax.swing.JFrame {
                 }
                 //store organizer information
                 if (userType.equalsIgnoreCase("organizer")) {
-                    ArrayList<OrganizerVO> eventList = GoService.getInstance().getOrganizerAll();
-                    int id = eventList.size() + 101;
+                    
                     try {
                         OrganizerVO organizer = new OrganizerVO();
-                        organizer.organizerId = id;
                         organizer.username = username;
                         organizer.password = password1;
                         organizer.forename = forename;

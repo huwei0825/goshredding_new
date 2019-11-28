@@ -5,6 +5,11 @@
  */
 package goshreddingPrototype;
 
+import goshredding.service.GoService;
+import goshredding.vo.OrganizerVO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author huwei
@@ -29,10 +34,10 @@ public class LoginUI extends javax.swing.JFrame {
 
         jPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        userIdTxt = new javax.swing.JTextField();
+        usernameTxt = new javax.swing.JTextField();
         loginBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        userIdTxt2 = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JTextField();
         signUpBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,12 +52,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("Login");
 
-        userIdTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxtActionPerformed(evt);
-            }
-        });
+        usernameTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         loginBtn.setBackground(new java.awt.Color(72, 124, 175));
         loginBtn.setText("Log in");
@@ -65,12 +65,7 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Or");
 
-        userIdTxt2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        userIdTxt2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTxt2ActionPerformed(evt);
-            }
-        });
+        passwordTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
         signUpBtn.setBackground(new java.awt.Color(72, 124, 175));
         signUpBtn.setText("Sign Up");
@@ -102,8 +97,8 @@ public class LoginUI extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(userIdTxt2)
-                            .addComponent(userIdTxt)
+                            .addComponent(passwordTxt)
+                            .addComponent(usernameTxt)
                             .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(signUpBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
                         .addGap(229, 229, 229))
@@ -118,11 +113,11 @@ public class LoginUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIdTxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,14 +143,6 @@ public class LoginUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxtActionPerformed
-
-    private void userIdTxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTxt2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTxt2ActionPerformed
-
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         SignUpUI suFrm = new SignUpUI();
         suFrm.setVisible(true);
@@ -163,9 +150,32 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        MainFormUI mainFrm = new MainFormUI();
-        mainFrm.setVisible(true);
-        this.dispose();
+        String username = usernameTxt.getText();
+        String password = passwordTxt.getText();
+
+        try {
+            ArrayList<OrganizerVO> organizerList = GoService.getInstance().getOrganizerByUsername(username);
+            if (organizerList.size() == 0) {
+                JOptionPane.showMessageDialog(null, "User not found");
+            } else {
+                for (OrganizerVO organizerObj : organizerList) {
+                    String dbPassword = organizerObj.password;
+                    int userId = organizerObj.organizerId;
+                    if (password.equals(dbPassword)) {
+                        JOptionPane.showMessageDialog(null, "login sucessful");
+                        MainFormUI mainFrm = new MainFormUI();
+                        mainFrm.mfSourceForm = userId;
+                        mainFrm.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password is wrong");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
@@ -217,8 +227,8 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel;
     private javax.swing.JButton loginBtn;
+    private javax.swing.JTextField passwordTxt;
     private javax.swing.JButton signUpBtn;
-    private javax.swing.JTextField userIdTxt;
-    private javax.swing.JTextField userIdTxt2;
+    private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
 }

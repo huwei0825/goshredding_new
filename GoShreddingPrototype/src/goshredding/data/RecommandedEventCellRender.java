@@ -5,6 +5,7 @@
  */
 package goshredding.data;
 
+import goshredding.vo.EventVO;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;

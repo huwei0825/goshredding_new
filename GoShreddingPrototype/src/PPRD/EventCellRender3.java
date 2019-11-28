@@ -5,7 +5,7 @@
  */
 package PPRD;
 
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshredding.data.PictureViewPanel;
 import java.awt.Component;
 import java.awt.Dimension;

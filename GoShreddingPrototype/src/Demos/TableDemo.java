@@ -7,7 +7,7 @@ package Demos;
 
 import goshredding.data.EventTableModel;
 import goshredding.data.EventCellRender;
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshredding.service.GoService;
 import java.awt.Dimension;
 import java.util.ArrayList;

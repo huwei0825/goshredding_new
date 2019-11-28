@@ -7,7 +7,7 @@ package PPRD;
 
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
-import goshredding.data.EventVO;
+import goshredding.vo.EventVO;
 import goshreddingPrototype.MyEventsUI;
 import goshreddingPrototype.NotificationCentreUI;
 import java.awt.Dimension;
