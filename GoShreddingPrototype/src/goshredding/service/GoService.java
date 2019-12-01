@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class GoService extends SqliteHelper {
 
     private static String DB_NAME = "GoshreddingDB.db";
-
+    public static String currentUserId = "";
     public GoService(String dbFilePath) throws ClassNotFoundException, SQLException {
         super(dbFilePath);
     }
@@ -41,14 +41,14 @@ public class GoService extends SqliteHelper {
                 event.eventId = resultSet.getString("EventID");
                 event.eventName = resultSet.getString("EventName");
                 event.eventPicName = resultSet.getString("ImageName");
-                event.eventTime = resultSet.getString("EventTime");
-                event.eventDate = resultSet.getString("EventDate");
+                event.eventTime = resultSet.getString("Time");
+                event.eventDate = resultSet.getString("Date");
                 event.eventType = resultSet.getString("EventType");
                 event.eventTypePicName = resultSet.getString("EventTypeImageName");
                 event.introduction = resultSet.getString("EventIntroduction");
-                event.location = resultSet.getString("EventLocatoin");
+                event.location = resultSet.getString("Location");
                 event.organizerId = resultSet.getString("OrganizerID");
-                event.advertisementId = resultSet.getString("advertisementID");
+                event.advertisementId = resultSet.getString("AdvertisementID");
                 rsList.add(event);
             }
         } finally {

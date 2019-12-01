@@ -7,11 +7,13 @@ package Demos;
 
 import goshredding.data.EventTableModel;
 import goshredding.data.EventCellRender;
+
+import goshredding.data.GoHelper;
 import goshredding.vo.EventVO;
-import goshredding.service.GoService;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.TimerTask;
+import java.util.Timer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -26,7 +28,6 @@ public class TableDemo extends javax.swing.JFrame {
      * Creates new form TableDemo
      */
     private ArrayList eventList = new ArrayList();
-
     public TableDemo() {
         initComponents();
         eventTable.setRowHeight(75);
@@ -36,47 +37,63 @@ public class TableDemo extends javax.swing.JFrame {
         renderer.setPreferredSize(new Dimension(0, 0));
         eventTable.getTableHeader().setDefaultRenderer(renderer);
 
-//        EventVO event1 = new EventVO();
-//        event1.eventName="Snow Skating";
-//        event1.eventDate="01/02/2019";
-//        event1.eventTimeRemaining="03:12;01;57";
-//
-//        EventVO event2 = new EventVO();
-//        event2.eventName="Super bike";
-//        event2.eventDate="02/02/2019";
+        EventVO event1 = new EventVO();
+        event1.eventName = "Snow Skating";
+        event1.eventDate = "2019/12/10";
+        event1.eventTimeRemaining="03:12;01;57";
+
+        EventVO event2 = new EventVO();
+        event2.eventName = "Super bike";
+        event2.eventDate = "2019/12/03";
 //        event2.eventTimeRemaining="04:02:15:02";
-//
-//        EventVO event3 = new EventVO();
-//        event3.eventName="";
-//        event3.eventDate="02/07/2019";
+
+        EventVO event3 = new EventVO();
+        event3.eventName = "";
+        event3.eventDate = "2020/01/20";
 //        event3.eventTimeRemaining="04:03:01:02";
-//
-//        EventVO event4 = new EventVO();
-//        event4.eventName="Skiing 2020";
-//        event4.eventDate="04/02/2019";
+
+        EventVO event4 = new EventVO();
+        event4.eventName = "Skiing 2020";
+        event4.eventDate = "2020/02/10";
 //        event4.eventTimeRemaining="06:03:01:02";
-//
-//        EventVO event5 = new EventVO();
-//        event5.eventName="Snow Skating";
-//        event5.eventDate="08/02/2019";
+
+        EventVO event5 = new EventVO();
+        event5.eventName = "Snow Skating";
+        event5.eventDate = "2020/03/22";
 //        event5.eventTimeRemaining="10:03:01:02";
-//
-//        eventList.add(event1);
-//        eventList.add(event2);
-//        eventList.add(event3);
-//        eventList.add(event4);
-//        eventList.add(event5);
-        ArrayList<EventVO> eventList = new ArrayList<EventVO>();
-        try {
-            eventList = GoService.getInstance().getEventAll();
-        } catch (Exception e) {
-        }
+
+        eventList.add(event1);
+        eventList.add(event2);
+        eventList.add(event3);
+        eventList.add(event4);
+        eventList.add(event5);
+//        ArrayList<EventVO> eventList = new ArrayList<EventVO>();
+//        try {
+//            eventList = GoService.getInstance().getEventAll();
+//        } catch (Exception e) {
+//        }
         EventTableModel eventTableModel = new EventTableModel(eventList);
         eventTable.setModel(eventTableModel);
         TableColumnModel tcm = eventTable.getColumnModel();
         TableColumn tc = tcm.getColumn(0);
         tc.setPreferredWidth(200);
         tc.setCellRenderer(new EventCellRender());
+        
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                long currentTimeLong=System.currentTimeMillis();
+               for(int i=0;i<eventList.size();i++){
+                   EventVO eventVO=(EventVO)eventList.get(i);
+                   long eventTimeLong=GoHelper.string2Millis(eventVO.eventDate,"yyyy/MM/dd");
+                   if(eventTimeLong>currentTimeLong){
+                       eventVO.eventTimeRemaining=GoHelper.getDistanceTime(currentTimeLong, eventTimeLong);
+                        System.out.println("index "+i+" time remaining is:"+eventVO.eventTimeRemaining);
+                   }
+               }
+               eventTable.repaint();
+            }
+        }, 1000, 1000);
     }
 
     /**
@@ -159,7 +176,9 @@ public class TableDemo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TableDemo().setVisible(true);
+                TableDemo temp = new TableDemo();
+                temp.setVisible(true);
+                GoHelper.setBkColor(temp.getContentPane());
             }
         });
     }

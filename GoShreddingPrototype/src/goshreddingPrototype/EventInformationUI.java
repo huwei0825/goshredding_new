@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.filechooser.FileFilter;
 
@@ -68,7 +69,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        timeSlotTxt = new javax.swing.JComboBox<>();
+        timeSlotComboBox = new javax.swing.JComboBox<>();
         typeTxt = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -87,7 +88,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        introductionTtx = new javax.swing.JTextArea();
+        introductionTxt = new javax.swing.JTextArea();
         uploadBtn = new javax.swing.JButton();
         imageViewContainerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -142,7 +143,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel6.setText("Event introduction:");
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel7.setText("Time:");
+        jLabel7.setText("Time(hh:mm):");
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setText("Event type:");
@@ -156,13 +157,13 @@ public class EventInformationUI extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel13.setText("Advertisement for this event ");
 
-        timeSlotTxt.setBackground(new java.awt.Color(255, 255, 255));
-        timeSlotTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        timeSlotTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+        timeSlotComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        timeSlotComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        timeSlotComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
 
         typeTxt.setBackground(new java.awt.Color(255, 255, 255));
         typeTxt.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        typeTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "skateboarding", "mountain biking", "snowboarding" }));
+        typeTxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "skateboarding", "biking", "snowboarding" }));
 
         jPanel1.setBackground(new java.awt.Color(218, 227, 243));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(72, 124, 175)));
@@ -266,10 +267,11 @@ public class EventInformationUI extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        introductionTtx.setColumns(20);
-        introductionTtx.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        introductionTtx.setRows(5);
-        jScrollPane1.setViewportView(introductionTtx);
+        introductionTxt.setColumns(20);
+        introductionTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        introductionTxt.setLineWrap(true);
+        introductionTxt.setRows(5);
+        jScrollPane1.setViewportView(introductionTxt);
 
         uploadBtn.setBackground(new java.awt.Color(72, 124, 175));
         uploadBtn.setText("Upload");
@@ -316,7 +318,7 @@ public class EventInformationUI extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                                         .addComponent(timeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(timeSlotTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(timeSlotComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(typeTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -362,7 +364,7 @@ public class EventInformationUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(timeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeSlotTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeSlotComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -441,12 +443,51 @@ public class EventInformationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        String organizerId = GoService.currentUserId;
+        String name = nameTxt.getText();
+        String date = dateTxt.getText();
+        String timeOld = timeTxt.getText();
+        String timeSlot = (String) timeSlotComboBox.getSelectedItem();
+        String time = timeOld + timeSlot;
+        String location = locationTxt.getText();
+        String type = (String) typeTxt.getSelectedItem();
+        String introduction = introductionTxt.getText();
+        String eventTypeImageName = "";
+
+        if (type.equalsIgnoreCase("skateboarding")) {
+            eventTypeImageName = "skateboard.png";
+        } else if (type.equalsIgnoreCase("biking")) {
+            eventTypeImageName = "bike.png";
+        } else if (type.equalsIgnoreCase("snowboarding")) {
+            eventTypeImageName = "snowboard.png";
+        }
+        
         try {
             EventVO event = new EventVO();
-        
+            event.eventName = name;
+            event.eventDate = date;
+            event.organizerId = organizerId;
+            event.location = location;
+            event.eventTime = time;
+            event.eventType = type;
+            event.introduction = introduction;
+            event.eventPicName = strImageName;
+            event.eventTypePicName = eventTypeImageName;
             GoService.getInstance().insertEvent(event);
+            JOptionPane.showMessageDialog(null, "successfully saved");
+            if (this.sourceForm == 1) {
+                MainFormUI mainFrm = new MainFormUI();
+                mainFrm.setVisible(true);
+            } else if (this.sourceForm == 2) {
+                MyEventsUI myFrm = new MyEventsUI();
+                myFrm.setVisible(true);
+            } else if (this.sourceForm == 3) {
+                OpenEventsUI oe = new OpenEventsUI();
+                oe.setVisible(true);
+            }
+            this.dispose();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -564,7 +605,7 @@ public class EventInformationUI extends javax.swing.JFrame {
     private javax.swing.JTextArea contentsTxt;
     private javax.swing.JTextField dateTxt;
     private javax.swing.JPanel imageViewContainerPanel;
-    private javax.swing.JTextArea introductionTtx;
+    private javax.swing.JTextArea introductionTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -591,7 +632,7 @@ public class EventInformationUI extends javax.swing.JFrame {
     private javax.swing.JTextField priceTxt;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField supplierTxt;
-    private javax.swing.JComboBox<String> timeSlotTxt;
+    private javax.swing.JComboBox<String> timeSlotComboBox;
     private javax.swing.JTextField timeTxt;
     private javax.swing.JComboBox<String> typeTxt;
     private javax.swing.JButton uploadBtn;

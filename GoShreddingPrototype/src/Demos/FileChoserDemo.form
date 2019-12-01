@@ -26,10 +26,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="imageViewContainerPanel" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSelectImage" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnSelectImage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnChangeColorBlue" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnChangeBkYellow" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnMainForm" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="imageViewContainerPanel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="124" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,7 +45,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnSelectImage" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSelectImage" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnChangeColorBlue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnChangeBkYellow" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMainForm" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="imageViewContainerPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -74,5 +87,29 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JButton" name="btnChangeColorBlue">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change Blue"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeColorBlueActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnChangeBkYellow">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change Yellow"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangeBkYellowActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMainForm">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Open Mainform"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMainFormActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

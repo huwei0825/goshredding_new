@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author SXR
  */
 public class GoServiceTest {
-
+    
     public static void main(String args[]) {
         try {
             ///------------demo1 query----------------

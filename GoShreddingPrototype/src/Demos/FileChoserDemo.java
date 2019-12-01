@@ -5,7 +5,10 @@
  */
 package Demos;
 
+import goshredding.data.GoHelper;
 import goshredding.data.PictureViewPanel;
+import goshreddingPrototype.MainFormUI;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
@@ -29,7 +32,10 @@ public class FileChoserDemo extends javax.swing.JFrame {
     private PictureViewPanel pictureViewPanel = null;
 
     public FileChoserDemo() {
+
         initComponents();
+        GoHelper.setBkColor(this.getContentPane());
+        
         pictureViewPanel = new PictureViewPanel();
         pictureViewPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
         pictureViewPanel.setPreferredSize(new Dimension(400, 300));
@@ -37,8 +43,8 @@ public class FileChoserDemo extends javax.swing.JFrame {
         imageViewContainerPanel.add(pictureViewPanel);
         //Image image = new ImageIcon(getClass().getResource("/files/profile-3.png")).getImage();
         Image image = new ImageIcon("C:\\Users\\SXR\\Documents\\美图图库\\示例图片_03.jpg").getImage();
-        pictureViewPanel.setImage(image);
-        pictureViewPanel.repaint();
+//        pictureViewPanel.setImage(image);
+//        pictureViewPanel.repaint();
     }
 
     /**
@@ -52,6 +58,9 @@ public class FileChoserDemo extends javax.swing.JFrame {
 
         btnSelectImage = new javax.swing.JButton();
         imageViewContainerPanel = new javax.swing.JPanel();
+        btnChangeColorBlue = new javax.swing.JButton();
+        btnChangeBkYellow = new javax.swing.JButton();
+        btnMainForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +84,27 @@ public class FileChoserDemo extends javax.swing.JFrame {
             .addGap(0, 370, Short.MAX_VALUE)
         );
 
+        btnChangeColorBlue.setText("Change Blue");
+        btnChangeColorBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeColorBlueActionPerformed(evt);
+            }
+        });
+
+        btnChangeBkYellow.setText("Change Yellow");
+        btnChangeBkYellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeBkYellowActionPerformed(evt);
+            }
+        });
+
+        btnMainForm.setText("Open Mainform");
+        btnMainForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMainFormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,15 +112,26 @@ public class FileChoserDemo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelectImage))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSelectImage)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnChangeColorBlue)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnChangeBkYellow)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMainForm))
+                    .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnSelectImage)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelectImage)
+                    .addComponent(btnChangeColorBlue)
+                    .addComponent(btnChangeBkYellow)
+                    .addComponent(btnMainForm))
                 .addGap(18, 18, 18)
                 .addComponent(imageViewContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -101,6 +142,7 @@ public class FileChoserDemo extends javax.swing.JFrame {
 
     private void btnSelectImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImageActionPerformed
         // TODO add your handling code here:
+
         JFileChooser chooser = new JFileChooser();             //设置选择器   
         int returnVal = chooser.showOpenDialog(btnSelectImage);        //是否打开文件选择框  
 //        System.out.println("returnVal=" + returnVal);
@@ -138,6 +180,29 @@ public class FileChoserDemo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSelectImageActionPerformed
 
+    private void btnChangeColorBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeColorBlueActionPerformed
+        // TODO add your handling code here:
+        GoHelper.currentBkColor = GoHelper.BK_COLOR_BLUE;
+
+        FileChoserDemo temp = new FileChoserDemo();
+        temp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnChangeColorBlueActionPerformed
+
+    private void btnChangeBkYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeBkYellowActionPerformed
+        // TODO add your handling code here:
+        GoHelper.currentBkColor = GoHelper.BK_COLOR_YELLOW;
+        FileChoserDemo temp = new FileChoserDemo();
+        temp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnChangeBkYellowActionPerformed
+
+    private void btnMainFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainFormActionPerformed
+        // TODO add your handling code here:
+        MainFormUI temp = new MainFormUI();
+        temp.setVisible(true);
+    }//GEN-LAST:event_btnMainFormActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -164,16 +229,22 @@ public class FileChoserDemo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FileChoserDemo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+//        GoHelper.changeTheme(Color.BLACK);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FileChoserDemo().setVisible(true);
+                FileChoserDemo temp = new FileChoserDemo();
+                temp.setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangeBkYellow;
+    private javax.swing.JButton btnChangeColorBlue;
+    private javax.swing.JButton btnMainForm;
     private javax.swing.JButton btnSelectImage;
     private javax.swing.JPanel imageViewContainerPanel;
     // End of variables declaration//GEN-END:variables

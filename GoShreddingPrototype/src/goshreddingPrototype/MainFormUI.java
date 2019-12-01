@@ -9,6 +9,7 @@ import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
 import goshredding.vo.EventVO;
 import goshredding.data.RecommandedEventCellRender;
+import goshredding.service.GoService;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.UIManager;
@@ -25,7 +26,6 @@ public class MainFormUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public int mfSourceForm;
     private ArrayList eventList = new ArrayList();
     private ArrayList recommandEventList = new ArrayList();
     public MainFormUI() {
@@ -84,43 +84,48 @@ public class MainFormUI extends javax.swing.JFrame {
         renderer2.setPreferredSize(new Dimension(0, 0));
         recommandEventTable.getTableHeader().setDefaultRenderer(renderer2);
 
-        EventVO recommandEvent1 = new EventVO();
-        recommandEvent1.eventName = "coastal cycling";
-        recommandEvent1.eventDate = "03/02/2019";
-        recommandEvent1.eventTime = "3:00 PM";
-        recommandEvent1.eventType = "snowboarding";
-
-        EventVO recommandEvent2 = new EventVO();
-        recommandEvent2.eventName = "Pete skating fest";
-        recommandEvent2.eventDate = "03/02/2019";
-        recommandEvent2.eventTime = "11:00 AM";
-        recommandEvent2.eventType = "stakeboarding";
-
-        EventVO recommandEvent3 = new EventVO();
-        recommandEvent3.eventName = "Biking Pedernales state park";
-        recommandEvent3.eventDate = "04/02/2019";
-        recommandEvent3.eventTime = "11:20 AM";
-        recommandEvent3.eventType = "mountain biking";
-
-        EventVO recommandEvent4 = new EventVO();
-        recommandEvent4.eventName = "Full park friday";
-        recommandEvent4.eventDate = "04/02/2019";
-        recommandEvent4.eventTime = "7:00 pM";
-        recommandEvent4.eventType = "snowboarding";
-
-        EventVO recommandEvent5 = new EventVO();
-        recommandEvent5.eventName = "All levels welcome-Clyne cycling";
-        recommandEvent5.eventDate = "04/02/2019";
-        recommandEvent5.eventTime = "3:00 pM";
-        recommandEvent5.eventType = "mountain biking";
-
-        recommandEventList.add(recommandEvent1);
-        recommandEventList.add(recommandEvent2);
-        recommandEventList.add(recommandEvent3);
-        recommandEventList.add(recommandEvent4);
-        recommandEventList.add(recommandEvent5);
-
-        EventTableModel eventTableModel2 = new EventTableModel(recommandEventList);
+//        EventVO recommandEvent1 = new EventVO();
+//        recommandEvent1.eventName = "coastal cycling";
+//        recommandEvent1.eventDate = "03/02/2019";
+//        recommandEvent1.eventTime = "3:00 PM";
+//        recommandEvent1.eventType = "snowboarding";
+//
+//        EventVO recommandEvent2 = new EventVO();
+//        recommandEvent2.eventName = "Pete skating fest";
+//        recommandEvent2.eventDate = "03/02/2019";
+//        recommandEvent2.eventTime = "11:00 AM";
+//        recommandEvent2.eventType = "stakeboarding";
+//
+//        EventVO recommandEvent3 = new EventVO();
+//        recommandEvent3.eventName = "Biking Pedernales state park";
+//        recommandEvent3.eventDate = "04/02/2019";
+//        recommandEvent3.eventTime = "11:20 AM";
+//        recommandEvent3.eventType = "mountain biking";
+//
+//        EventVO recommandEvent4 = new EventVO();
+//        recommandEvent4.eventName = "Full park friday";
+//        recommandEvent4.eventDate = "04/02/2019";
+//        recommandEvent4.eventTime = "7:00 pM";
+//        recommandEvent4.eventType = "snowboarding";
+//
+//        EventVO recommandEvent5 = new EventVO();
+//        recommandEvent5.eventName = "All levels welcome-Clyne cycling";
+//        recommandEvent5.eventDate = "04/02/2019";
+//        recommandEvent5.eventTime = "3:00 pM";
+//        recommandEvent5.eventType = "mountain biking";
+//
+//        recommandEventList.add(recommandEvent1);
+//        recommandEventList.add(recommandEvent2);
+//        recommandEventList.add(recommandEvent3);
+//        recommandEventList.add(recommandEvent4);
+//        recommandEventList.add(recommandEvent5);
+        ArrayList<EventVO> eventList = new ArrayList<EventVO>();
+        try {
+            eventList = GoService.getInstance().getEventAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        EventTableModel eventTableModel2 = new EventTableModel(eventList);
         recommandEventTable.setModel(eventTableModel2);
         TableColumnModel tcm2 = recommandEventTable.getColumnModel();
         TableColumn tc2 = tcm2.getColumn(0);
@@ -212,7 +217,7 @@ public class MainFormUI extends javax.swing.JFrame {
         jLabel2.setBounds(206, 80, 230, 16);
 
         jLabel3.setForeground(new java.awt.Color(68, 114, 196));
-        jLabel3.setText("\"Do want you can't\" --- Casey Neistat");
+        jLabel3.setText("\"Do what you can't\" --- Casey Neistat");
         jPanel.add(jLabel3);
         jLabel3.setBounds(30, 20, 260, 16);
 

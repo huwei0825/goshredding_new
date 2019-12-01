@@ -41,6 +41,7 @@ public class RecommandedEventCellRender extends javax.swing.JPanel implements Ta
         setPreferredSize(new java.awt.Dimension(400, 50));
 
         jPanel1.setBackground(new java.awt.Color(239, 246, 254));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(null);
 
         recommandEventName.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
