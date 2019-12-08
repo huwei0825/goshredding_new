@@ -6,7 +6,12 @@
 package goshreddingPrototype;
 
 import goshredding.data.CalendarPanel;
+import goshredding.data.EventTableModel;
+import goshredding.data.MyEventTableModel;
+import goshredding.service.GoService;
+import goshredding.vo.EventVO;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -18,14 +23,33 @@ public class MyEventsUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+     ArrayList<EventVO> eventList = new ArrayList<EventVO>();
     public MyEventsUI() {
         initComponents();
+        if (GoService.currentUserType == 2) {
+            editBtn.remove(editBtn);
+            deleteBtn.setText("Leave");
+        }
         CalendarPanel ser = CalendarPanel.getInstance();
         JPanel calendarPanel = ser.getCalendarPanel();
         calendarPanel.setPreferredSize(new Dimension(300, 300));
         calendarContainerPanel.add(calendarPanel);
-    }
+        ser.myeventsui = this;
+        //display events on "my events" table
+       
 
+        try {
+            eventList = GoService.getInstance().getEventByOrganizerId(GoService.currentUserId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        MyEventTableModel eventTableModel = new MyEventTableModel(eventList);
+        myEventsTable.setModel(eventTableModel);
+      
+    }
+    public void displayEventsByDate(String date){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +64,7 @@ public class MyEventsUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        myEventsTable = new javax.swing.JTable();
         openBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -64,18 +88,19 @@ public class MyEventsUI extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All events", "Past evnts", "Future events" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        myEventsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Event name", "Date", "Type"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        myEventsTable.setShowHorizontalLines(false);
+        jScrollPane1.setViewportView(myEventsTable);
 
         openBtn.setBackground(new java.awt.Color(72, 124, 175));
         openBtn.setText("Open");
@@ -188,9 +213,15 @@ public class MyEventsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
-        OpenEventsUI oeFrm = new OpenEventsUI();
-        oeFrm.setVisible(true);
-        this.dispose();
+        int row = myEventsTable.getSelectedRow();
+        EventVO event = (EventVO) eventList.get(row);
+        if (!event.eventName.equalsIgnoreCase("You have no events yet")) {
+            OpenEventsUI oeFrm = new OpenEventsUI();
+            oeFrm.sourceForm = 2;
+            oeFrm.setEvent(event);
+            oeFrm.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_openBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -263,7 +294,7 @@ public class MyEventsUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable myEventsTable;
     private javax.swing.JButton openBtn;
     // End of variables declaration//GEN-END:variables
 }

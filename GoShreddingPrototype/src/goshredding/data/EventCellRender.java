@@ -60,10 +60,10 @@ public class EventCellRender extends javax.swing.JPanel implements TableCellRend
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventDateLabel)
-                    .addComponent(eventNameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                    .addComponent(eventNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(timeRemainingLabel)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +77,7 @@ public class EventCellRender extends javax.swing.JPanel implements TableCellRend
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(timeRemainingLabel)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -106,6 +106,12 @@ public class EventCellRender extends javax.swing.JPanel implements TableCellRend
         eventNameLabel.setText(eventObj.eventName);
         eventDateLabel.setText(eventObj.eventDate);
         timeRemainingLabel.setText(eventObj.eventTimeRemaining);
-        return this; 
+         
+        if(isSelected){
+             jPanel1.setBackground(new java.awt.Color(218,227,243));
+        }else{
+             jPanel1.setBackground(new java.awt.Color(239, 246, 254));
+        }
+        return this;
     }
 }

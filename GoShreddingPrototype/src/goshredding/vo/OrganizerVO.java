@@ -10,7 +10,7 @@ package goshredding.vo;
  * @author huwei
  */
 public class OrganizerVO {
-    public int organizerId;
+    public String organizerId;
     public String username;
     public String password;
     public String forename;

@@ -7,11 +7,17 @@ package goshreddingPrototype;
 
 import goshredding.data.EventCellRender;
 import goshredding.data.EventTableModel;
+import goshredding.data.GoHelper;
 import goshredding.vo.EventVO;
 import goshredding.data.RecommandedEventCellRender;
 import goshredding.service.GoService;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -26,49 +32,43 @@ public class MainFormUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    private ArrayList eventList = new ArrayList();
-    private ArrayList recommandEventList = new ArrayList();
+    ArrayList<EventVO> eventList = new ArrayList<EventVO>();
+
     public MainFormUI() {
         initComponents();
+        if (GoService.currentUserType == 2) {
+            newGroupBtn.setVisible(false);
+        }else if (GoService.currentUserType == 1) {
+            recommandEventLbl.setText("Events by other organizers...");
+        }
+        myProfileLbl.addMouseListener(new MyMouseAdapter(myProfileLbl));
+
         //eventTable
         eventTable.setRowHeight(75);
-        
+
         eventTable.getTableHeader().setVisible(false);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setPreferredSize(new Dimension(0, 0));
         eventTable.getTableHeader().setDefaultRenderer(renderer);
 
-        EventVO event1 = new EventVO();
-        event1.eventName = "Snow Skating";
-        event1.eventDate = "01/02/2019";
-        event1.eventTimeRemaining = "03:12:01:57";
-
-        EventVO event2 = new EventVO();
-        event2.eventName = "Super bike";
-        event2.eventDate = "02/02/2019";
-        event2.eventTimeRemaining = "04:02:15:02";
-
-        EventVO event3 = new EventVO();
-        event3.eventName = "bikeOlympic";
-        event3.eventDate = "02/07/2019";
-        event3.eventTimeRemaining = "04:03:01:02";
-
-        EventVO event4 = new EventVO();
-        event4.eventName = "Skiing 2020";
-        event4.eventDate = "04/02/2019";
-        event4.eventTimeRemaining = "06:03:01:02";
-
-        EventVO event5 = new EventVO();
-        event5.eventName = "Snow Skating";
-        event5.eventDate = "08/02/2019";
-        event5.eventTimeRemaining = "10:03:01:02";
-
-        eventList.add(event1);
-        eventList.add(event2);
-        eventList.add(event3);
-        eventList.add(event4);
-        eventList.add(event5);
-
+        if (GoService.currentUserType == 2) {
+            try {
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (GoService.currentUserType == 1) {
+            try {
+               eventList = GoService.getInstance().getEventByOrganizerId(GoService.currentUserId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(eventList.size() == 0){
+            EventVO event = new EventVO();
+            event.eventName = "You have no events yet";
+            eventList.add(event);
+        }
         EventTableModel eventTableModel = new EventTableModel(eventList);
         eventTable.setModel(eventTableModel);
         TableColumnModel tcm = eventTable.getColumnModel();
@@ -76,9 +76,48 @@ public class MainFormUI extends javax.swing.JFrame {
         tc.setPreferredWidth(200);
         tc.setCellRenderer(new EventCellRender());
         
+        //display countdowns
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                long currentTimeLong = System.currentTimeMillis();
+                for (int i = 0; i < eventList.size(); i++) {
+                    EventVO eventVO = (EventVO) eventList.get(i);
+                    long eventTimeLong = GoHelper.string2Millis(eventVO.eventDate + " " + eventVO.eventTime, "dd/MM/yyyy hh:mm");
+                    if (eventTimeLong > currentTimeLong) {
+                        eventVO.eventTimeRemaining = GoHelper.getDistanceTime(currentTimeLong, eventTimeLong);
+                        //System.out.println("index " + i + " time remaining is:" + eventVO.eventTimeRemaining);
+                    }
+                }
+                eventTable.repaint();
+            }
+        }, 1000, 1000);
+        
+        //double click events
+        
+        eventTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {//点击几次，这里是双击事件
+                    int row = eventTable.getSelectedRow();
+                    EventVO event = (EventVO) eventTable.getValueAt(row, 0);
+                    if(!event.eventName.equalsIgnoreCase("You have no events yet")){
+                    OpenEventsUI oeFrm = new OpenEventsUI();
+                    //oeFrm.event = event;
+                    oeFrm.sourceForm = 1;
+                    oeFrm.setEvent(event);
+                    oeFrm.setVisible(true);
+                    dispose();
+                    }
+                    
+                    ///to do:open event with event.eventId
+                    System.out.println("double click ");
+                }
+            }
+        });
+
         //recommandedEventTable
         recommandEventTable.setRowHeight(50);
-        
+
         recommandEventTable.getTableHeader().setVisible(false);
         DefaultTableCellRenderer renderer2 = new DefaultTableCellRenderer();
         renderer2.setPreferredSize(new Dimension(0, 0));
@@ -119,19 +158,38 @@ public class MainFormUI extends javax.swing.JFrame {
 //        recommandEventList.add(recommandEvent3);
 //        recommandEventList.add(recommandEvent4);
 //        recommandEventList.add(recommandEvent5);
-        ArrayList<EventVO> eventList = new ArrayList<EventVO>();
+        ArrayList<EventVO> recommandEventList = new ArrayList<EventVO>();
         try {
-            eventList = GoService.getInstance().getEventAll();
+            recommandEventList = GoService.getInstance().getEventsByOtherOrganizers(GoService.currentUserId);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        EventTableModel eventTableModel2 = new EventTableModel(eventList);
+       
+        EventTableModel eventTableModel2 = new EventTableModel(recommandEventList);
         recommandEventTable.setModel(eventTableModel2);
         TableColumnModel tcm2 = recommandEventTable.getColumnModel();
         TableColumn tc2 = tcm2.getColumn(0);
         tc2.setPreferredWidth(200);
         tc2.setCellRenderer(new RecommandedEventCellRender());
-        
+        recommandEventTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int row = recommandEventTable.getSelectedRow();
+                    EventVO event = (EventVO) recommandEventTable.getValueAt(row, 0);
+                    if(!event.eventName.equalsIgnoreCase("You have no events yet")){
+                    OpenEventsUI oeFrm = new OpenEventsUI();
+                    //oeFrm.event = event;
+                    oeFrm.sourceForm = 1;
+                    oeFrm.setEvent(event);
+                    oeFrm.setVisible(true);
+                    dispose();
+                    }
+                    
+                    ///to do:open event with event.eventId
+                    System.out.println("double click ");
+                }
+            }
+        });
     }
 
     /**
@@ -156,7 +214,7 @@ public class MainFormUI extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
+        recommandEventLbl = new javax.swing.JLabel();
         newGroupBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -203,9 +261,9 @@ public class MainFormUI extends javax.swing.JFrame {
         greetingTxt.setBounds(470, 20, 140, 16);
 
         dateTxt.setForeground(new java.awt.Color(68, 114, 196));
-        dateTxt.setText("dd/mm/yyyy 9:00 AM");
+        dateTxt.setText("08/12/2019 9:00 AM");
         jPanel.add(dateTxt);
-        dateTxt.setBounds(610, 20, 138, 16);
+        dateTxt.setBounds(610, 20, 134, 16);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("Find your next event");
@@ -214,7 +272,7 @@ public class MainFormUI extends javax.swing.JFrame {
 
         jLabel2.setText("Days : hours: minutes : seconds");
         jPanel.add(jLabel2);
-        jLabel2.setBounds(206, 80, 230, 16);
+        jLabel2.setBounds(230, 90, 210, 16);
 
         jLabel3.setForeground(new java.awt.Color(68, 114, 196));
         jLabel3.setText("\"Do what you can't\" --- Casey Neistat");
@@ -255,10 +313,10 @@ public class MainFormUI extends javax.swing.JFrame {
         jPanel.add(jButton5);
         jButton5.setBounds(753, 117, 91, 35);
 
-        jLabel19.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel19.setText("You might be interested in...");
-        jPanel.add(jLabel19);
-        jLabel19.setBounds(460, 160, 259, 19);
+        recommandEventLbl.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        recommandEventLbl.setText("You might be interested in...");
+        jPanel.add(recommandEventLbl);
+        recommandEventLbl.setBounds(460, 160, 259, 19);
 
         newGroupBtn.setBackground(new java.awt.Color(72, 124, 175));
         newGroupBtn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -271,10 +329,10 @@ public class MainFormUI extends javax.swing.JFrame {
         jPanel.add(newGroupBtn);
         newGroupBtn.setBounds(460, 430, 380, 40);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sort by time", "sort by popularity", "mountain biking", "skateboarding", "snowboarding", " ", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sort by time", "sort by popularity", "filter by biking", "filter by skateboarding", "filter by snowboarding" }));
         jComboBox1.setToolTipText("");
         jPanel.add(jComboBox1);
-        jComboBox1.setBounds(710, 160, 130, 27);
+        jComboBox1.setBounds(690, 160, 150, 27);
 
         recommandEventTable.setBackground(new java.awt.Color(239, 246, 254));
         recommandEventTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -353,7 +411,27 @@ public class MainFormUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    class MyMouseAdapter extends java.awt.event.MouseAdapter {
 
+        JLabel label;
+        //private int type, value;
+
+        public MyMouseAdapter(final JLabel label) {//, final int type, final int value
+            this.label = label;
+//                this.type = type;
+//                this.value = value;
+        }
+
+        public void mouseEntered(java.awt.event.MouseEvent me) {
+
+            label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0xAA, 0xAA, 0xAA)));
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent me) {
+
+            label.setBorder(null);
+        }
+    }
     private void myEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myEventBtnActionPerformed
         MyEventsUI myFrm = new MyEventsUI();
         myFrm.setVisible(true);
@@ -408,10 +486,10 @@ public class MainFormUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        try{
+        try {
             UIManager.setLookAndFeel("com.jtatto.plaf.aluminium.AluminiumLookAndFeel");
-        }catch(Exception ee){
-            
+        } catch (Exception ee) {
+
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -428,7 +506,6 @@ public class MainFormUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
@@ -442,6 +519,7 @@ public class MainFormUI extends javax.swing.JFrame {
     private javax.swing.JLabel myProfileLbl;
     private javax.swing.JButton newGroupBtn;
     private javax.swing.JButton notificationBtn;
+    private javax.swing.JLabel recommandEventLbl;
     private javax.swing.JTable recommandEventTable;
     // End of variables declaration//GEN-END:variables
 }

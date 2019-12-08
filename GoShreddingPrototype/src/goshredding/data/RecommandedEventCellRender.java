@@ -89,6 +89,11 @@ public class RecommandedEventCellRender extends javax.swing.JPanel implements Ta
         recommandEventDate.setText(eventObj.eventDate);
         recommandEventTime.setText(eventObj.eventTime);
         recommandEventType.setText(eventObj.eventType);
+        if(isSelected){
+             jPanel1.setBackground(new java.awt.Color(218,227,243));
+        }else{
+             jPanel1.setBackground(new java.awt.Color(239, 246, 254));
+        }
         return this; 
     }
 }

@@ -27,7 +27,7 @@ public class EventInformationUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public int sourceForm;
+    public int sourceForm = 0;
     private PictureViewPanel pictureViewPanel = null;
     private String strImageName = "";
 
@@ -438,7 +438,7 @@ public class EventInformationUI extends javax.swing.JFrame {
         } else if (this.sourceForm == 3) {
             OpenEventsUI oe = new OpenEventsUI();
             oe.setVisible(true);
-        }
+        } 
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -452,16 +452,20 @@ public class EventInformationUI extends javax.swing.JFrame {
         String location = locationTxt.getText();
         String type = (String) typeTxt.getSelectedItem();
         String introduction = introductionTxt.getText();
-        String eventTypeImageName = "";
-
-        if (type.equalsIgnoreCase("skateboarding")) {
-            eventTypeImageName = "skateboard.png";
-        } else if (type.equalsIgnoreCase("biking")) {
-            eventTypeImageName = "bike.png";
-        } else if (type.equalsIgnoreCase("snowboarding")) {
-            eventTypeImageName = "snowboard.png";
-        }
+       
         
+        String[] timeArray = timeOld.split(":");
+            int hours = Integer.parseInt(timeArray[0]);
+            String minutes = timeArray[1]; 
+        if(timeSlot.equalsIgnoreCase("AM") && hours == 12){
+            time ="00:" + minutes;
+        }else if(timeSlot.equalsIgnoreCase("AM") && hours!= 12){
+            time = timeOld;
+        }else if(timeSlot.equalsIgnoreCase("PM")&& hours == 12){
+            time = timeOld;
+        }else if(timeSlot.equalsIgnoreCase("PM")&& hours != 12){
+            time = String.valueOf(hours + 12) + ":"+minutes;
+        }
         try {
             EventVO event = new EventVO();
             event.eventName = name;
@@ -471,9 +475,12 @@ public class EventInformationUI extends javax.swing.JFrame {
             event.eventTime = time;
             event.eventType = type;
             event.introduction = introduction;
+            if(strImageName.isEmpty()){
+                strImageName = "goshreddingB&W.png";
+            }
             event.eventPicName = strImageName;
-            event.eventTypePicName = eventTypeImageName;
-            GoService.getInstance().insertEvent(event);
+            
+            GoService.getInstance().AddEvent(event);
             JOptionPane.showMessageDialog(null, "successfully saved");
             if (this.sourceForm == 1) {
                 MainFormUI mainFrm = new MainFormUI();
@@ -493,12 +500,14 @@ public class EventInformationUI extends javax.swing.JFrame {
 
     private void manageAdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAdBtnActionPerformed
         advertisementManagementUI amFrm = new advertisementManagementUI();
+        amFrm.sourceForm = sourceForm;
         amFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_manageAdBtnActionPerformed
 
     private void changeAdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeAdBtnActionPerformed
         advertisementManagementUI amFrm = new advertisementManagementUI();
+        amFrm.sourceForm = sourceForm;
         amFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_changeAdBtnActionPerformed

@@ -14,6 +14,7 @@ import javax.swing.JTable;
 public class Definition {
     public final static String PARTICIPANTFILE = "ParticipantFile.txt";
     public final static String ORGANIZERFILE = "OrganizerFile.txt";
+    public final static String EVENTFILE = "EventFile.txt";
     public final static String DB_FILE_NAME="";
     
     

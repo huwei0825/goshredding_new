@@ -14,8 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -39,7 +40,10 @@ public class GoHelper {
                 setBkColor((Container) cArr[i], clr);// 循环设置
             } //cArr[i].setBackground(clr);
         }
-        c.setBackground(clr);
+        if(c instanceof JPanel)
+            c.setBackground(clr);
+        else if(c instanceof JLabel)
+            c.setBackground(clr);
     }
 
     public static Long string2Millis(String dateStr, String formatStr) {

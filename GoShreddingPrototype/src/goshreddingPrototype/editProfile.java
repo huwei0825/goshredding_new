@@ -355,7 +355,7 @@ public class editProfile extends javax.swing.JFrame {
                         organizer.num = num;
                         organizer.email = email;
                         organizer.income = income;
-                        GoService.getInstance().insertOrganizer(organizer);
+                        //GoService.getInstance().insertOrganizer(organizer);
                     } catch (Exception e) {
 
                     }

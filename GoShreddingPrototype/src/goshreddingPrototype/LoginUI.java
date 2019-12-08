@@ -7,6 +7,7 @@ package goshreddingPrototype;
 
 import goshredding.service.GoService;
 import goshredding.vo.OrganizerVO;
+import goshredding.vo.ParticipantVO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -155,17 +156,37 @@ public class LoginUI extends javax.swing.JFrame {
         String password = passwordTxt.getText();
 
         try {
-            ArrayList<OrganizerVO> organizerList = GoService.getInstance().getOrganizerByUsername(username);
-            if (organizerList.size() == 0) {
-                JOptionPane.showMessageDialog(null, "User not found");
+            ArrayList<ParticipantVO> participantList = GoService.getInstance().getParticipantByUsername(username);
+            if (participantList.size() == 0) {
+                ArrayList<OrganizerVO> organizerList = GoService.getInstance().getOrganizerByUsername(username);
+                if (organizerList.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "User not found");
+                } else {
+                    for (OrganizerVO organizerObj : organizerList) {
+                        String dbPassword = organizerObj.password;
+                        String userId = organizerObj.organizerId;
+
+                        if (password.equals(dbPassword)) {
+                            GoService.currentUserId = userId;
+                            JOptionPane.showMessageDialog(null, "login sucessful");
+                            GoService.currentUserType = GoService.USER_TYPE_ORGANIZER;
+                            MainFormUI mainFrm = new MainFormUI();
+                            mainFrm.setVisible(true);
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Password is wrong");
+                        }
+                    }
+                }
             } else {
-                for (OrganizerVO organizerObj : organizerList) {
-                    String dbPassword = organizerObj.password;
-                    int userId = organizerObj.organizerId;
-                    
+                for (ParticipantVO participantObj : participantList) {
+                    String dbPassword = participantObj.password;
+                    String userId = participantObj.participantId;
+
                     if (password.equals(dbPassword)) {
-                        GoService.currentUserId = String.valueOf(userId);
+                        GoService.currentUserId = userId;
                         JOptionPane.showMessageDialog(null, "login sucessful");
+                        GoService.currentUserType = GoService.USER_TYPE_PARTICIPANT;
                         MainFormUI mainFrm = new MainFormUI();
                         mainFrm.setVisible(true);
                         this.dispose();
@@ -174,6 +195,7 @@ public class LoginUI extends javax.swing.JFrame {
                     }
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

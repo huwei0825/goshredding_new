@@ -14,6 +14,7 @@ public class advertisementManagementUI extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    public int sourceForm = 0;
     public advertisementManagementUI() {
         initComponents();
     }
@@ -171,6 +172,7 @@ public class advertisementManagementUI extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         EventInformationUI eiFrm = new EventInformationUI();
+        eiFrm.sourceForm = sourceForm;
         eiFrm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed

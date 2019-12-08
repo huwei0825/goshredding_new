@@ -5,11 +5,10 @@
  */
 package goshreddingPrototype;
 
-import goshredding.vo.EventVO;
 import goshredding.data.Validation;
 import goshredding.service.GoService;
 import goshredding.vo.OrganizerVO;
-import java.util.ArrayList;
+import goshredding.vo.ParticipantVO;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +22,6 @@ public class SignUpUI extends javax.swing.JFrame {
      */
     public SignUpUI() {
         initComponents();
-//        CalendarControl calendarControl = CalendarControl.getInstance();
-//        calendarControl.register(dobTxt);
     }
 
     /**
@@ -64,6 +61,7 @@ public class SignUpUI extends javax.swing.JFrame {
         dobTxt = new javax.swing.JTextField();
         usernameTxt = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 246, 254));
@@ -112,7 +110,7 @@ public class SignUpUI extends javax.swing.JFrame {
         jLabel10.setText("Address1:");
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel11.setText("Password:");
+        jLabel11.setText("Password(8 characters):");
 
         numTxt.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
 
@@ -155,72 +153,78 @@ public class SignUpUI extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel15.setText("Username:");
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel1.setText("(dd/mm/yyyy)");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(forenameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanelLayout.createSequentialGroup()
-                                    .addGap(75, 75, 75)
-                                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanelLayout.createSequentialGroup()
-                                            .addComponent(jLabel10)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(add1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanelLayout.createSequentialGroup()
-                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(usernameTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password1Txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password2Txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addGroup(jPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel14)))))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(384, 384, 384)
-                        .addComponent(jLabel2)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(384, 384, 384)
+                .addComponent(jLabel2))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jLabel5)
+                .addGap(6, 6, 6)
+                .addComponent(forenameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(33, 33, 33)
+                .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel4)
+                .addGap(6, 6, 6)
+                .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel7)
+                .addGap(6, 6, 6)
+                .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel10)
+                .addGap(6, 6, 6)
+                .addComponent(add1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel9)
+                .addGap(6, 6, 6)
+                .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel6)
+                .addGap(6, 6, 6)
+                .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel12)
+                .addGap(6, 6, 6)
+                .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel13)
+                .addGap(6, 6, 6)
+                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,50 +232,73 @@ public class SignUpUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel5))
                     .addComponent(forenameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(userTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel15))))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel7))
                     .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
                     .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel14))
-                .addGap(12, 12, 12)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel9))
+                    .addComponent(add2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(postcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel14))))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel12))
+                    .addComponent(numTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
                         .addComponent(jLabel13))
-                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -309,8 +336,7 @@ public class SignUpUI extends javax.swing.JFrame {
         String username = usernameTxt.getText();
         String password1 = password1Txt.getText();
         String income = "0";
-        String lineRead;
-        int lineNum = 0;//stores the number of lines in a file
+       
 
         boolean validate = true;
 
@@ -339,20 +365,16 @@ public class SignUpUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please write a valid date and in the format 'dd/mm/yyyy'", "DOB",
                     JOptionPane.INFORMATION_MESSAGE);
         }
-        if (Validation.isPresent(emailTxt.getText()) == false) {
-            validate = false;
-            JOptionPane.showMessageDialog(null, "Cannot be empty!", "Email",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
+        
         if (Validation.isPresent(add1Txt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "address",
-                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         if (Validation.isPresent(postcodeTxt.getText()) == false) {
             validate = false;
             JOptionPane.showMessageDialog(null, "Cannot be empty!", "Postcode",
-                    JOptionPane.INFORMATION_MESSAGE);// TODO add your handling code here:
+                    JOptionPane.INFORMATION_MESSAGE);
         }
         if ((Validation.isLength(postcodeTxt.getText(), 7) || Validation.isLength(postcodeTxt.getText(), 8)) == false) {
             validate = false;
@@ -379,26 +401,22 @@ public class SignUpUI extends javax.swing.JFrame {
             if (validate == true) {
                 //store participant information
                 if (userType.equalsIgnoreCase("participant")) {
-
-//                    //create a file reader object
-//                    FileReader fr = new FileReader(Definition.PARTICIPANTFILE);
-//                    BufferedReader br = new BufferedReader(fr);
-//                    //loop through file until EOF or we find it
-//                    while ((lineRead = br.readLine()) != null) {
-//                        lineNum++;
-//                    }
-//                    userId = lineNum + 100;
-//                    record = userId + "," + forename + "," + surname + "," + dob + "," + add1 + "," + add2 + "," + postcode + "," + num
-//                            + "," + email + "," + password1;
-//                    //create file writer object
-//                    FileWriter w = new FileWriter(Definition.PARTICIPANTFILE, true);
-//                    //write the string record to the file plus end of line
-//                    w.write(record + System.getProperty("line.separator"));
-//                    w.close();//close file
-//                    JOptionPane.showMessageDialog(null, "successful added");
-//                    MainFormUI mainFrm = new MainFormUI();
-//                    mainFrm.setVisible(true);
-//                    this.dispose();
+                    try {
+                        ParticipantVO participant = new ParticipantVO();
+                        participant.username = username;
+                        participant.password = password1;
+                        participant.forename = forename;
+                        participant.surname = surname;
+                        participant.dob = dob;
+                        participant.add1 = add1;
+                        participant.add2 = add2;
+                        participant.postcode = postcode;
+                        participant.num = num;
+                        participant.email = email;
+                        GoService.getInstance().addParticipant(participant);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 //store organizer information
                 if (userType.equalsIgnoreCase("organizer")) {
@@ -416,30 +434,16 @@ public class SignUpUI extends javax.swing.JFrame {
                         organizer.num = num;
                         organizer.email = email;
                         organizer.income = income;
-                        GoService.getInstance().insertOrganizer(organizer);
+                        GoService.getInstance().addOrganizer(organizer);
                     } catch (Exception e) {
 
                     }
-//                    //create a file reader object
-//                    FileReader fr = new FileReader(Definition.ORGANIZERFILE);
-//                    BufferedReader br = new BufferedReader(fr);
-//                    //loop through file until EOF or we find it
-//                    while ((lineRead = br.readLine()) != null) {
-//                        lineNum++;
-//                    }
-//                    userId = lineNum + 100;
-//                    record = userId + "," + forename + "," + surname + "," + dob + "," + add1 + "," + add2 + "," + postcode + "," + num
-//                            + "," + email + "," + password1 + "," + income;
-//                    //create file writer object
-//                    FileWriter w = new FileWriter(Definition.ORGANIZERFILE, true);
-//                    //write the string record to the file plus end of line
-//                    w.write(record + System.getProperty("line.separator"));
-//                    w.close();//close file
-                    JOptionPane.showMessageDialog(null, "successful added");
-                    MainFormUI mainFrm = new MainFormUI();
-                    mainFrm.setVisible(true);
-                    this.dispose();
+                    
                 }
+                JOptionPane.showMessageDialog(null, "successful added");
+                    LoginUI liFrm = new LoginUI();
+                    liFrm.setVisible(true);
+                    this.dispose();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "error with: " + ex);
@@ -551,6 +555,7 @@ public class SignUpUI extends javax.swing.JFrame {
     private javax.swing.JTextField dobTxt;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JTextField forenameTxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

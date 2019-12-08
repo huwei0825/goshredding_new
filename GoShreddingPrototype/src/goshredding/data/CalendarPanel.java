@@ -8,6 +8,7 @@
 
 package goshredding.data;
 
+import goshreddingPrototype.MyEventsUI;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,9 +22,6 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Stroke;
 import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,15 +36,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.PopupFactory;
 import javax.swing.SwingUtilities;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 /**
  * @author Songyun Hu
  * @Describe(Date Chooser class)
  */
 public class CalendarPanel extends JPanel {
-
+    public MyEventsUI myeventsui = null;
     private static final long serialVersionUID = -5384012731547358720L;
 
     private Calendar calendar;
@@ -63,7 +58,7 @@ public class CalendarPanel extends JPanel {
 
     private JComponent showDate;
     private boolean isShow = false;
-    private static final String DEFAULTFORMAT = "yyyy-MM-dd";
+    private static final String DEFAULTFORMAT = "dd/MM/yyyy";
     private static final String[] showTEXT = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     private static WeekLabel[] weekLabels = new WeekLabel[7];
     private static int defaultStartDAY = 0;//0 is from Sun, 1 is from Mon, 2 is from Tue
@@ -155,12 +150,14 @@ public class CalendarPanel extends JPanel {
 
     // change text or label's content.
     private void commit() {
-        if (showDate instanceof JTextField) {
-            ((JTextField) showDate).setText(sdf.format(calendar.getTime()));
-        } else if (showDate instanceof JLabel) {
-            ((JLabel) showDate).setText(sdf.format(calendar.getTime()));
-        }
-        hidePanel();
+        myeventsui.displayEventsByDate(sdf.format(calendar.getTime()));
+        System.out.println("date:" + sdf.format(calendar.getTime()));
+//        if (showDate instanceof JTextField) {
+//            ((JTextField) showDate).setText(sdf.format(calendar.getTime()));
+//        } else if (showDate instanceof JLabel) {
+//            ((JLabel) showDate).setText(sdf.format(calendar.getTime()));
+//        }
+//        hidePanel();
     }
 
     // control panel
@@ -334,6 +331,7 @@ public class CalendarPanel extends JPanel {
                     refresh();
                     commit();
                 }
+                
 
                 @Override
                 public void mouseExited(MouseEvent e) {

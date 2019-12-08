@@ -5,254 +5,414 @@
  */
 package goshredding.service;
 
+import goshredding.data.Definition;
 import goshredding.vo.EventVO;
 import goshredding.vo.OrganizerVO;
 import goshredding.vo.ParticipantVO;
-import goshredding.vo.UserVO;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author SXR
  */
-public class GoService extends SqliteHelper {
+public class GoService {
 
     private static String DB_NAME = "GoshreddingDB.db";
     public static String currentUserId = "";
-    public GoService(String dbFilePath) throws ClassNotFoundException, SQLException {
-        super(dbFilePath);
-    }
+    public static int USER_TYPE_ORGANIZER = 1;
+    public static int USER_TYPE_PARTICIPANT = 2;
+    public static int currentUserType = 0;
 
     public static GoService getInstance() throws Exception {
-
-        return new GoService(DB_NAME);
+        return new GoService();
     }
 
     public ArrayList<EventVO> getEventAll() throws Exception {
         ArrayList<EventVO> rsList = new ArrayList<EventVO>();
+        String lineRead;
+        String[] temp;
         try {
-            resultSet = this.getStatement().executeQuery("select * from event_table");
-            while (resultSet.next()) {
+            FileReader fr = new FileReader(Definition.EVENTFILE);
+            BufferedReader br = new BufferedReader(fr);
+
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
                 EventVO event = new EventVO();
-                event.eventId = resultSet.getString("EventID");
-                event.eventName = resultSet.getString("EventName");
-                event.eventPicName = resultSet.getString("ImageName");
-                event.eventTime = resultSet.getString("Time");
-                event.eventDate = resultSet.getString("Date");
-                event.eventType = resultSet.getString("EventType");
-                event.eventTypePicName = resultSet.getString("EventTypeImageName");
-                event.introduction = resultSet.getString("EventIntroduction");
-                event.location = resultSet.getString("Location");
-                event.organizerId = resultSet.getString("OrganizerID");
-                event.advertisementId = resultSet.getString("AdvertisementID");
+                event.eventId = temp[0];
+                event.eventName = temp[6];
+                event.eventPicName = temp[9];
+                event.eventTime = temp[4];
+                event.eventDate = temp[3];
+                event.eventType = temp[5];
+                event.introduction = temp[7].replace("#", ",");
+                event.location = temp[2];
+                event.organizerId = temp[1];
+                event.advertisementId = temp[8];
                 rsList.add(event);
             }
         } finally {
-            this.destroyed();
         }
         return rsList;
     }
 
-    public ArrayList<EventVO> getEventByUserId(String userId) throws Exception {
-        ArrayList<EventVO> rsList = new ArrayList<EventVO>();
+    public ArrayList<ParticipantVO> getEventByParticipantId(String userId) throws Exception {
+        ArrayList<ParticipantVO> rsList = new ArrayList<ParticipantVO>();
         try {
-            resultSet = this.getStatement().executeQuery("select * from organizer_table");
 
         } finally {
-            this.destroyed();
+
         }
         return rsList;
     }
 
-    public void insertEvent(EventVO eventVO) throws Exception {
-        String strNewId = getNextMaxID("event_table", "EventID");
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("EventID", strNewId);
-        map.put("OrganizerID", eventVO.organizerId);
-        map.put("Location", eventVO.location);
-        map.put("Date", eventVO.eventDate);
-        map.put("Time", eventVO.eventTime);
-        map.put("EventType", eventVO.eventType);
-        map.put("EventName", eventVO.eventName);
-        map.put("EventIntroduction", eventVO.introduction);
-        map.put("AdvertisementID", eventVO.advertisementId);
-        map.put("ImageName", eventVO.eventPicName);
-        map.put("EventTypeImageName", eventVO.eventTypePicName);
+    public ArrayList<EventVO> getEventByOrganizerId(String userId) throws Exception {
+        ArrayList<EventVO> rsList = new ArrayList<EventVO>();
+        String lineRead;
+        String[] temp;
+        try {
+            FileReader fr = new FileReader(Definition.EVENTFILE);
+            BufferedReader br = new BufferedReader(fr);
 
-        this.executeInsert("event_table", map);
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if (temp[1].equalsIgnoreCase(userId)) {
+                    EventVO event = new EventVO();
+                    event.eventId = temp[0];
+                    event.eventName = temp[6];
+                    event.eventPicName = temp[9];
+                    event.eventTime = temp[4];
+                    event.eventDate = temp[3];
+                    event.eventType = temp[5];
+                    event.introduction = temp[7].replace("#", ",");;
+                    event.location = temp[2];
+                    event.organizerId = temp[1];
+                    event.advertisementId = temp[8];
+
+                    rsList.add(event);
+                }
+            }
+
+        } finally {
+
+        }
+        return rsList;
+    }
+    public ArrayList<EventVO> getEventsByOtherOrganizers(String currentUserId) throws Exception {
+        ArrayList<EventVO> rsList = new ArrayList<EventVO>();
+        String lineRead;
+        String[] temp;
+        try {
+            FileReader fr = new FileReader(Definition.EVENTFILE);
+            BufferedReader br = new BufferedReader(fr);
+
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if(!temp[1].equalsIgnoreCase(currentUserId)){
+                EventVO event = new EventVO();
+                event.eventId = temp[0];
+                event.eventName = temp[6];
+                event.eventPicName = temp[9];
+                event.eventTime = temp[4];
+                event.eventDate = temp[3];
+                event.eventType = temp[5];
+                event.introduction = temp[7].replace("#", ",");;
+                event.location = temp[2];
+                event.organizerId = temp[1];
+                event.advertisementId = temp[8];
+                rsList.add(event);
+                }
+            }
+        } finally {
+        }
+        return rsList;
+    }
+    public void AddEvent(EventVO eventVO) throws Exception {
+        String id = String.valueOf(getNextMaxID(Definition.EVENTFILE));
+        String introduction = eventVO.introduction.replace(",", "#");//in case that introduction is split by the "," when store the event informaiton into an array
+        String record = id + "," + eventVO.organizerId + "," + eventVO.location + "," + eventVO.eventDate + "," + eventVO.eventTime + "," + eventVO.eventType + "," + eventVO.eventName
+                + "," + introduction + "," + eventVO.advertisementId + "," + eventVO.eventPicName;
+
+        try {
+            FileWriter writer = new FileWriter(Definition.EVENTFILE, true);
+            // write the string record to file plus end of line
+            writer.write(record + System.getProperty("line.separator"));
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
     }
 
-    public void updateEvent(EventVO eventVO) throws Exception {
-        StringBuffer updSql = new StringBuffer();
-        updSql.append("UPDATE ");
-        updSql.append("event_table");
-        updSql.append(" SET ");
-        updSql.append(" event_name = '");
-        updSql.append(eventVO.eventName);
-        updSql.append("' WHERE event_id='");
-        updSql.append(eventVO.eventId);
-        updSql.append("'");
+    public void editEvent(EventVO eventVO) throws Exception {
+        String introduction = eventVO.introduction.replace(",", "#");
+        String record = eventVO.eventId + "," + eventVO.organizerId + "," + eventVO.location + "," + eventVO.eventDate + "," + eventVO.eventTime + "," + eventVO.eventType + "," + eventVO.eventName
+                + "," + introduction + "," + eventVO.advertisementId + "," + eventVO.eventPicName;
+        String[] temp;//array holds last line read
+        String lineRead;
+        try {
+            //create a file reader object
+            FileReader fr = new FileReader(Definition.EVENTFILE);
+            FileWriter w = new FileWriter("new.txt", true);
+            BufferedReader br = new BufferedReader(fr);
+            //loop through file until EOF or we find it
+            while ((lineRead = br.readLine()) != null) {
 
-        this.executeUpdate(updSql.toString());
+                temp = lineRead.split(",");
+                //if search item found then...
+                if (eventVO.eventId.equalsIgnoreCase(temp[0])) {
 
+                    w.write(record + System.getProperty("line.separator"));
+                } else {
+                    w.write(lineRead + System.getProperty("line.separator"));
+                }
+
+            }
+            fr.close();// close the file
+            w.close();//close file
+            br.close();
+            File file = new File(Definition.EVENTFILE);
+            file.delete();
+            File newfile = new File("new.txt");
+            newfile.renameTo(file);
+            JOptionPane.showMessageDialog(null, "successful changed");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "error saving with: " + ex);
+        }
     }
 
     public void deleteEvent(EventVO eventVO) throws Exception {
-        this.executeUpdate("delete from event_table where event_id='" + eventVO.eventId + "'");
-    }
+        String[] temp;
+        String lineRead;
+        String eventId = eventVO.eventId;
+        try {
+            FileReader fr = new FileReader(Definition.EVENTFILE);
+            BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter("new.txt", true);
 
-    public UserVO getUser(String userName, String userPassword) throws Exception {
-        UserVO userVO = null;
-        return userVO;
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if (!eventId.equalsIgnoreCase(temp[0])) {
+                    fw.write(lineRead + System.getProperty("line.separator"));
+                }
+            }
+            fr.close();
+            br.close();
+            fw.close();
+            File f = new File(Definition.EVENTFILE);
+            f.delete();
+            File nf = new File("new.txt");
+            nf.renameTo(f);
+
+        } finally {
+
+        }
     }
 
     public ArrayList<OrganizerVO> getOrganizerAll() throws Exception {
         ArrayList<OrganizerVO> rsList = new ArrayList<OrganizerVO>();
+        String lineRead;
+        String[] temp;
         try {
-            resultSet = this.getStatement().executeQuery("select * from organizer_table");
-            while (resultSet.next()) {
+            FileReader fr = new FileReader(Definition.ORGANIZERFILE);
+            BufferedReader br = new BufferedReader(fr);
+
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
                 OrganizerVO organizer = new OrganizerVO();
-                organizer.organizerId = resultSet.getInt("OrganizerID");
-                organizer.username = resultSet.getString("Username");
-                organizer.password = resultSet.getString("Password");
-                organizer.forename = resultSet.getString("Forename");
-                organizer.surname = resultSet.getString("Surname");
-                organizer.dob = resultSet.getString("DOB");
-                organizer.add1 = resultSet.getString("Address1");
-                organizer.add2 = resultSet.getString("Address2");
-                organizer.postcode = resultSet.getString("Postcode");
-                organizer.num = resultSet.getString("ContactNumber");
-                organizer.email = resultSet.getString("Email");
-                organizer.income = resultSet.getString("Income");
+                organizer.organizerId = temp[0];
+                organizer.username = temp[1];
+                organizer.password = temp[2];
+                organizer.forename = temp[3];
+                organizer.surname = temp[4];
+                organizer.dob = temp[5];
+                organizer.add1 = temp[6];
+                organizer.add2 = temp[7];
+                organizer.postcode = temp[8];
+                organizer.num = temp[9];
+                organizer.email = temp[10];
+                organizer.income = temp[11];
                 rsList.add(organizer);
             }
+
         } finally {
-            this.destroyed();
+
         }
         return rsList;
     }
 
     public ArrayList<OrganizerVO> getOrganizerByUsername(String username) throws Exception {
         ArrayList<OrganizerVO> rsList = new ArrayList<OrganizerVO>();
+        String lineRead;
+        String[] temp;
         try {
-            resultSet = this.getStatement().executeQuery("select * from organizer_table where Username = '" + username + "'");
-            while (resultSet.next()) {
-                OrganizerVO organizer = new OrganizerVO();
-                organizer.organizerId = resultSet.getInt("OrganizerID");
-                organizer.username = resultSet.getString("Username");
-                organizer.password = resultSet.getString("Password");
-                organizer.forename = resultSet.getString("Forename");
-                organizer.surname = resultSet.getString("Surname");
-                organizer.dob = resultSet.getString("DOB");
-                organizer.add1 = resultSet.getString("Address1");
-                organizer.add2 = resultSet.getString("Address2");
-                organizer.postcode = resultSet.getString("Postcode");
-                organizer.num = resultSet.getString("ContactNumber");
-                organizer.email = resultSet.getString("Email");
-                organizer.income = resultSet.getString("Income");
-                rsList.add(organizer);
+            FileReader fr = new FileReader(Definition.ORGANIZERFILE);
+            BufferedReader br = new BufferedReader(fr);
+
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if (temp.length == 12) {
+                    if (temp[1].equalsIgnoreCase(username)) {
+                        OrganizerVO organizer = new OrganizerVO();
+                        organizer.organizerId = temp[0];
+                        organizer.username = temp[1];
+                        organizer.password = temp[2];
+                        organizer.forename = temp[3];
+                        organizer.surname = temp[4];
+                        organizer.dob = temp[5];
+                        organizer.add1 = temp[6];
+                        organizer.add2 = temp[7];
+                        organizer.postcode = temp[8];
+                        organizer.num = temp[9];
+                        organizer.email = temp[10];
+                        organizer.income = temp[11];
+                        rsList.add(organizer);
+                    }
+                }
             }
-        } 
-        finally {
-            this.destroyed();
+        } finally {
+
         }
         return rsList;
     }
 
-    public String getNextMaxID(String tableName, String primaryFieldName) throws Exception {
-        String strMaxId = "0";
-
+    public void addOrganizer(OrganizerVO organizerVO) throws Exception {
+        String id = String.valueOf(getNextMaxID(Definition.ORGANIZERFILE));
+        String record = id + "," + organizerVO.username + "," + organizerVO.password + "," + organizerVO.forename + "," + organizerVO.surname
+                + "," + organizerVO.dob + "," + organizerVO.add1 + "," + organizerVO.add2 + "," + organizerVO.postcode + "," + organizerVO.num
+                + "," + organizerVO.email + "," + organizerVO.income;
         try {
-            resultSet = this.getStatement().executeQuery("select max(" + primaryFieldName + ") as maxid from " + tableName);
-            while (resultSet.next()) {
-                strMaxId = resultSet.getString("maxid");
-
-            }
-            if (strMaxId != null) {
-                strMaxId = String.valueOf(Integer.parseInt(strMaxId) + 1);
-            } else {
-                strMaxId = "101";
-            }
-        } finally {
-            this.destroyed();
+            FileWriter writer = new FileWriter(Definition.ORGANIZERFILE, true);
+            // write the string record to file plus end of line
+            writer.write(record + System.getProperty("line.separator"));
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        return strMaxId;
+
     }
 
-    public void insertOrganizer(OrganizerVO organizerVO) throws Exception {
+    public void editOrganizer(OrganizerVO organizerVO) throws Exception {
+        String record = organizerVO.organizerId + "," + organizerVO.username + "," + organizerVO.password + "," + organizerVO.forename + "," + organizerVO.surname
+                + "," + organizerVO.dob + "," + organizerVO.add1 + "," + organizerVO.add2 + "," + organizerVO.postcode + "," + organizerVO.num
+                + "," + organizerVO.email + "," + organizerVO.income;
+        String[] temp;//array holds last line read
+        String lineRead;
+        try {
+            //create a file reader object
+            FileReader fr = new FileReader(Definition.ORGANIZERFILE);
+            FileWriter w = new FileWriter("new.txt", true);
+            BufferedReader br = new BufferedReader(fr);
+            //loop through file until EOF or we find it
+            while ((lineRead = br.readLine()) != null) {
 
-        String strNewId = getNextMaxID("organizer_table", "OrganizerID");
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("OrganizerID", strNewId);
-        map.put("Username", organizerVO.username);
-        map.put("Password", organizerVO.password);
-        map.put("Forename", organizerVO.forename);
-        map.put("Surname", organizerVO.surname);
-        map.put("DOB", organizerVO.dob);
-        map.put("Address1", organizerVO.add1);
-        map.put("Address2", organizerVO.add2);
-        map.put("Postcode", organizerVO.postcode);
-        map.put("ContactNumber", organizerVO.num);
-        map.put("Email", organizerVO.email);
-        map.put("Income", organizerVO.income);
-        this.executeInsert("organizer_table", map);
-    }
+                temp = lineRead.split(",");
+                //if search item found then...
+                if (organizerVO.organizerId.equalsIgnoreCase(temp[0])) {
 
-    public void updateOrganizer(OrganizerVO organizerVO) throws Exception {
-        StringBuffer updSql = new StringBuffer();
-        updSql.append("UPDATE ");
-        updSql.append("organizer_table");
-        updSql.append(" SET ");
-        updSql.append(" Username = '");
-        updSql.append(organizerVO.username);
-        updSql.append("',");
-        updSql.append(" Password = '");
-        updSql.append(organizerVO.password);
-        updSql.append("',");
-        updSql.append(" Forename = '");
-        updSql.append(organizerVO.forename);
-        updSql.append("',");
-        updSql.append(" Surname = '");
-        updSql.append(organizerVO.surname);
-        updSql.append("',");
-        updSql.append(" DOB = '");
-        updSql.append(organizerVO.dob);
-        updSql.append("',");
-        updSql.append(" Address1 = '");
-        updSql.append(organizerVO.add1);
-        updSql.append("',");
-        updSql.append(" Address2 = '");
-        updSql.append(organizerVO.add2);
-        updSql.append("',");
-        updSql.append(" Postcode = '");
-        updSql.append(organizerVO.postcode);
-        updSql.append("',");
-        updSql.append(" Contact number = '");
-        updSql.append(organizerVO.num);
-        updSql.append("',");
-        updSql.append(" Email = '");
-        updSql.append(organizerVO.email);
-        updSql.append("',");
-        updSql.append(" Income = '");
-        updSql.append(organizerVO.income);
-        updSql.append("' WHERE OrganizerID='");
-        updSql.append(organizerVO.organizerId);
-        updSql.append("'");
+                    w.write(record + System.getProperty("line.separator"));
+                } else {
+                    w.write(lineRead + System.getProperty("line.separator"));
+                }
 
-        this.executeUpdate(updSql.toString());
+            }
+            fr.close();// close the file
+            w.close();//close file
+            br.close();
+            File file = new File(Definition.ORGANIZERFILE);
+            file.delete();
+            File newfile = new File("new.txt");
+            newfile.renameTo(file);
+            JOptionPane.showMessageDialog(null, "successful changed");
+        } finally {
+
+        }
+
     }
 
     public void deleteOrganizer(OrganizerVO organizerVO) throws Exception {
-        this.executeUpdate("delete from organizer_table where OrganizerID='" + organizerVO.organizerId + "'");
+        String[] temp;
+        String lineRead;
+        String organizerId = organizerVO.organizerId;
+        try {
+            FileReader fr = new FileReader(Definition.ORGANIZERFILE);
+            BufferedReader br = new BufferedReader(fr);
+            FileWriter fw = new FileWriter("new.txt", true);
+
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if (!organizerId.equalsIgnoreCase(temp[0])) {
+                    fw.write(lineRead + System.getProperty("line.separator"));
+                }
+            }
+            fr.close();
+            br.close();
+            fw.close();
+            File f = new File(Definition.ORGANIZERFILE);
+            f.delete();
+            File nf = new File("new.txt");
+            nf.renameTo(f);
+
+        } finally {
+
+        }
     }
 
-    public void insertParticipant(ParticipantVO participantVO) throws Exception {
+    public ArrayList<ParticipantVO> getParticipantByUsername(String username) throws Exception {
+        ArrayList<ParticipantVO> rsList = new ArrayList<ParticipantVO>();
+        String lineRead;
+        String[] temp;
+        try {
+            FileReader fr = new FileReader(Definition.PARTICIPANTFILE);
+            BufferedReader br = new BufferedReader(fr);
 
+            while ((lineRead = br.readLine()) != null) {
+                temp = lineRead.split(",");
+                if (temp.length == 11) {
+                    if (temp[1].equalsIgnoreCase(username)) {
+                        ParticipantVO participant = new ParticipantVO();
+                        participant.participantId = temp[0];
+                        participant.username = temp[1];
+                        participant.password = temp[2];
+                        participant.forename = temp[3];
+                        participant.surname = temp[4];
+                        participant.dob = temp[5];
+                        participant.add1 = temp[6];
+                        participant.add2 = temp[7];
+                        participant.postcode = temp[8];
+                        participant.num = temp[9];
+                        participant.email = temp[10];
+
+                        rsList.add(participant);
+                    }
+                }
+            }
+        } finally {
+
+        }
+        return rsList;
+    }
+
+    public void addParticipant(ParticipantVO participantVO) throws Exception {
+        String id = String.valueOf(getNextMaxID(Definition.PARTICIPANTFILE));
+        String record = id + "," + participantVO.username + "," + participantVO.password + "," + participantVO.forename + "," + participantVO.surname
+                + "," + participantVO.dob + "," + participantVO.add1 + "," + participantVO.add2 + "," + participantVO.postcode + "," + participantVO.num
+                + "," + participantVO.email;
+        try {
+            FileWriter writer = new FileWriter(Definition.PARTICIPANTFILE, true);
+            // write the string record to file plus end of line
+            writer.write(record + System.getProperty("line.separator"));
+            writer.close();
+        } finally {
+
+        }
     }
 
     public void updateParticipant(ParticipantVO participantVO) throws Exception {
@@ -262,4 +422,27 @@ public class GoService extends SqliteHelper {
     public void deleteParticipant(ParticipantVO participantVO) throws Exception {
 
     }
+
+    public int getNextMaxID(String fileName) throws Exception {
+        int strMaxId = 100;
+        String line;
+        String[] savedData;
+        try {
+            File directory = new File("");
+            FileReader fileReader = new FileReader(directory.getCanonicalPath() + "/" + fileName);
+            BufferedReader bufferRead = new BufferedReader(fileReader);
+
+            while ((line = bufferRead.readLine()) != null) {
+                savedData = line.split(",");
+                if (Integer.parseInt(savedData[0]) > strMaxId) {
+                    strMaxId = Integer.parseInt(savedData[0]);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return strMaxId + 1;
+    }
+    
 }
