@@ -24,6 +24,7 @@ public class MyEventsUI extends javax.swing.JFrame {
      * Creates new form Login
      */
      ArrayList<EventVO> eventList = new ArrayList<EventVO>();
+     
     public MyEventsUI() {
         initComponents();
         if (GoService.currentUserType == 2) {
@@ -36,8 +37,6 @@ public class MyEventsUI extends javax.swing.JFrame {
         calendarContainerPanel.add(calendarPanel);
         ser.myeventsui = this;
         //display events on "my events" table
-       
-
         try {
             eventList = GoService.getInstance().getEventByOrganizerId(GoService.currentUserId);
         } catch (Exception e) {
@@ -48,7 +47,18 @@ public class MyEventsUI extends javax.swing.JFrame {
       
     }
     public void displayEventsByDate(String date){
-        
+        ArrayList<EventVO> eventListNew = new ArrayList<EventVO>();
+        for(int i = 0; i < eventList.size(); i++){
+            EventVO event = new EventVO();
+            event = (EventVO)eventList.get(i);
+            if(event.eventDate.equalsIgnoreCase(date)){
+                eventListNew.add(event);
+            }
+        }
+        eventList = eventListNew;
+        MyEventTableModel eventTableModel = new MyEventTableModel(eventList);
+        myEventsTable.setModel(eventTableModel);
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
